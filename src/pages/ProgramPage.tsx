@@ -140,7 +140,7 @@ export default function ProgramPage() {
                   fontFamily: 'Barlow Condensed, sans-serif',
                   fontSize: 12, fontWeight: 700, letterSpacing: '0.15em',
                   color: '#0080C8', textTransform: 'uppercase',
-                }}>CFI — Catégorie U6-U7</span>
+                }}>Programme U6-U7</span>
               </div>
               <h1 style={{
                 fontFamily: 'Barlow Condensed, sans-serif',

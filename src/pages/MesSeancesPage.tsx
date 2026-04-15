@@ -90,7 +90,7 @@ function ExerciceDetailCard({ entry, index }: { entry: UnifiedEntry; index: numb
           textTransform: 'uppercase', letterSpacing: '0.05em',
           flexShrink: 0,
         }}>
-          {entry.source === 'livret' ? 'U7' : 'CFI'}
+          {entry.source === 'livret' ? 'U7' : 'U6-U7'}
         </span>
       </div>
 

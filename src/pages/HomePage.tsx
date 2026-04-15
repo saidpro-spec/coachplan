@@ -4,18 +4,20 @@ import { useAuth } from '../context/AuthContext';
 import { sessions, SERIE_CHATEAU } from '../data/sessions';
 import { LIVRET_U7 } from '../data/livretU7';
 import { LIVRET_U6 } from '../data/livretU6';
+import { SESSIONS_U8U9 } from '../data/sessionsU8U9';
 
 const totalExercices =
   LIVRET_U7.length +
   LIVRET_U6.length +
-  [...sessions, ...SERIE_CHATEAU].reduce((acc, s) => acc + s.exercices.length, 0);
+  [...sessions, ...SERIE_CHATEAU].reduce((acc, s) => acc + s.exercices.length, 0) +
+  SESSIONS_U8U9.reduce((acc, s) => acc + s.exercices.length, 0);
 
 const CARDS = [
   {
     path: '/exercices',
     icon: '⚽',
     title: 'Exercices',
-    description: `${totalExercices} exercices issus du Guide U6, Livret U7 et Programme CFI, filtrables et consultables en détail.`,
+    description: `${totalExercices} exercices — Guide U6, Livret U7, Programme U6-U7 et Programme U8-U9.`,
     color: '#1E9E58',
     label: 'Parcourir',
   },

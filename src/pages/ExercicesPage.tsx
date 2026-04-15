@@ -9,11 +9,14 @@ import {
 import {
   LIVRET_U6, LIVRET_U6_CATEGORIES, type LivretU6Exercice,
 } from '../data/livretU6';
+import {
+  SESSIONS_U8U9, U8U9_PHASE_COLORS, U8U9_PHASE_LABELS, type U8U9Phase,
+} from '../data/sessionsU8U9';
 import TerrainDiagram from '../components/TerrainDiagram';
 
 // ─── Unified entry type ───────────────────────────────────────────────────────
 
-type Source = 'programme' | 'livret' | 'u6';
+type Source = 'programme' | 'livret' | 'u6' | 'u8u9';
 
 interface UnifiedEntry {
   id: string;
@@ -37,12 +40,14 @@ interface UnifiedEntry {
   livretEx?: LivretExercice;
   // Livret U6 only
   livretU6Ex?: LivretU6Exercice;
+  // U8-U9 phase
+  u8u9Phase?: U8U9Phase;
 }
 
 function buildEntries(): UnifiedEntry[] {
   const entries: UnifiedEntry[] = [];
 
-  // Programme CFI (sessions.ts + SERIE_CHATEAU)
+  // Programme U6-U7 (sessions.ts + SERIE_CHATEAU)
   for (const s of [...sessions, ...SERIE_CHATEAU]) {
     for (const ex of s.exercices) {
       entries.push({
@@ -60,6 +65,29 @@ function buildEntries(): UnifiedEntry[] {
         categoryKey: `prog_${s.type}`,
         exercice: ex,
         sessionType: s.type,
+      });
+    }
+  }
+
+  // Programme U8-U9
+  for (const s of SESSIONS_U8U9) {
+    for (const ex of s.exercices) {
+      const color = U8U9_PHASE_COLORS[s.phase];
+      entries.push({
+        id: `u8u9-${s.id}-${ex.id}`,
+        titre: ex.titre,
+        surface: ex.surface,
+        consignes: ex.consignes || '',
+        but: ex.objectif,
+        variantes: ex.variables,
+        vigilance: ex.vigilance,
+        rotations: ex.rotations,
+        source: 'u8u9',
+        sourceLabel: `U8-U9 S${s.id} — ${s.titre}`,
+        color,
+        categoryLabel: U8U9_PHASE_LABELS[s.phase],
+        categoryKey: `u8u9_${s.phase}`,
+        u8u9Phase: s.phase,
       });
     }
   }
@@ -113,9 +141,10 @@ const ALL_ENTRIES = buildEntries();
 
 const SOURCE_FILTERS = [
   { key: 'all', label: 'Tous' },
-  { key: 'livret', label: 'Livret U7' },
   { key: 'u6', label: 'Guide U6' },
-  { key: 'programme', label: 'Programme CFI' },
+  { key: 'livret', label: 'Livret U7' },
+  { key: 'programme', label: 'Programme U6-U7' },
+  { key: 'u8u9', label: 'Programme U8-U9' },
 ] as const;
 
 const CAT_FILTERS_LIVRET = [
@@ -137,6 +166,12 @@ const CAT_FILTERS_PROGRAMME = (Object.keys(TYPE_LABELS) as SessionType[]).map(t 
   key: `prog_${t}`,
   label: TYPE_LABELS[t],
   color: TYPE_COLORS[t],
+}));
+
+const CAT_FILTERS_U8U9 = (Object.keys(U8U9_PHASE_LABELS) as U8U9Phase[]).map(p => ({
+  key: `u8u9_${p}`,
+  label: U8U9_PHASE_LABELS[p],
+  color: U8U9_PHASE_COLORS[p],
 }));
 
 // ─── Modal ────────────────────────────────────────────────────────────────────
@@ -370,7 +405,7 @@ function ExerciceCard({ entry, onClick }: { entry: UnifiedEntry; onClick: () => 
             fontSize: 10, fontWeight: 700, color,
             textTransform: 'uppercase', letterSpacing: '0.05em',
           }}>
-            {entry.source === 'livret' ? 'Livret U7' : entry.source === 'u6' ? 'Guide U6' : 'Programme'}
+            {entry.source === 'livret' ? 'Livret U7' : entry.source === 'u6' ? 'Guide U6' : entry.source === 'u8u9' ? 'Programme U8-U9' : 'Programme U6-U7'}
           </span>
           {entry.surface && (
             <span style={{ fontSize: 11, color: 'var(--color-muted)' }}>📐 {entry.surface}</span>
@@ -413,7 +448,8 @@ export default function ExercicesPage() {
     if (sourceFilter === 'livret') return CAT_FILTERS_LIVRET;
     if (sourceFilter === 'u6') return CAT_FILTERS_U6;
     if (sourceFilter === 'programme') return CAT_FILTERS_PROGRAMME;
-    return [...CAT_FILTERS_U6, ...CAT_FILTERS_LIVRET, ...CAT_FILTERS_PROGRAMME];
+    if (sourceFilter === 'u8u9') return CAT_FILTERS_U8U9;
+    return [...CAT_FILTERS_U6, ...CAT_FILTERS_LIVRET, ...CAT_FILTERS_PROGRAMME, ...CAT_FILTERS_U8U9];
   }, [sourceFilter]);
 
   const filtered = useMemo(() => {
@@ -436,6 +472,7 @@ export default function ExercicesPage() {
   const livretCount = ALL_ENTRIES.filter(e => e.source === 'livret').length;
   const u6Count = ALL_ENTRIES.filter(e => e.source === 'u6').length;
   const progCount = ALL_ENTRIES.filter(e => e.source === 'programme').length;
+  const u8u9Count = ALL_ENTRIES.filter(e => e.source === 'u8u9').length;
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--color-bg)', fontFamily: 'Barlow, sans-serif' }}>
@@ -455,14 +492,16 @@ export default function ExercicesPage() {
           </h1>
           <p style={{ color: 'var(--color-muted)', fontSize: 13, marginBottom: 16 }}>
             <span style={{ color: LIVRET_U6_CATEGORIES.decouverte.color, fontWeight: 600 }}>
-              {u6Count} exercices Guide U6
+              {u6Count} Guide U6
             </span>
             {' · '}
             <span style={{ color: LIVRET_U7_CATEGORIES.jeu_sens.color, fontWeight: 600 }}>
-              {livretCount} exercices Livret U7
+              {livretCount} Livret U7
             </span>
             {' · '}
-            <span style={{ color: '#8B90A8' }}>{progCount} exercices Programme CFI</span>
+            <span style={{ color: '#8B90A8' }}>{progCount} Programme U6-U7</span>
+            {' · '}
+            <span style={{ color: U8U9_PHASE_COLORS.attaque, fontWeight: 600 }}>{u8u9Count} Programme U8-U9</span>
             {' · '}
             <strong style={{ color: 'var(--color-text)' }}>{ALL_ENTRIES.length} au total</strong>
           </p>
@@ -633,7 +672,7 @@ export default function ExercicesPage() {
                     background: `${entry.color}18`, border: `1px solid ${entry.color}44`,
                     fontSize: 10, fontWeight: 700, color: entry.color,
                     textTransform: 'uppercase', letterSpacing: '0.05em',
-                  }}>{entry.source === 'livret' ? 'Livret U7' : entry.source === 'u6' ? 'Guide U6' : 'CFI'}</span>
+                  }}>{entry.source === 'livret' ? 'Livret U7' : entry.source === 'u6' ? 'Guide U6' : entry.source === 'u8u9' ? 'U8-U9' : 'U6-U7'}</span>
                   <span style={{ color: 'var(--color-muted)', fontSize: 18 }}>›</span>
                 </div>
               </div>

@@ -112,7 +112,7 @@ function ExercicePicker({
                   cursor: 'pointer',
                 }}
               >
-                {{ all: 'Tous', livret: 'Livret U7', programme: 'Programme CFI' }[s]}
+                {{ all: 'Tous', livret: 'Livret U7', programme: 'Programme U6-U7' }[s]}
               </button>
             ))}
           </div>
@@ -158,7 +158,7 @@ function ExercicePicker({
                       borderRadius: 6, padding: '1px 6px',
                       textTransform: 'uppercase', letterSpacing: '0.05em',
                     }}>
-                      {entry.source === 'livret' ? 'U7' : 'CFI'}
+                      {entry.source === 'livret' ? 'U7' : 'U6-U7'}
                     </span>
                   </div>
                   <div style={{ fontSize: 11, color: 'var(--color-muted)', paddingLeft: 15 }}>
