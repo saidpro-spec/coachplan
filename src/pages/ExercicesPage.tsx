@@ -6,11 +6,14 @@ import {
 import {
   LIVRET_U7, LIVRET_U7_CATEGORIES, type LivretExercice,
 } from '../data/livretU7';
+import {
+  LIVRET_U6, LIVRET_U6_CATEGORIES, type LivretU6Exercice,
+} from '../data/livretU6';
 import TerrainDiagram from '../components/TerrainDiagram';
 
 // ─── Unified entry type ───────────────────────────────────────────────────────
 
-type Source = 'programme' | 'livret';
+type Source = 'programme' | 'livret' | 'u6';
 
 interface UnifiedEntry {
   id: string;
@@ -30,8 +33,10 @@ interface UnifiedEntry {
   // Programme only
   exercice?: Exercice;
   sessionType?: SessionType;
-  // Livret only
+  // Livret U7 only
   livretEx?: LivretExercice;
+  // Livret U6 only
+  livretU6Ex?: LivretU6Exercice;
 }
 
 function buildEntries(): UnifiedEntry[] {
@@ -79,6 +84,26 @@ function buildEntries(): UnifiedEntry[] {
     });
   }
 
+  // Guide Technique U6
+  for (const ex of LIVRET_U6) {
+    const cat = LIVRET_U6_CATEGORIES[ex.categorie];
+    entries.push({
+      id: `u6-${ex.id}`,
+      titre: ex.titre,
+      surface: ex.surface,
+      consignes: ex.consignes,
+      but: ex.but,
+      variantes: ex.variantes,
+      pointsVigilance: ex.pointsVigilance,
+      source: 'u6',
+      sourceLabel: `Guide U6 — N°${ex.numero}`,
+      color: cat.color,
+      categoryLabel: cat.label,
+      categoryKey: `u6_${ex.categorie}`,
+      livretU6Ex: ex,
+    });
+  }
+
   return entries;
 }
 
@@ -89,6 +114,7 @@ const ALL_ENTRIES = buildEntries();
 const SOURCE_FILTERS = [
   { key: 'all', label: 'Tous' },
   { key: 'livret', label: 'Livret U7' },
+  { key: 'u6', label: 'Guide U6' },
   { key: 'programme', label: 'Programme CFI' },
 ] as const;
 
@@ -97,6 +123,14 @@ const CAT_FILTERS_LIVRET = [
   { key: 'u7_jeu_adversaire', label: "L'adversaire", color: LIVRET_U7_CATEGORIES.jeu_adversaire.color },
   { key: 'u7_jeu_partenaires', label: 'Les partenaires', color: LIVRET_U7_CATEGORIES.jeu_partenaires.color },
   { key: 'u7_situation', label: 'Conserver/Progresser', color: LIVRET_U7_CATEGORIES.situation.color },
+];
+
+const CAT_FILTERS_U6 = [
+  { key: 'u6_decouverte', label: 'Découverte du ballon', color: LIVRET_U6_CATEGORIES.decouverte.color },
+  { key: 'u6_tir', label: 'Tir et duel', color: LIVRET_U6_CATEGORIES.tir.color },
+  { key: 'u6_poursuite', label: 'Jeux de poursuite', color: LIVRET_U6_CATEGORIES.poursuite.color },
+  { key: 'u6_collectif', label: 'Jeux collectifs', color: LIVRET_U6_CATEGORIES.collectif.color },
+  { key: 'u6_passes', label: 'Passes et possession', color: LIVRET_U6_CATEGORIES.passes.color },
 ];
 
 const CAT_FILTERS_PROGRAMME = (Object.keys(TYPE_LABELS) as SessionType[]).map(t => ({
@@ -176,11 +210,11 @@ function ExerciceModal({
                 {entry.surface && (
                   <span style={{ fontSize: 12, color: 'var(--color-muted)' }}>📐 {entry.surface}</span>
                 )}
-                {entry.livretEx?.effectif && (
-                  <span style={{ fontSize: 12, color: 'var(--color-muted)' }}>👥 {entry.livretEx.effectif}</span>
+                {(entry.livretEx?.effectif || entry.livretU6Ex?.effectif) && (
+                  <span style={{ fontSize: 12, color: 'var(--color-muted)' }}>👥 {entry.livretEx?.effectif || entry.livretU6Ex?.effectif}</span>
                 )}
-                {entry.livretEx?.duree && (
-                  <span style={{ fontSize: 12, color: 'var(--color-muted)' }}>⏱ {entry.livretEx.duree}</span>
+                {(entry.livretEx?.duree || entry.livretU6Ex?.duree) && (
+                  <span style={{ fontSize: 12, color: 'var(--color-muted)' }}>⏱ {entry.livretEx?.duree || entry.livretU6Ex?.duree}</span>
                 )}
               </div>
             </div>
@@ -197,21 +231,21 @@ function ExerciceModal({
         </div>
 
         {/* Terrain diagram */}
-        {(entry.exercice?.marqueurs?.length || entry.livretEx?.marqueurs?.length) ? (
+        {(entry.exercice?.marqueurs?.length || entry.livretEx?.marqueurs?.length || entry.livretU6Ex?.marqueurs?.length) ? (
           <div style={{ padding: '16px 22px 0', display: 'flex', justifyContent: 'center' }}>
             <TerrainDiagram
-              markers={entry.exercice?.marqueurs || entry.livretEx?.marqueurs}
-              fleches={entry.exercice?.fleches || entry.livretEx?.fleches}
+              markers={entry.exercice?.marqueurs || entry.livretEx?.marqueurs || entry.livretU6Ex?.marqueurs}
+              fleches={entry.exercice?.fleches || entry.livretEx?.fleches || entry.livretU6Ex?.fleches}
               width={500}
               height={200}
             />
           </div>
         ) : null}
 
-        {/* Matériel (livret only) */}
-        {entry.livretEx?.materiel?.length ? (
+        {/* Matériel */}
+        {(entry.livretEx?.materiel?.length || entry.livretU6Ex?.materiel?.length) ? (
           <div style={{ padding: '14px 22px 0', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            {entry.livretEx.materiel.map((m, i) => (
+            {(entry.livretEx?.materiel || entry.livretU6Ex?.materiel || []).map((m, i) => (
               <span key={i} style={{
                 padding: '4px 10px', borderRadius: 20,
                 background: 'var(--color-border)',
@@ -282,7 +316,7 @@ function ExerciceCard({ entry, onClick }: { entry: UnifiedEntry; onClick: () => 
       <div style={{ height: 3, background: color }} />
 
       {/* Terrain preview */}
-      {(entry.exercice?.marqueurs?.length || entry.livretEx?.marqueurs?.length) ? (
+      {(entry.exercice?.marqueurs?.length || entry.livretEx?.marqueurs?.length || entry.livretU6Ex?.marqueurs?.length) ? (
         <div style={{
           background: '#162a16',
           display: 'flex', justifyContent: 'center',
@@ -290,8 +324,8 @@ function ExerciceCard({ entry, onClick }: { entry: UnifiedEntry; onClick: () => 
           borderBottom: '1px solid var(--color-border)',
         }}>
           <TerrainDiagram
-            markers={entry.exercice?.marqueurs || entry.livretEx?.marqueurs}
-            fleches={entry.exercice?.fleches || entry.livretEx?.fleches}
+            markers={entry.exercice?.marqueurs || entry.livretEx?.marqueurs || entry.livretU6Ex?.marqueurs}
+            fleches={entry.exercice?.fleches || entry.livretEx?.fleches || entry.livretU6Ex?.fleches}
             width={240}
             height={110}
           />
@@ -304,14 +338,14 @@ function ExerciceCard({ entry, onClick }: { entry: UnifiedEntry; onClick: () => 
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           gap: 12,
         }}>
-          {entry.livretEx?.numero ? (
+          {(entry.livretEx?.numero || entry.livretU6Ex?.numero) ? (
             <>
               <div style={{
                 width: 48, height: 48, borderRadius: 12,
                 background: `${color}25`, border: `2px solid ${color}55`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 20, fontWeight: 900, fontFamily: 'Barlow Condensed', color,
-              }}>{entry.livretEx.numero}</div>
+              }}>{entry.livretEx?.numero || entry.livretU6Ex?.numero}</div>
               <div style={{ fontSize: 11, color: `${color}CC`, fontWeight: 600, maxWidth: 120, textAlign: 'center' }}>
                 {entry.categoryLabel}
               </div>
@@ -336,7 +370,7 @@ function ExerciceCard({ entry, onClick }: { entry: UnifiedEntry; onClick: () => 
             fontSize: 10, fontWeight: 700, color,
             textTransform: 'uppercase', letterSpacing: '0.05em',
           }}>
-            {entry.source === 'livret' ? 'Livret U7' : 'Programme'}
+            {entry.source === 'livret' ? 'Livret U7' : entry.source === 'u6' ? 'Guide U6' : 'Programme'}
           </span>
           {entry.surface && (
             <span style={{ fontSize: 11, color: 'var(--color-muted)' }}>📐 {entry.surface}</span>
@@ -377,8 +411,9 @@ export default function ExercicesPage() {
 
   const catFilters = useMemo(() => {
     if (sourceFilter === 'livret') return CAT_FILTERS_LIVRET;
+    if (sourceFilter === 'u6') return CAT_FILTERS_U6;
     if (sourceFilter === 'programme') return CAT_FILTERS_PROGRAMME;
-    return [...CAT_FILTERS_LIVRET, ...CAT_FILTERS_PROGRAMME];
+    return [...CAT_FILTERS_U6, ...CAT_FILTERS_LIVRET, ...CAT_FILTERS_PROGRAMME];
   }, [sourceFilter]);
 
   const filtered = useMemo(() => {
@@ -399,6 +434,7 @@ export default function ExercicesPage() {
   }, [search, sourceFilter, catFilter]);
 
   const livretCount = ALL_ENTRIES.filter(e => e.source === 'livret').length;
+  const u6Count = ALL_ENTRIES.filter(e => e.source === 'u6').length;
   const progCount = ALL_ENTRIES.filter(e => e.source === 'programme').length;
 
   return (
@@ -418,6 +454,10 @@ export default function ExercicesPage() {
             Bibliothèque d'<span style={{ color: '#1E9E58' }}>exercices</span>
           </h1>
           <p style={{ color: 'var(--color-muted)', fontSize: 13, marginBottom: 16 }}>
+            <span style={{ color: LIVRET_U6_CATEGORIES.decouverte.color, fontWeight: 600 }}>
+              {u6Count} exercices Guide U6
+            </span>
+            {' · '}
             <span style={{ color: LIVRET_U7_CATEGORIES.jeu_sens.color, fontWeight: 600 }}>
               {livretCount} exercices Livret U7
             </span>
@@ -551,11 +591,11 @@ export default function ExercicesPage() {
                 onMouseEnter={e => (e.currentTarget.style.background = '#ECEAE3')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'var(--color-surface)')}
               >
-                {(entry.exercice?.marqueurs?.length || entry.livretEx?.marqueurs?.length) ? (
+                {(entry.exercice?.marqueurs?.length || entry.livretEx?.marqueurs?.length || entry.livretU6Ex?.marqueurs?.length) ? (
                   <div style={{ flexShrink: 0 }}>
                     <TerrainDiagram
-                      markers={entry.exercice?.marqueurs || entry.livretEx?.marqueurs}
-                      fleches={entry.exercice?.fleches || entry.livretEx?.fleches}
+                      markers={entry.exercice?.marqueurs || entry.livretEx?.marqueurs || entry.livretU6Ex?.marqueurs}
+                      fleches={entry.exercice?.fleches || entry.livretEx?.fleches || entry.livretU6Ex?.fleches}
                       width={100}
                       height={64}
                     />
@@ -568,7 +608,7 @@ export default function ExercicesPage() {
                     fontSize: 18, fontWeight: 900, fontFamily: 'Barlow Condensed',
                     color: entry.color,
                   }}>
-                    {entry.livretEx?.numero || '⚽'}
+                    {entry.livretEx?.numero || entry.livretU6Ex?.numero || '⚽'}
                   </div>
                 )}
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -593,7 +633,7 @@ export default function ExercicesPage() {
                     background: `${entry.color}18`, border: `1px solid ${entry.color}44`,
                     fontSize: 10, fontWeight: 700, color: entry.color,
                     textTransform: 'uppercase', letterSpacing: '0.05em',
-                  }}>{entry.source === 'livret' ? 'Livret U7' : 'CFI'}</span>
+                  }}>{entry.source === 'livret' ? 'Livret U7' : entry.source === 'u6' ? 'Guide U6' : 'CFI'}</span>
                   <span style={{ color: 'var(--color-muted)', fontSize: 18 }}>›</span>
                 </div>
               </div>
