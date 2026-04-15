@@ -64,14 +64,8 @@ export default function AdminPage() {
     }
   };
 
-  const deleteUser = async (id: string, email: string) => {
-    if (!confirm(`Supprimer le compte de ${email} ?`)) return;
-    const { error } = await supabase.auth.admin.deleteUser(id);
-    if (!error) {
-      setProfiles(prev => prev.filter(p => p.id !== id));
-    } else {
-      alert('Suppression impossible depuis le client. Fais-le depuis le dashboard Supabase.');
-    }
+  const deleteUser = (_id: string, email: string) => {
+    alert(`Pour supprimer le compte "${email}", va dans :\nSupabase → Authentication → Users → 3 points → Delete user`);
   };
 
   const createUser = async (e: React.FormEvent) => {
