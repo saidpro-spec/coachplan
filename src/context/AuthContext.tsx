@@ -25,20 +25,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [role, setRole] = useState<'admin' | 'coach' | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchRole = async (userId: string) => {
-    const { data } = await supabase
+  const fetchRole = async (userId: string, userEmail?: string) => {
+    const { data, error } = await supabase
       .from('profiles')
       .select('role')
       .eq('id', userId)
       .single();
-    setRole(data?.role ?? 'coach');
+
+    if (error || !data) {
+      // Profil inexistant — le créer manuellement
+      await supabase.from('profiles').upsert({ id: userId, email: userEmail, role: 'coach' });
+      setRole('coach');
+    } else {
+      setRole(data.role);
+    }
   };
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
-      if (session?.user) fetchRole(session.user.id);
+      if (session?.user) fetchRole(session.user.id, session.user.email);
       else setLoading(false);
     });
 
@@ -46,7 +53,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
-        await fetchRole(session.user.id);
+        await fetchRole(session.user.id, session.user.email);
       } else {
         setRole(null);
       }
@@ -62,14 +69,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } catch (_) {
       // ignore
     }
-    // Forcer la déconnexion locale dans tous les cas
-    setUser(null);
-    setSession(null);
-    setRole(null);
     // Vider le localStorage Supabase
     Object.keys(localStorage).forEach(key => {
       if (key.startsWith('sb-')) localStorage.removeItem(key);
     });
+    // Forcer un rechargement complet de la page
+    window.location.href = '/';
   };
 
   return (
