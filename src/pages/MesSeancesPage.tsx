@@ -90,20 +90,20 @@ function ExerciceDetailCard({ entry, index }: { entry: UnifiedEntry; index: numb
           textTransform: 'uppercase', letterSpacing: '0.05em',
           flexShrink: 0,
         }}>
-          {entry.source === 'livret' ? 'U7' : 'U6-U7'}
+          {entry.source === 'livret' ? 'U7' : entry.source === 'u6' ? 'Guide U6' : entry.source === 'u8u9' ? 'U8-U9' : 'U6-U7'}
         </span>
       </div>
 
       {/* Terrain */}
-      {(entry.exercice?.marqueurs?.length || entry.livretEx?.marqueurs?.length) ? (
+      {(entry.exercice?.marqueurs?.length || entry.livretEx?.marqueurs?.length || entry.livretU6Ex?.marqueurs?.length || entry.u8u9Ex?.marqueurs?.length) ? (
         <div style={{
           background: '#162a16', padding: '12px 18px',
           borderBottom: `1px solid ${color}18`,
           display: 'flex', justifyContent: 'center',
         }}>
           <TerrainDiagram
-            markers={entry.exercice?.marqueurs || entry.livretEx?.marqueurs}
-            fleches={entry.exercice?.fleches || entry.livretEx?.fleches}
+            markers={entry.exercice?.marqueurs || entry.livretEx?.marqueurs || entry.livretU6Ex?.marqueurs || entry.u8u9Ex?.marqueurs}
+            fleches={entry.exercice?.fleches || entry.livretEx?.fleches || entry.livretU6Ex?.fleches || entry.u8u9Ex?.fleches}
             width={420}
             height={160}
           />

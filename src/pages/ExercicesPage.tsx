@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { loadHiddenExercices } from '../utils/hiddenExercices';
 import {
   sessions, SERIE_CHATEAU, TYPE_COLORS, TYPE_LABELS,
   type SessionType, type Exercice,
@@ -10,7 +11,7 @@ import {
   LIVRET_U6, LIVRET_U6_CATEGORIES, type LivretU6Exercice,
 } from '../data/livretU6';
 import {
-  SESSIONS_U8U9, U8U9_PHASE_COLORS, U8U9_PHASE_LABELS, type U8U9Phase,
+  SESSIONS_U8U9, U8U9_PHASE_COLORS, U8U9_PHASE_LABELS, type U8U9Phase, type U8U9Exercice,
 } from '../data/sessionsU8U9';
 import TerrainDiagram from '../components/TerrainDiagram';
 
@@ -40,7 +41,8 @@ interface UnifiedEntry {
   livretEx?: LivretExercice;
   // Livret U6 only
   livretU6Ex?: LivretU6Exercice;
-  // U8-U9 phase
+  // U8-U9
+  u8u9Ex?: U8U9Exercice;
   u8u9Phase?: U8U9Phase;
 }
 
@@ -87,6 +89,7 @@ function buildEntries(): UnifiedEntry[] {
         color,
         categoryLabel: U8U9_PHASE_LABELS[s.phase],
         categoryKey: `u8u9_${s.phase}`,
+        u8u9Ex: ex,
         u8u9Phase: s.phase,
       });
     }
@@ -266,11 +269,11 @@ function ExerciceModal({
         </div>
 
         {/* Terrain diagram */}
-        {(entry.exercice?.marqueurs?.length || entry.livretEx?.marqueurs?.length || entry.livretU6Ex?.marqueurs?.length) ? (
+        {(entry.exercice?.marqueurs?.length || entry.livretEx?.marqueurs?.length || entry.livretU6Ex?.marqueurs?.length || entry.u8u9Ex?.marqueurs?.length) ? (
           <div style={{ padding: '16px 22px 0', display: 'flex', justifyContent: 'center' }}>
             <TerrainDiagram
-              markers={entry.exercice?.marqueurs || entry.livretEx?.marqueurs || entry.livretU6Ex?.marqueurs}
-              fleches={entry.exercice?.fleches || entry.livretEx?.fleches || entry.livretU6Ex?.fleches}
+              markers={entry.exercice?.marqueurs || entry.livretEx?.marqueurs || entry.livretU6Ex?.marqueurs || entry.u8u9Ex?.marqueurs}
+              fleches={entry.exercice?.fleches || entry.livretEx?.fleches || entry.livretU6Ex?.fleches || entry.u8u9Ex?.fleches}
               width={500}
               height={200}
             />
@@ -351,7 +354,7 @@ function ExerciceCard({ entry, onClick }: { entry: UnifiedEntry; onClick: () => 
       <div style={{ height: 3, background: color }} />
 
       {/* Terrain preview */}
-      {(entry.exercice?.marqueurs?.length || entry.livretEx?.marqueurs?.length || entry.livretU6Ex?.marqueurs?.length) ? (
+      {(entry.exercice?.marqueurs?.length || entry.livretEx?.marqueurs?.length || entry.livretU6Ex?.marqueurs?.length || entry.u8u9Ex?.marqueurs?.length) ? (
         <div style={{
           background: '#162a16',
           display: 'flex', justifyContent: 'center',
@@ -443,6 +446,14 @@ export default function ExercicesPage() {
   const [catFilter, setCatFilter] = useState<string>('all');
   const [selected, setSelected] = useState<UnifiedEntry | null>(null);
   const [view, setView] = useState<'grid' | 'list'>('grid');
+  const [hiddenIds, setHiddenIds] = useState<Set<string>>(loadHiddenExercices);
+
+  // Refresh hidden list whenever tab becomes active
+  useEffect(() => {
+    const onFocus = () => setHiddenIds(loadHiddenExercices());
+    window.addEventListener('focus', onFocus);
+    return () => window.removeEventListener('focus', onFocus);
+  }, []);
 
   const catFilters = useMemo(() => {
     if (sourceFilter === 'livret') return CAT_FILTERS_LIVRET;
@@ -454,6 +465,7 @@ export default function ExercicesPage() {
 
   const filtered = useMemo(() => {
     return ALL_ENTRIES.filter(e => {
+      if (hiddenIds.has(e.id)) return false;
       if (sourceFilter !== 'all' && e.source !== sourceFilter) return false;
       if (catFilter !== 'all' && e.categoryKey !== catFilter) return false;
       if (search.trim()) {
@@ -630,7 +642,7 @@ export default function ExercicesPage() {
                 onMouseEnter={e => (e.currentTarget.style.background = '#ECEAE3')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'var(--color-surface)')}
               >
-                {(entry.exercice?.marqueurs?.length || entry.livretEx?.marqueurs?.length || entry.livretU6Ex?.marqueurs?.length) ? (
+                {(entry.exercice?.marqueurs?.length || entry.livretEx?.marqueurs?.length || entry.livretU6Ex?.marqueurs?.length || entry.u8u9Ex?.marqueurs?.length) ? (
                   <div style={{ flexShrink: 0 }}>
                     <TerrainDiagram
                       markers={entry.exercice?.marqueurs || entry.livretEx?.marqueurs || entry.livretU6Ex?.marqueurs}
