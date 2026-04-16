@@ -4,78 +4,41 @@ export type U8U9Phase = 'accueil' | 'attaque' | 'defense' | 'recreatif' | 'colle
 
 export type MarkerType = 'attaquant' | 'defenseur' | 'ballon' | 'plot' | 'but';
 
-export interface Marqueur {
-  x: number;
-  y: number;
-  type: MarkerType;
-  label?: string;
-}
-
-export interface Fleche {
-  x1: number; y1: number;
-  x2: number; y2: number;
-  cx?: number; cy?: number;
-}
+export interface Marqueur { x: number; y: number; type: MarkerType; label?: string; }
+export interface Fleche { x1: number; y1: number; x2: number; y2: number; cx?: number; cy?: number; }
 
 export interface U8U9Exercice {
-  id: number;
-  titre: string;
-  surface?: string;
-  objectif?: string;
-  consignes: string;
-  rotations?: string;
-  vigilance?: string;
-  variables?: string;
-  marqueurs?: Marqueur[];
-  fleches?: Fleche[];
+  id: number; titre: string; surface?: string; objectif?: string;
+  consignes: string; rotations?: string; vigilance?: string; variables?: string;
+  marqueurs?: Marqueur[]; fleches?: Fleche[];
 }
 
 export interface U8U9Session {
-  id: number;
-  titre: string;
-  phase: U8U9Phase;
-  phaseLabel: string;
-  categorie: 'U8-U9';
-  effectif: string;
-  duree: string;
-  materiel: string[];
-  exercices: U8U9Exercice[];
-  messageEducatif?: string;
-  vocabulaire?: string;
+  id: number; titre: string; phase: U8U9Phase; phaseLabel: string;
+  categorie: 'U8-U9'; effectif: string; duree: string; materiel: string[];
+  exercices: U8U9Exercice[]; messageEducatif?: string; vocabulaire?: string;
 }
 
 export const U8U9_PHASE_COLORS: Record<U8U9Phase, string> = {
-  accueil:       '#998F99',
-  attaque:       '#0080C8',
-  defense:       '#E3061A',
-  recreatif:     '#C09B57',
-  collectif_att: '#208B78',
-  collectif_def: '#9F4271',
+  accueil: '#998F99', attaque: '#0080C8', defense: '#E3061A',
+  recreatif: '#C09B57', collectif_att: '#208B78', collectif_def: '#9F4271',
 };
 
 export const U8U9_PHASE_LABELS: Record<U8U9Phase, string> = {
-  accueil:       "Séance d'accueil",
-  attaque:       "J'attaque",
-  defense:       'Je défends',
-  recreatif:     'Séance récréative',
-  collectif_att: "J'attaque collectivement",
+  accueil: "Séance d'accueil", attaque: "J'attaque", defense: 'Je défends',
+  recreatif: 'Séance récréative', collectif_att: "J'attaque collectivement",
   collectif_def: 'Je défends collectivement',
 };
 
 export const SESSIONS_U8U9: U8U9Session[] = [
   {
-    id: 1,
-    titre: `SÉANCE D’ACCUEIL`,
-    phase: 'accueil',
-    phaseLabel: `SÉANCE D’ACCUEIL`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 1, titre: `SÉANCE D’ACCUEIL`,
+    phase: 'accueil', phaseLabel: `SÉANCE D’ACCUEIL`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     exercices: [
       {
-        id: 1,
-        titre: `festifoot`,
+        id: 1, titre: `festifoot`,
         surface: `28 x 17`,
         objectif: `Gagner le match en s’opposant à 2 adversaires, sans gardien de 
 but.`,
@@ -98,11 +61,10 @@ faire monter et descendre sur le nombre x de terrains. Obliger les
 enfants à être dans les zones des 4m pour pouvoir marquer.
 Valoriser par 2 points si le but est marqué de la zone des 4m.
 Empêcher l’accès à la zone des 4m pour les défenseurs.`,
-        marqueurs: [{ x: 53.5, y: 48.5, type: 'ballon' }, { x: 26.1, y: 67.6, type: 'attaquant' }, { x: 41.9, y: 63.3, type: 'attaquant' }, { x: 80.8, y: 66.7, type: 'attaquant' }, { x: 65.1, y: 67.6, type: 'attaquant' }, { x: 26.1, y: 24.9, type: 'defenseur' }, { x: 43.1, y: 22.8, type: 'defenseur' }, { x: 67.2, y: 27.0, type: 'defenseur' }, { x: 80.8, y: 28.2, type: 'defenseur' }, { x: 16.6, y: 18.5, type: 'plot' }, { x: 16.6, y: 8.4, type: 'plot' }, { x: 16.4, y: 87.7, type: 'plot' }, { x: 16.4, y: 77.5, type: 'plot' }, { x: 34.8, y: 36.3, type: 'defenseur' }, { x: 34.8, y: 56.2, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 28, y: 32, type: 'attaquant' }, { x: 28, y: 68, type: 'attaquant' }, { x: 72, y: 32, type: 'defenseur' }, { x: 72, y: 68, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `festifoot`,
+        id: 2, titre: `festifoot`,
         surface: `28 x 17`,
         objectif: `Gagner le match en s’opposant à 2 adversaires, sans gardien de 
 but.`,
@@ -133,11 +95,10 @@ Terrain 1
 Terrain 2
 4m
 4m`,
-        marqueurs: [{ x: 53.5, y: 48.5, type: 'ballon' }, { x: 26.1, y: 67.6, type: 'attaquant' }, { x: 41.9, y: 63.3, type: 'attaquant' }, { x: 80.8, y: 66.7, type: 'attaquant' }, { x: 65.1, y: 67.6, type: 'attaquant' }, { x: 26.1, y: 24.9, type: 'defenseur' }, { x: 43.1, y: 22.8, type: 'defenseur' }, { x: 67.2, y: 27.0, type: 'defenseur' }, { x: 80.8, y: 28.2, type: 'defenseur' }, { x: 35.6, y: 32.4, type: 'defenseur' }, { x: 16.6, y: 18.5, type: 'plot' }, { x: 16.6, y: 8.4, type: 'plot' }, { x: 16.4, y: 87.7, type: 'plot' }, { x: 16.4, y: 77.5, type: 'plot' }, { x: 34.4, y: 58.5, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 28, y: 32, type: 'attaquant' }, { x: 28, y: 68, type: 'attaquant' }, { x: 72, y: 32, type: 'defenseur' }, { x: 72, y: 68, type: 'defenseur' }],
       },
       {
-        id: 3,
-        titre: `épervier`,
+        id: 3, titre: `épervier`,
         surface: `27 x 28`,
         objectif: `Conduire le ballon en évitant l’adversaire.`,
         consignes: `Les oiseaux (bleus) doivent conduire leur ballon sans se le faire 
@@ -160,11 +121,10 @@ le ballon pour le maîtriser. Essayer d’éviter les éperviers lorsque
 ceux-ci viennent lui prendre le ballon (dribble).`,
         variables: `On rajoute des plots que les oiseaux contournent avant d’aller 
 immobiliser le ballon dans une zone.`,
-        marqueurs: [{ x: 50.0, y: 95.8, type: 'but' }, { x: 50.0, y: 50.4, type: 'ballon' }, { x: 55.7, y: 33.4, type: 'plot' }, { x: 27.2, y: 27.4, type: 'defenseur' }, { x: 27.2, y: 35.6, type: 'defenseur' }, { x: 27.2, y: 42.2, type: 'defenseur' }, { x: 27.2, y: 48.8, type: 'defenseur' }, { x: 27.2, y: 55.0, type: 'defenseur' }, { x: 27.2, y: 61.3, type: 'defenseur' }, { x: 27.2, y: 67.8, type: 'defenseur' }, { x: 27.2, y: 74.3, type: 'defenseur' }, { x: 43.4, y: 41.6, type: 'plot' }, { x: 50.4, y: 66.8, type: 'plot' }, { x: 50.0, y: 4.7, type: 'but' }],
+        marqueurs: [{ x: 65, y: 5, type: 'plot' }, { x: 65, y: 95, type: 'plot' }, { x: 78, y: 5, type: 'plot' }, { x: 78, y: 95, type: 'plot' }, { x: 52, y: 5, type: 'plot' }, { x: 52, y: 95, type: 'plot' }, { x: 50, y: 35, type: 'defenseur' }, { x: 50, y: 65, type: 'defenseur' }, { x: 15, y: 18, type: 'attaquant' }, { x: 15, y: 38, type: 'attaquant' }, { x: 15, y: 58, type: 'attaquant' }, { x: 15, y: 78, type: 'attaquant' }, { x: 18, y: 18, type: 'ballon' }, { x: 18, y: 38, type: 'ballon' }, { x: 18, y: 58, type: 'ballon' }, { x: 18, y: 78, type: 'ballon' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Eveil au jeu collectif.`,
         consignes: `Pratique 5 contre 5.
@@ -186,29 +146,22 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 49.6, y: 47.8, type: 'ballon' }, { x: 62.1, y: 29.8, type: 'attaquant' }, { x: 47.8, y: 68.6, type: 'attaquant' }, { x: 40.7, y: 35.4, type: 'attaquant' }, { x: 35.0, y: 64.4, type: 'defenseur' }, { x: 50.0, y: 22.9, type: 'defenseur' }, { x: 36.0, y: 27.7, type: 'defenseur' }, { x: 55.4, y: 56.0, type: 'defenseur' }, { x: 63.3, y: 59.1, type: 'attaquant' }, { x: 15.7, y: 47.5, type: 'but' }, { x: 82.9, y: 49.0, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 2,
-    titre: `J’ATTAQUE EN CONTRÔLANT UN BALLON ET EN LE CONDUISANT VERS LE BUT POUR MARQUER`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 2, titre: `J’ATTAQUE EN CONTRÔLANT UN BALLON ET EN LE CONDUISANT VERS LE BUT POUR MARQUER`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `La première chose à effectuer quand on 
 arrive à l’entraînement, c’est de saluer les 
 différentes personnes rencontrées et de 
 connaitre les différents codes de politesse.`,
-    vocabulaire: `La conduite de balle
-L’engagement`,
     exercices: [
       {
-        id: 1,
-        titre: `gagne terrain`,
+        id: 1, titre: `gagne terrain`,
         surface: `36 x 28`,
         objectif: `Progresser avec le ballon.`,
         consignes: `Le jeu est libre sur l’ensemble du terrain. 
@@ -231,11 +184,10 @@ Modifier les équipes si l’écart de buts est supérieur à 6.`,
 sur la ligne du milieu de terrain et la ligne de la zone protégée 
 de l’équipe adverse. 2 points si avant de passer la ligne, le joueur 
 effectue un contrôle.`,
-        marqueurs: [{ x: 49.6, y: 48.7, type: 'ballon' }, { x: 64.3, y: 41.8, type: 'attaquant' }, { x: 51.2, y: 20.2, type: 'attaquant' }, { x: 52.4, y: 72.8, type: 'attaquant' }, { x: 27.7, y: 40.9, type: 'defenseur' }, { x: 55.8, y: 24.4, type: 'defenseur' }, { x: 25.9, y: 72.8, type: 'defenseur' }, { x: 35.0, y: 41.6, type: 'plot' }, { x: 56.5, y: 73.5, type: 'defenseur' }, { x: 52.4, y: 52.2, type: 'attaquant' }, { x: 25.3, y: 43.3, type: 'plot' }, { x: 15.7, y: 50.2, type: 'but' }, { x: 83.5, y: 48.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 33, y: 5, type: 'plot' }, { x: 33, y: 95, type: 'plot' }, { x: 67, y: 5, type: 'plot' }, { x: 67, y: 95, type: 'plot' }, { x: 50, y: 50, type: 'ballon' }, { x: 20, y: 30, type: 'attaquant' }, { x: 20, y: 55, type: 'attaquant' }, { x: 20, y: 70, type: 'attaquant' }, { x: 35, y: 45, type: 'attaquant' }, { x: 45, y: 55, type: 'attaquant' }, { x: 80, y: 30, type: 'defenseur' }, { x: 80, y: 55, type: 'defenseur' }, { x: 80, y: 70, type: 'defenseur' }, { x: 65, y: 45, type: 'defenseur' }, { x: 55, y: 55, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `ballon magique`,
+        id: 2, titre: `ballon magique`,
         surface: `27 x 28`,
         objectif: `Attaquer et défendre en 2 contre 2.`,
         consignes: `Les enfants se trouvent au point de corner à droite et à gauche 
@@ -267,11 +219,10 @@ E
 G
 G
 1 pt`,
-        marqueurs: [{ x: 52.6, y: 48.7, type: 'ballon' }, { x: 74.1, y: 83.5, type: 'attaquant' }, { x: 73.4, y: 13.7, type: 'attaquant' }, { x: 71.3, y: 85.1, type: 'attaquant' }, { x: 73.5, y: 9.5, type: 'attaquant' }, { x: 15.1, y: 84.4, type: 'defenseur' }, { x: 11.9, y: 87.3, type: 'defenseur' }, { x: 53.3, y: 82.3, type: 'ballon' }, { x: 28.9, y: 78.1, type: 'plot' }, { x: 31.2, y: 77.7, type: 'plot' }, { x: 47.4, y: 54.8, type: 'plot' }, { x: 70.6, y: 18.7, type: 'attaquant' }, { x: 70.6, y: 6.6, type: 'attaquant' }, { x: 16.7, y: 90.5, type: 'defenseur' }, { x: 16.7, y: 78.4, type: 'defenseur' }, { x: 43.0, y: 61.1, type: 'plot' }, { x: 18.3, y: 48.7, type: 'ballon' }, { x: 68.8, y: 48.7, type: 'ballon' }, { x: 16.7, y: 19.0, type: 'defenseur' }, { x: 16.7, y: 6.9, type: 'defenseur' }, { x: 70.3, y: 90.5, type: 'attaquant' }, { x: 70.3, y: 78.4, type: 'attaquant' }, { x: 26.0, y: 21.2, type: 'plot' }, { x: 60.9, y: 78.1, type: 'plot' }, { x: 15.3, y: 12.6, type: 'defenseur' }, { x: 12.8, y: 16.0, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 12, y: 10, type: 'attaquant' }, { x: 12, y: 90, type: 'attaquant' }, { x: 88, y: 10, type: 'defenseur' }, { x: 88, y: 90, type: 'defenseur' }, { x: 45, y: 50, type: 'ballon' }, { x: 55, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `relais shoot out`,
+        id: 3, titre: `relais shoot out`,
         surface: `36 x 28`,
         objectif: `Conduire le ballon.`,
         consignes: `Les enfants réalisent le parcours en conduite de balle le plus rapi
@@ -297,11 +248,10 @@ Toucher de nombreuses fois le ballon pour le maîtriser.`,
         variables: `Diminuer ou agrandir l’espace entre les cônes.
 Rajouter un cône supplémentaire.
 Pas de pénalité de contournement, si le tir est cadré.`,
-        marqueurs: [{ x: 51.1, y: 48.8, type: 'ballon' }, { x: 53.8, y: 37.2, type: 'attaquant' }, { x: 58.2, y: 36.5, type: 'attaquant' }, { x: 60.6, y: 36.1, type: 'attaquant' }, { x: 39.7, y: 64.4, type: 'defenseur' }, { x: 37.0, y: 64.5, type: 'defenseur' }, { x: 47.4, y: 64.1, type: 'defenseur' }, { x: 43.1, y: 64.1, type: 'defenseur' }, { x: 63.1, y: 36.5, type: 'attaquant' }, { x: 56.2, y: 65.8, type: 'plot' }, { x: 51.3, y: 42.4, type: 'attaquant' }, { x: 51.3, y: 30.0, type: 'attaquant' }, { x: 51.0, y: 69.9, type: 'defenseur' }, { x: 51.0, y: 57.5, type: 'defenseur' }, { x: 37.0, y: 29.0, type: 'plot' }, { x: 41.2, y: 29.0, type: 'plot' }, { x: 61.1, y: 68.0, type: 'plot' }, { x: 65.2, y: 68.0, type: 'plot' }, { x: 44.9, y: 34.5, type: 'plot' }, { x: 32.7, y: 56.2, type: 'plot' }, { x: 69.4, y: 41.1, type: 'plot' }, { x: 16.9, y: 48.5, type: 'but' }, { x: 85.3, y: 48.8, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 80, y: 30, type: 'plot' }, { x: 70, y: 50, type: 'plot' }, { x: 60, y: 30, type: 'plot' }, { x: 50, y: 50, type: 'plot' }, { x: 40, y: 30, type: 'plot' }, { x: 30, y: 50, type: 'plot' }, { x: 20, y: 30, type: 'plot' }, { x: 90, y: 30, type: 'attaquant' }, { x: 90, y: 45, type: 'attaquant' }, { x: 90, y: 60, type: 'attaquant' }, { x: 88, y: 30, type: 'ballon' }, { x: 90, y: 30, type: 'defenseur' }, { x: 90, y: 45, type: 'defenseur' }, { x: 90, y: 60, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Eveil au jeu collectif.`,
         consignes: `Pratique 5 contre 5. Faire jouer de manière libre les enfants en 
@@ -323,31 +273,22 @@ et l’engagement se fait au centre du terrain.
 Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 49.6, y: 47.5, type: 'ballon' }, { x: 62.1, y: 29.4, type: 'attaquant' }, { x: 47.8, y: 68.2, type: 'attaquant' }, { x: 40.7, y: 35.0, type: 'attaquant' }, { x: 35.0, y: 64.0, type: 'defenseur' }, { x: 50.0, y: 22.5, type: 'defenseur' }, { x: 36.0, y: 27.3, type: 'defenseur' }, { x: 55.4, y: 55.6, type: 'defenseur' }, { x: 63.3, y: 58.8, type: 'attaquant' }, { x: 15.7, y: 47.1, type: 'but' }, { x: 82.9, y: 48.6, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 3,
-    titre: `J’ATTAQUE EN CONTRÔLANT UN BALLON ET EN LE CONDUISANT VERS LE BUT POUR MARQUER`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 3, titre: `J’ATTAQUE EN CONTRÔLANT UN BALLON ET EN LE CONDUISANT VERS LE BUT POUR MARQUER`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Quand on fait du sport, il est très important 
 de s’hydrater et donc d’utiliser une gourde 
 d’eau individuelle. L’éducateur prévoit des 
 pauses hydratation.`,
-    vocabulaire: `La passe
-La ligne de touche
-La touche
-Le but`,
     exercices: [
       {
-        id: 1,
-        titre: `match 2 contre 2 avec 4 buts`,
+        id: 1, titre: `match 2 contre 2 avec 4 buts`,
         surface: `17 x 28`,
         objectif: `Match 2 contre 2 avec 4 buts.`,
         consignes: `Jeu libre. Chaque équipe a 2 buts à attaquer et à défendre. Il n’y 
@@ -369,11 +310,10 @@ est supérieure à 3.`,
 Franchir la ligne pointillée et notre équipe marque un but = 3 
 points. Possibilité d’intervenir après la 1ère passe. Supprimer la 
 règle de la zone protégée.`,
-        marqueurs: [{ x: 50.0, y: 45.7, type: 'ballon' }, { x: 35.7, y: 30.6, type: 'attaquant' }, { x: 43.9, y: 48.8, type: 'attaquant' }, { x: 77.3, y: 63.9, type: 'attaquant' }, { x: 78.0, y: 22.1, type: 'attaquant' }, { x: 22.6, y: 22.1, type: 'defenseur' }, { x: 34.5, y: 65.8, type: 'defenseur' }, { x: 63.5, y: 25.3, type: 'defenseur' }, { x: 65.3, y: 67.6, type: 'defenseur' }, { x: 39.5, y: 90.8, type: 'defenseur' }, { x: 60.5, y: 91.3, type: 'attaquant' }],
+        marqueurs: [{ x: 10, y: 15, type: 'but' }, { x: 10, y: 85, type: 'but' }, { x: 90, y: 15, type: 'but' }, { x: 90, y: 85, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 30, y: 35, type: 'attaquant' }, { x: 30, y: 65, type: 'attaquant' }, { x: 70, y: 35, type: 'defenseur' }, { x: 70, y: 65, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `béret`,
+        id: 2, titre: `béret`,
         surface: `36 x 28`,
         objectif: `Attaquer et défendre en 1 contre 1.`,
         consignes: `L’éducateur donne un numéro à chacun des joueurs qui sont sur 
@@ -412,11 +352,10 @@ G
 3
 5m
 5m`,
-        marqueurs: [{ x: 50.8, y: 48.1, type: 'ballon' }, { x: 84.8, y: 48.2, type: 'but' }, { x: 16.9, y: 47.8, type: 'but' }, { x: 44.7, y: 4.0, type: 'attaquant' }, { x: 47.8, y: 4.0, type: 'attaquant' }, { x: 52.1, y: 3.7, type: 'attaquant' }, { x: 55.2, y: 4.3, type: 'attaquant' }, { x: 42.7, y: 92.3, type: 'defenseur' }, { x: 46.6, y: 92.5, type: 'defenseur' }, { x: 52.6, y: 92.8, type: 'defenseur' }, { x: 56.5, y: 92.3, type: 'defenseur' }, { x: 51.7, y: 26.4, type: 'plot' }, { x: 51.2, y: 67.5, type: 'plot' }, { x: 33.4, y: 36.0, type: 'plot' }, { x: 63.0, y: 8.8, type: 'plot' }, { x: 63.0, y: 29.9, type: 'plot' }, { x: 63.0, y: 66.7, type: 'plot' }, { x: 63.0, y: 87.7, type: 'plot' }, { x: 61.8, y: 93.5, type: 'ballon' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }, { x: 92, y: 20, type: 'attaquant' }, { x: 92, y: 35, type: 'attaquant' }, { x: 92, y: 50, type: 'attaquant' }, { x: 92, y: 65, type: 'attaquant' }, { x: 92, y: 80, type: 'attaquant' }, { x: 8, y: 20, type: 'defenseur' }, { x: 8, y: 35, type: 'defenseur' }, { x: 8, y: 50, type: 'defenseur' }, { x: 8, y: 65, type: 'defenseur' }, { x: 8, y: 80, type: 'defenseur' }],
       },
       {
-        id: 3,
-        titre: `déménageurs`,
+        id: 3, titre: `déménageurs`,
         surface: `36 x 28`,
         objectif: `Progresser en « passe-conduite ».`,
         consignes: `Le déménagement consiste à transporter les ballons de sa maison 
@@ -450,11 +389,10 @@ MAISON
 BLEUE
 A
 B`,
-        marqueurs: [{ x: 49.6, y: 49.9, type: 'ballon' }, { x: 76.3, y: 37.4, type: 'attaquant' }, { x: 49.9, y: 4.5, type: 'attaquant' }, { x: 48.4, y: 86.7, type: 'defenseur' }, { x: 23.3, y: 75.5, type: 'defenseur' }, { x: 24.6, y: 64.7, type: 'defenseur' }, { x: 48.8, y: 95.2, type: 'defenseur' }, { x: 46.2, y: 86.2, type: 'plot' }, { x: 63.8, y: 72.6, type: 'plot' }, { x: 54.1, y: 14.4, type: 'plot' }, { x: 34.3, y: 22.5, type: 'plot' }, { x: 41.5, y: 95.8, type: 'defenseur' }, { x: 57.1, y: 3.6, type: 'attaquant' }, { x: 54.9, y: 6.7, type: 'attaquant' }, { x: 44.6, y: 6.7, type: 'attaquant' }, { x: 44.4, y: 92.5, type: 'defenseur' }, { x: 54.6, y: 92.4, type: 'defenseur' }, { x: 75.6, y: 25.5, type: 'attaquant' }, { x: 51.7, y: 13.3, type: 'attaquant' }, { x: 63.8, y: 4.2, type: 'attaquant' }, { x: 35.5, y: 97.5, type: 'defenseur' }],
+        marqueurs: [{ x: 12, y: 35, type: 'plot' }, { x: 12, y: 65, type: 'plot' }, { x: 22, y: 35, type: 'plot' }, { x: 22, y: 65, type: 'plot' }, { x: 15, y: 42, type: 'ballon' }, { x: 15, y: 52, type: 'ballon' }, { x: 15, y: 62, type: 'ballon' }, { x: 78, y: 35, type: 'plot' }, { x: 78, y: 65, type: 'plot' }, { x: 88, y: 35, type: 'plot' }, { x: 88, y: 65, type: 'plot' }, { x: 82, y: 42, type: 'ballon' }, { x: 82, y: 52, type: 'ballon' }, { x: 82, y: 62, type: 'ballon' }, { x: 38, y: 50, type: 'attaquant' }, { x: 50, y: 40, type: 'attaquant' }, { x: 62, y: 50, type: 'defenseur' }, { x: 55, y: 60, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Eveil au jeu collectif.`,
         consignes: `Pratique 5 contre 5.
@@ -477,19 +415,15 @@ de balle ou en passe.
 Faire respecter les lois du jeu.
 Faire jouer tous les enfants le même temps de jeu. 
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 49.9, y: 50.2, type: 'ballon' }, { x: 49.9, y: 17.1, type: 'attaquant' }, { x: 48.1, y: 71.0, type: 'attaquant' }, { x: 46.5, y: 39.5, type: 'attaquant' }, { x: 34.3, y: 57.3, type: 'defenseur' }, { x: 62.9, y: 13.9, type: 'defenseur' }, { x: 40.1, y: 7.5, type: 'defenseur' }, { x: 61.3, y: 66.4, type: 'defenseur' }, { x: 63.8, y: 47.2, type: 'attaquant' }, { x: 60.5, y: 13.9, type: 'plot' }, { x: 46.2, y: 21.1, type: 'plot' }, { x: 16.1, y: 49.7, type: 'but' }, { x: 83.7, y: 52.0, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 4,
-    titre: `J’ATTAQUE AVEC MON PARTENAIRE`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 4, titre: `J’ATTAQUE AVEC MON PARTENAIRE`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Comme à l’école, au club, il faut avoir son 
 matériel, il faut préparer son sac avec les 
 bonnes choses à l’intérieur, adaptées aux 
@@ -497,14 +431,9 @@ conditions météorologiques. L’éducateur
 rappelle la tenue souhaitée pour 
 l’entraînement et le port obligatoire des 
 protége-tibias.`,
-    vocabulaire: `Le joueur en appui
-Le corner
-Le but
-E`,
     exercices: [
       {
-        id: 1,
-        titre: `funino capitaine`,
+        id: 1, titre: `funino capitaine`,
         surface: `36 x 28`,
         objectif: `Recherche d’un appui en jouant en 3 contre 3 dans la zone centrale.`,
         consignes: `2 capitaines de chaque équipe se positionnent dans la zone de la 
@@ -528,11 +457,10 @@ citer à progresser avec le ballon si aucun adversaire ne s’oppose à
 la progression. Qualité de la prise de balle pour marquer vite dans 
 l’un des 2 buts.`,
         variables: `1 défenseur peut rentrer dans la zone protégée pour empêcher le but.`,
-        marqueurs: [{ x: 50.1, y: 53.0, type: 'ballon' }, { x: 53.1, y: 36.3, type: 'attaquant' }, { x: 50.8, y: 66.5, type: 'attaquant' }, { x: 44.7, y: 53.9, type: 'attaquant' }, { x: 72.9, y: 38.3, type: 'attaquant' }, { x: 24.9, y: 53.5, type: 'defenseur' }, { x: 56.7, y: 25.1, type: 'defenseur' }, { x: 25.6, y: 33.3, type: 'defenseur' }, { x: 63.1, y: 33.4, type: 'defenseur' }, { x: 58.7, y: 73.8, type: 'defenseur' }, { x: 71.7, y: 73.4, type: 'attaquant' }, { x: 59.3, y: 69.6, type: 'plot' }, { x: 20.3, y: 65.3, type: 'plot' }, { x: 27.0, y: 55.6, type: 'plot' }, { x: 15.6, y: 72.0, type: 'plot' }, { x: 50.1, y: 11.3, type: 'ballon' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 20, y: 5, type: 'plot' }, { x: 20, y: 95, type: 'plot' }, { x: 80, y: 5, type: 'plot' }, { x: 80, y: 95, type: 'plot' }, { x: 85, y: 50, type: 'attaquant' }, { x: 15, y: 50, type: 'defenseur' }, { x: 45, y: 30, type: 'attaquant' }, { x: 45, y: 60, type: 'attaquant' }, { x: 40, y: 50, type: 'attaquant' }, { x: 55, y: 30, type: 'defenseur' }, { x: 55, y: 60, type: 'defenseur' }, { x: 60, y: 50, type: 'defenseur' }, { x: 50, y: 45, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `rivière`,
+        id: 2, titre: `rivière`,
         surface: `36 x 28`,
         objectif: `Progresser par une passe en direction d’un appui.`,
         consignes: `On commence la 1ère manche avec l’équipe rouge. Le ballon partira 
@@ -560,11 +488,10 @@ zone pour défendre (avec du retard). Le crocodile à côté du but
 vient en opposition (face aux attaquants). Mettre 2 crocodiles dans 
 la rivière et 1 crocodile dans la zone des rouges.
 rivière`,
-        marqueurs: [{ x: 49.3, y: 50.3, type: 'ballon' }, { x: 33.8, y: 34.5, type: 'attaquant' }, { x: 32.5, y: 66.9, type: 'attaquant' }, { x: 61.3, y: 32.3, type: 'attaquant' }, { x: 48.6, y: 57.5, type: 'defenseur' }, { x: 49.7, y: 76.2, type: 'defenseur' }, { x: 90.0, y: 27.5, type: 'defenseur' }, { x: 8.4, y: 27.5, type: 'defenseur' }, { x: 60.1, y: 69.0, type: 'attaquant' }, { x: 15.8, y: 50.3, type: 'but' }, { x: 83.3, y: 50.3, type: 'but' }, { x: 30.1, y: 65.3, type: 'plot' }, { x: 57.3, y: 69.3, type: 'plot' }, { x: 94.1, y: 28.0, type: 'defenseur' }, { x: 5.4, y: 28.0, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 43, y: 5, type: 'plot' }, { x: 43, y: 95, type: 'plot' }, { x: 57, y: 5, type: 'plot' }, { x: 57, y: 95, type: 'plot' }, { x: 50, y: 30, type: 'defenseur' }, { x: 50, y: 70, type: 'defenseur' }, { x: 10, y: 50, type: 'attaquant' }, { x: 28, y: 30, type: 'attaquant' }, { x: 28, y: 70, type: 'attaquant' }, { x: 72, y: 30, type: 'attaquant' }, { x: 72, y: 70, type: 'attaquant' }, { x: 28, y: 50, type: 'ballon' }],
       },
       {
-        id: 3,
-        titre: `les rois de la contre-attaque`,
+        id: 3, titre: `les rois de la contre-attaque`,
         surface: `36 x 28`,
         consignes: `Les 2 équipes sont disposées selon l’organisation suivante : un 
 gardien + le joueur A dans la zone de la relance protégée (8m) + le 
@@ -595,11 +522,10 @@ G
 G
 B
 B`,
-        marqueurs: [{ x: 49.9, y: 49.0, type: 'ballon' }, { x: 76.7, y: 4.5, type: 'attaquant' }, { x: 26.0, y: 93.0, type: 'defenseur' }, { x: 54.1, y: 93.0, type: 'defenseur' }, { x: 44.7, y: 4.5, type: 'attaquant' }, { x: 76.6, y: 23.3, type: 'plot' }, { x: 64.7, y: 31.4, type: 'plot' }, { x: 43.1, y: 42.7, type: 'plot' }, { x: 44.4, y: 91.0, type: 'ballon' }, { x: 75.5, y: 19.8, type: 'attaquant' }, { x: 25.4, y: 73.9, type: 'defenseur' }, { x: 82.7, y: 48.6, type: 'but' }, { x: 17.1, y: 47.8, type: 'but' }, { x: 60.1, y: 59.3, type: 'defenseur' }, { x: 41.0, y: 43.8, type: 'attaquant' }, { x: 50.9, y: 90.6, type: 'defenseur' }, { x: 58.5, y: 90.6, type: 'defenseur' }, { x: 21.9, y: 90.6, type: 'defenseur' }, { x: 29.5, y: 90.6, type: 'defenseur' }, { x: 72.9, y: 7.3, type: 'attaquant' }, { x: 80.5, y: 7.3, type: 'attaquant' }, { x: 40.7, y: 7.3, type: 'attaquant' }, { x: 48.3, y: 7.3, type: 'attaquant' }, { x: 28.6, y: 40.9, type: 'plot' }, { x: 15.0, y: 42.9, type: 'plot' }, { x: 24.2, y: 69.7, type: 'plot' }, { x: 37.9, y: 71.0, type: 'plot' }, { x: 58.1, y: 61.0, type: 'plot' }, { x: 72.7, y: 56.1, type: 'plot' }, { x: 84.4, y: 58.1, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 20, y: 5, type: 'plot' }, { x: 20, y: 95, type: 'plot' }, { x: 80, y: 5, type: 'plot' }, { x: 80, y: 95, type: 'plot' }, { x: 10, y: 50, type: 'attaquant' }, { x: 15, y: 50, type: 'attaquant' }, { x: 40, y: 35, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 85, y: 50, type: 'defenseur' }, { x: 60, y: 35, type: 'defenseur' }, { x: 60, y: 65, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Eveil au jeu collectif.`,
         consignes: `Pratique 5 contre 5.
@@ -623,31 +549,23 @@ intègrent la rotation.`,
 Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.5, y: 49.8, type: 'ballon' }, { x: 25.2, y: 32.2, type: 'attaquant' }, { x: 25.2, y: 69.5, type: 'attaquant' }, { x: 14.5, y: 8.1, type: 'attaquant' }, { x: 26.5, y: 52.6, type: 'defenseur' }, { x: 23.5, y: 40.6, type: 'defenseur' }, { x: 38.7, y: 41.0, type: 'defenseur' }, { x: 23.4, y: 28.8, type: 'plot' }, { x: 46.1, y: 63.8, type: 'defenseur' }, { x: 42.8, y: 32.2, type: 'attaquant' }, { x: 17.2, y: 49.0, type: 'but' }, { x: 83.9, y: 49.8, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 5,
-    titre: `J’ATTAQUE EN CONTRÔLANT UN BALLON ET EN LE CONDUISANT VERS LE BUT POUR MARQUER`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 5, titre: `J’ATTAQUE EN CONTRÔLANT UN BALLON ET EN LE CONDUISANT VERS LE BUT POUR MARQUER`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `La première chose à effectuer quand on 
 arrive à l’entraînement, c’est de saluer les 
 différentes personnes rencontrées et de 
 connaitre les différents codes de politesse. 
 RAPPEL.`,
-    vocabulaire: `Le contrôle
-La relance protégée
-Le but`,
     exercices: [
       {
-        id: 1,
-        titre: `match 2 contre 2 avec 4 buts`,
+        id: 1, titre: `match 2 contre 2 avec 4 buts`,
         surface: `17 x 28`,
         objectif: `Match 2 contre 2 et 3 contre 3 avec 4 buts.`,
         consignes: `Jeu libre. Chaque équipe a 2 buts à attaquer et à défendre. Il n’y 
@@ -665,11 +583,10 @@ est supérieure à 3.`,
 Franchir la ligne pointillée et notre équipe marque un but = 3 
 points. Intervention après la 1ère passe. Suppression de la zone 
 protégée.`,
-        marqueurs: [{ x: 50.0, y: 49.5, type: 'ballon' }, { x: 35.7, y: 34.3, type: 'attaquant' }, { x: 43.9, y: 52.5, type: 'attaquant' }, { x: 77.3, y: 67.6, type: 'attaquant' }, { x: 78.0, y: 25.9, type: 'attaquant' }, { x: 22.6, y: 25.9, type: 'defenseur' }, { x: 34.5, y: 69.5, type: 'defenseur' }, { x: 63.5, y: 29.0, type: 'defenseur' }, { x: 65.3, y: 71.3, type: 'defenseur' }, { x: 22.7, y: 59.0, type: 'defenseur' }, { x: 39.4, y: 81.6, type: 'attaquant' }],
+        marqueurs: [{ x: 10, y: 15, type: 'but' }, { x: 10, y: 85, type: 'but' }, { x: 90, y: 15, type: 'but' }, { x: 90, y: 85, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 30, y: 35, type: 'attaquant' }, { x: 30, y: 65, type: 'attaquant' }, { x: 70, y: 35, type: 'defenseur' }, { x: 70, y: 65, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `béret`,
+        id: 2, titre: `béret`,
         surface: `36 x 28`,
         objectif: `Attaquer et défendre en 1 contre 1.`,
         consignes: `L’éducateur donne un numéro à chacun des joueurs qui sont sur 
@@ -709,11 +626,10 @@ G
 3
 5m
 5m`,
-        marqueurs: [{ x: 50.0, y: 49.1, type: 'ballon' }, { x: 84.0, y: 49.2, type: 'but' }, { x: 16.1, y: 48.8, type: 'but' }, { x: 65.0, y: 4.5, type: 'attaquant' }, { x: 43.9, y: 4.7, type: 'attaquant' }, { x: 49.0, y: 4.5, type: 'attaquant' }, { x: 54.4, y: 5.2, type: 'attaquant' }, { x: 36.7, y: 93.5, type: 'defenseur' }, { x: 45.8, y: 93.5, type: 'defenseur' }, { x: 51.8, y: 93.8, type: 'defenseur' }, { x: 55.7, y: 93.3, type: 'defenseur' }, { x: 51.0, y: 27.4, type: 'plot' }, { x: 50.4, y: 68.5, type: 'plot' }, { x: 32.6, y: 36.9, type: 'plot' }, { x: 41.6, y: 9.4, type: 'plot' }, { x: 41.6, y: 30.4, type: 'plot' }, { x: 41.6, y: 67.2, type: 'plot' }, { x: 41.6, y: 88.3, type: 'plot' }, { x: 61.0, y: 94.5, type: 'ballon' }, { x: 68.6, y: 7.5, type: 'attaquant' }, { x: 61.3, y: 7.3, type: 'attaquant' }, { x: 33.4, y: 90.2, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }, { x: 92, y: 20, type: 'attaquant' }, { x: 92, y: 35, type: 'attaquant' }, { x: 92, y: 50, type: 'attaquant' }, { x: 92, y: 65, type: 'attaquant' }, { x: 92, y: 80, type: 'attaquant' }, { x: 8, y: 20, type: 'defenseur' }, { x: 8, y: 35, type: 'defenseur' }, { x: 8, y: 50, type: 'defenseur' }, { x: 8, y: 65, type: 'defenseur' }, { x: 8, y: 80, type: 'defenseur' }],
       },
       {
-        id: 3,
-        titre: `déménageurs`,
+        id: 3, titre: `déménageurs`,
         surface: `36 x 28`,
         objectif: `Enchainer « contrôle et conduite ».`,
         consignes: `Le déménagement consiste à transporter les ballons de sa maison 
@@ -742,11 +658,10 @@ les espaces de jeu pour pratiquer en toute sécurité. Avoir le même
 nombre de ballons dans chaque maison au départ du jeu.`,
         variables: `Demander un contrôle vers la droite ou vers la gauche.
 Rajouter des obstacles à éviter.`,
-        marqueurs: [{ x: 50.0, y: 49.1, type: 'ballon' }, { x: 76.7, y: 36.6, type: 'attaquant' }, { x: 47.8, y: 95.0, type: 'attaquant' }, { x: 47.8, y: 4.4, type: 'defenseur' }, { x: 23.5, y: 64.6, type: 'defenseur' }, { x: 23.7, y: 55.3, type: 'defenseur' }, { x: 50.7, y: 27.2, type: 'defenseur' }, { x: 48.3, y: 30.4, type: 'plot' }, { x: 30.8, y: 83.5, type: 'plot' }, { x: 67.1, y: 17.8, type: 'plot' }, { x: 51.6, y: 4.0, type: 'defenseur' }, { x: 51.6, y: 94.8, type: 'attaquant' }, { x: 55.3, y: 5.9, type: 'defenseur' }, { x: 45.0, y: 5.9, type: 'defenseur' }, { x: 44.8, y: 91.7, type: 'attaquant' }, { x: 55.0, y: 91.6, type: 'attaquant' }, { x: 73.0, y: 32.3, type: 'attaquant' }, { x: 51.3, y: 76.8, type: 'attaquant' }, { x: 64.2, y: 3.3, type: 'attaquant' }, { x: 35.9, y: 96.7, type: 'defenseur' }, { x: 53.6, y: 73.3, type: 'plot' }],
+        marqueurs: [{ x: 12, y: 35, type: 'plot' }, { x: 12, y: 65, type: 'plot' }, { x: 22, y: 35, type: 'plot' }, { x: 22, y: 65, type: 'plot' }, { x: 15, y: 42, type: 'ballon' }, { x: 15, y: 52, type: 'ballon' }, { x: 15, y: 62, type: 'ballon' }, { x: 78, y: 35, type: 'plot' }, { x: 78, y: 65, type: 'plot' }, { x: 88, y: 35, type: 'plot' }, { x: 88, y: 65, type: 'plot' }, { x: 82, y: 42, type: 'ballon' }, { x: 82, y: 52, type: 'ballon' }, { x: 82, y: 62, type: 'ballon' }, { x: 38, y: 50, type: 'attaquant' }, { x: 50, y: 40, type: 'attaquant' }, { x: 62, y: 50, type: 'defenseur' }, { x: 55, y: 60, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -770,32 +685,22 @@ rentrer.
 Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu. 
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 49.5, y: 48.4, type: 'ballon' }, { x: 51.8, y: 35.0, type: 'attaquant' }, { x: 43.6, y: 58.2, type: 'attaquant' }, { x: 71.5, y: 68.8, type: 'attaquant' }, { x: 37.7, y: 59.7, type: 'defenseur' }, { x: 60.9, y: 24.4, type: 'defenseur' }, { x: 35.8, y: 23.6, type: 'defenseur' }, { x: 63.4, y: 56.1, type: 'defenseur' }, { x: 74.0, y: 18.5, type: 'attaquant' }, { x: 74.9, y: 22.9, type: 'plot' }, { x: 67.0, y: 20.5, type: 'plot' }, { x: 15.8, y: 48.2, type: 'but' }, { x: 82.5, y: 50.6, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 6,
-    titre: `J’ATTAQUE AVEC MON PARTENAIRE`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 6, titre: `J’ATTAQUE AVEC MON PARTENAIRE`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Quand on fait du sport, il est très important 
 de s’hydrater et donc d’utiliser une gourde 
 d’eau individuelle. L’éducateur prévoit des 
 pauses hydratation.`,
-    vocabulaire: `Le joueur en appui
-Le joueur en soutien
-Le coup franc
-La faute
-Le but`,
     exercices: [
       {
-        id: 1,
-        titre: `balle au capitaine`,
+        id: 1, titre: `balle au capitaine`,
         surface: `36 x 28`,
         objectif: `Rechercher un partenaire situé en appui.`,
         consignes: `Un capitaine de chaque équipe se positionne dans la zone de la re
@@ -822,11 +727,10 @@ aucun adversaire ne s’oppose à la progression.`,
         variables: `Dès la maîtrise du ballon dans la zone du capitaine, il a 5 secondes 
 pour marquer un but. Un seul défenseur peut rentrer dans la zone 
 pour récupérer la balle.`,
-        marqueurs: [{ x: 50.0, y: 46.0, type: 'ballon' }, { x: 27.9, y: 26.2, type: 'attaquant' }, { x: 47.5, y: 17.0, type: 'attaquant' }, { x: 58.3, y: 34.3, type: 'attaquant' }, { x: 61.4, y: 59.9, type: 'attaquant' }, { x: 39.4, y: 27.4, type: 'defenseur' }, { x: 38.2, y: 57.3, type: 'defenseur' }, { x: 72.0, y: 28.3, type: 'defenseur' }, { x: 57.1, y: 66.3, type: 'defenseur' }, { x: 69.9, y: 30.7, type: 'plot' }, { x: 77.8, y: 36.9, type: 'plot' }, { x: 48.7, y: 91.1, type: 'ballon' }, { x: 83.8, y: 46.9, type: 'but' }, { x: 16.2, y: 47.4, type: 'but' }, { x: 85.1, y: 38.1, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 20, y: 5, type: 'plot' }, { x: 20, y: 95, type: 'plot' }, { x: 80, y: 5, type: 'plot' }, { x: 80, y: 95, type: 'plot' }, { x: 85, y: 50, type: 'attaquant' }, { x: 15, y: 50, type: 'defenseur' }, { x: 35, y: 28, type: 'attaquant' }, { x: 35, y: 55, type: 'attaquant' }, { x: 45, y: 42, type: 'attaquant' }, { x: 65, y: 28, type: 'defenseur' }, { x: 65, y: 55, type: 'defenseur' }, { x: 55, y: 58, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `rivière`,
+        id: 2, titre: `rivière`,
         surface: `36 x 28`,
         objectif: `Passer le ballon à un partenaire situé en appui en évitant les 
 adversaires.`,
@@ -855,11 +759,10 @@ de lecture suffisant. La qualité de l’enchaînement vers le but.`,
 tard). Un crocodile de l’une des 2 lignes peut défendre dans la zone 
 devant lui uniquement.
 rivière`,
-        marqueurs: [{ x: 49.3, y: 50.2, type: 'ballon' }, { x: 33.8, y: 34.4, type: 'attaquant' }, { x: 32.5, y: 66.8, type: 'attaquant' }, { x: 61.3, y: 32.2, type: 'attaquant' }, { x: 48.6, y: 57.4, type: 'defenseur' }, { x: 49.7, y: 76.1, type: 'defenseur' }, { x: 60.1, y: 68.9, type: 'attaquant' }, { x: 15.8, y: 50.2, type: 'but' }, { x: 83.3, y: 50.2, type: 'but' }, { x: 30.1, y: 65.2, type: 'plot' }, { x: 57.3, y: 69.2, type: 'plot' }, { x: 30.0, y: 47.1, type: 'defenseur' }, { x: 69.3, y: 47.4, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 43, y: 5, type: 'plot' }, { x: 43, y: 95, type: 'plot' }, { x: 57, y: 5, type: 'plot' }, { x: 57, y: 95, type: 'plot' }, { x: 50, y: 30, type: 'defenseur' }, { x: 50, y: 70, type: 'defenseur' }, { x: 10, y: 50, type: 'attaquant' }, { x: 28, y: 30, type: 'attaquant' }, { x: 28, y: 70, type: 'attaquant' }, { x: 72, y: 30, type: 'attaquant' }, { x: 72, y: 70, type: 'attaquant' }, { x: 28, y: 50, type: 'ballon' }],
       },
       {
-        id: 3,
-        titre: `les rois de la contre-attaque`,
+        id: 3, titre: `les rois de la contre-attaque`,
         surface: `36 x 28`,
         consignes: `Les 2 équipes sont disposées selon l’organisation suivante : un 
 gardien + le joueur A dans la zone de la relance protégée (8m) + 
@@ -893,11 +796,10 @@ B
 C
 C
 4m`,
-        marqueurs: [{ x: 50.6, y: 48.6, type: 'ballon' }, { x: 77.4, y: 4.1, type: 'attaquant' }, { x: 26.7, y: 92.7, type: 'defenseur' }, { x: 77.3, y: 22.9, type: 'plot' }, { x: 65.4, y: 31.0, type: 'plot' }, { x: 43.8, y: 42.3, type: 'plot' }, { x: 45.2, y: 90.6, type: 'ballon' }, { x: 76.2, y: 19.4, type: 'attaquant' }, { x: 26.1, y: 73.5, type: 'defenseur' }, { x: 83.4, y: 48.3, type: 'but' }, { x: 17.8, y: 47.4, type: 'but' }, { x: 60.9, y: 59.0, type: 'defenseur' }, { x: 41.7, y: 43.5, type: 'attaquant' }, { x: 22.6, y: 90.3, type: 'defenseur' }, { x: 30.2, y: 90.3, type: 'defenseur' }, { x: 73.6, y: 6.9, type: 'attaquant' }, { x: 81.2, y: 6.9, type: 'attaquant' }, { x: 29.4, y: 29.9, type: 'plot' }, { x: 16.2, y: 39.1, type: 'plot' }, { x: 24.9, y: 69.3, type: 'plot' }, { x: 38.6, y: 70.6, type: 'plot' }, { x: 58.8, y: 60.6, type: 'plot' }, { x: 71.2, y: 64.4, type: 'plot' }, { x: 85.0, y: 56.4, type: 'plot' }, { x: 52.4, y: 82.1, type: 'defenseur' }, { x: 49.3, y: 17.1, type: 'attaquant' }, { x: 54.0, y: 78.2, type: 'plot' }, { x: 47.8, y: 21.9, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 20, y: 5, type: 'plot' }, { x: 20, y: 95, type: 'plot' }, { x: 80, y: 5, type: 'plot' }, { x: 80, y: 95, type: 'plot' }, { x: 10, y: 50, type: 'attaquant' }, { x: 15, y: 50, type: 'attaquant' }, { x: 40, y: 35, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 85, y: 50, type: 'defenseur' }, { x: 60, y: 35, type: 'defenseur' }, { x: 60, y: 65, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -922,19 +824,15 @@ Faire respecter les lois du jeu.
 Faire jouer tous les enfants le même temps de jeu. 
 Modifier les équipes si l’écart de buts est supérieur à 3.
 notes`,
-        marqueurs: [{ x: 50.2, y: 48.4, type: 'ballon' }, { x: 33.8, y: 48.4, type: 'attaquant' }, { x: 47.1, y: 69.3, type: 'attaquant' }, { x: 56.7, y: 35.0, type: 'attaquant' }, { x: 59.1, y: 57.6, type: 'defenseur' }, { x: 48.4, y: 16.9, type: 'defenseur' }, { x: 41.2, y: 42.1, type: 'defenseur' }, { x: 44.2, y: 40.8, type: 'plot' }, { x: 52.6, y: 38.4, type: 'plot' }, { x: 16.9, y: 48.2, type: 'but' }, { x: 83.8, y: 48.4, type: 'but' }, { x: 40.7, y: 25.7, type: 'attaquant' }, { x: 63.7, y: 26.9, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 7,
-    titre: `SÉANCE RÉCRÉATIVE`,
-    phase: 'recreatif',
-    phaseLabel: `SÉANCE RÉCRÉATIVE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 7, titre: `SÉANCE RÉCRÉATIVE`,
+    phase: 'recreatif', phaseLabel: `SÉANCE RÉCRÉATIVE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `2
 atelier pef
 surface
@@ -957,8 +855,7 @@ passe aérienne
 kit arbitre`,
     exercices: [
       {
-        id: 1,
-        titre: `festifoot`,
+        id: 1, titre: `festifoot`,
         surface: `28 x 17`,
         objectif: `Gagner le match en s’opposant à 2 adversaires, sans gardien de 
 but.`,
@@ -981,11 +878,10 @@ monter et descendre sur le nombre x de terrains. Obliger les en-
 fants à être dans les zones des 4m pour pouvoir marquer. Valoriser 
 par 2 points si le but est marqué de la zone des 4m. Empêcher 
 l’accès à la zone des 4m pour les défenseurs.`,
-        marqueurs: [{ x: 53.5, y: 47.4, type: 'ballon' }, { x: 26.1, y: 66.5, type: 'attaquant' }, { x: 41.9, y: 62.2, type: 'attaquant' }, { x: 80.8, y: 65.6, type: 'attaquant' }, { x: 65.1, y: 66.5, type: 'attaquant' }, { x: 26.1, y: 23.8, type: 'defenseur' }, { x: 43.1, y: 21.7, type: 'defenseur' }, { x: 67.2, y: 25.9, type: 'defenseur' }, { x: 80.8, y: 27.1, type: 'defenseur' }, { x: 53.3, y: 29.1, type: 'defenseur' }, { x: 16.6, y: 17.4, type: 'plot' }, { x: 16.6, y: 7.3, type: 'plot' }, { x: 16.4, y: 86.6, type: 'plot' }, { x: 16.4, y: 76.4, type: 'plot' }, { x: 52.7, y: 55.5, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 28, y: 32, type: 'attaquant' }, { x: 28, y: 68, type: 'attaquant' }, { x: 72, y: 32, type: 'defenseur' }, { x: 72, y: 68, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `atelier pef`,
+        id: 2, titre: `atelier pef`,
         surface: `36 x 28`,
         consignes: `PROPOSITION N°1
 Objectif de l’atelier : concevoir son sac de foot en fonction de la 
@@ -1015,8 +911,7 @@ durée
 date`,
       },
       {
-        id: 3,
-        titre: `match`,
+        id: 3, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -1037,11 +932,10 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 49.3, y: 49.8, type: 'ballon' }, { x: 61.7, y: 31.2, type: 'attaquant' }, { x: 47.5, y: 71.1, type: 'attaquant' }, { x: 40.3, y: 37.0, type: 'attaquant' }, { x: 34.7, y: 66.8, type: 'defenseur' }, { x: 49.7, y: 24.1, type: 'defenseur' }, { x: 35.7, y: 29.1, type: 'defenseur' }, { x: 55.1, y: 58.1, type: 'defenseur' }, { x: 63.0, y: 61.4, type: 'attaquant' }, { x: 82.8, y: 49.5, type: 'but' }, { x: 15.7, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -1062,30 +956,23 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 49.4, y: 48.4, type: 'ballon' }, { x: 61.9, y: 30.4, type: 'attaquant' }, { x: 47.6, y: 69.1, type: 'attaquant' }, { x: 40.5, y: 35.9, type: 'attaquant' }, { x: 34.8, y: 65.0, type: 'defenseur' }, { x: 49.8, y: 23.5, type: 'defenseur' }, { x: 35.8, y: 28.3, type: 'defenseur' }, { x: 55.2, y: 56.5, type: 'defenseur' }, { x: 63.1, y: 59.7, type: 'attaquant' }, { x: 83.0, y: 48.1, type: 'but' }, { x: 15.8, y: 49.3, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 8,
-    titre: `JE FEINTE ET J’ÉLIMINE UN ADVERSAIRE DE FACE`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 8, titre: `JE FEINTE ET J’ÉLIMINE UN ADVERSAIRE DE FACE`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Le respect est une des 5 valeurs de la FFF. 
 Au club, je dois respecter mon éducateur 
 Je lui dis « Bonjour » et « Au revoir » et 
 j’écoute et je garde le silence quand il prend 
 la parole.`,
-    vocabulaire: `La feinte
-Le dribble`,
     exercices: [
       {
-        id: 1,
-        titre: `4 contre 4 mini but`,
+        id: 1, titre: `4 contre 4 mini but`,
         surface: `27 x 28`,
         objectif: `Éliminer un joueur de face.`,
         consignes: `Jeu libre en 4 contre 4. Les règles sont identiques à celles des 
@@ -1104,11 +991,10 @@ de buts entre les 2 équipes est supérieure à 3.`,
         variables: `Cloisonner les joueurs lorsque leur équipe n’a pas le ballon mais 
 ils peuvent se déplacer et jouer dans une autre zone lorsque leur 
 équipe est en possession du ballon.`,
-        marqueurs: [{ x: 51.4, y: 45.6, type: 'ballon' }, { x: 32.0, y: 42.6, type: 'attaquant' }, { x: 51.3, y: 25.3, type: 'attaquant' }, { x: 50.9, y: 69.0, type: 'attaquant' }, { x: 63.7, y: 46.6, type: 'attaquant' }, { x: 24.0, y: 22.0, type: 'defenseur' }, { x: 23.7, y: 67.5, type: 'defenseur' }, { x: 61.2, y: 29.8, type: 'defenseur' }, { x: 41.6, y: 51.1, type: 'defenseur' }, { x: 45.3, y: 90.7, type: 'defenseur' }, { x: 58.1, y: 91.2, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 25, type: 'but' }, { x: 5, y: 75, type: 'but' }, { x: 95, y: 25, type: 'but' }, { x: 95, y: 75, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 38, y: 42, type: 'attaquant' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 62, y: 58, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `ballon magique`,
+        id: 2, titre: `ballon magique`,
         surface: `27 x 28`,
         objectif: `Attaquer et défendre en 1 contre 1 avec gardien de but.`,
         consignes: `Les enfants se trouvent au point de corner à droite de leur but. 
@@ -1138,11 +1024,10 @@ E
 G
 G
 notes`,
-        marqueurs: [{ x: 53.5, y: 48.5, type: 'ballon' }, { x: 77.3, y: 15.4, type: 'attaquant' }, { x: 74.3, y: 13.4, type: 'attaquant' }, { x: 74.5, y: 9.2, type: 'attaquant' }, { x: 16.0, y: 84.2, type: 'defenseur' }, { x: 12.8, y: 87.0, type: 'defenseur' }, { x: 54.2, y: 82.1, type: 'ballon' }, { x: 29.9, y: 77.9, type: 'plot' }, { x: 32.1, y: 77.4, type: 'plot' }, { x: 48.4, y: 54.6, type: 'plot' }, { x: 71.5, y: 18.5, type: 'attaquant' }, { x: 71.5, y: 6.4, type: 'attaquant' }, { x: 17.6, y: 90.2, type: 'defenseur' }, { x: 17.6, y: 78.1, type: 'defenseur' }, { x: 43.9, y: 60.9, type: 'plot' }, { x: 19.2, y: 48.5, type: 'ballon' }, { x: 69.7, y: 48.5, type: 'ballon' }, { x: 77.3, y: 8.5, type: 'attaquant' }, { x: 11.8, y: 81.3, type: 'defenseur' }, { x: 14.3, y: 80.2, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 12, y: 10, type: 'attaquant' }, { x: 12, y: 90, type: 'attaquant' }, { x: 88, y: 10, type: 'defenseur' }, { x: 88, y: 90, type: 'defenseur' }, { x: 45, y: 50, type: 'ballon' }, { x: 55, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `épervier`,
+        id: 3, titre: `épervier`,
         surface: `36 x 28`,
         objectif: `Feinter et éliminer un adversaire de face.`,
         consignes: `Les éperviers (en jaune) lancent le jeu en annonçant « épervier en 
@@ -1166,11 +1051,10 @@ lorsque ceux-ci tentent de prendre le ballon (élimination).`,
         variables: `Mettre le ballon dans les mains des oiseaux pour la motricité. Les 
 éperviers peuvent défendre sur tout le terrain. Agrandir ou dimi
 nuer la zone des éperviers. Agrandir ou diminuer les portes.`,
-        marqueurs: [{ x: 49.9, y: 49.0, type: 'ballon' }, { x: 50.2, y: 29.7, type: 'plot' }, { x: 21.0, y: 13.3, type: 'defenseur' }, { x: 21.0, y: 22.7, type: 'defenseur' }, { x: 21.0, y: 33.2, type: 'defenseur' }, { x: 21.0, y: 43.2, type: 'defenseur' }, { x: 21.0, y: 53.4, type: 'defenseur' }, { x: 21.0, y: 61.4, type: 'defenseur' }, { x: 21.0, y: 71.8, type: 'defenseur' }, { x: 21.0, y: 82.7, type: 'defenseur' }, { x: 50.2, y: 60.5, type: 'plot' }, { x: 50.0, y: 21.4, type: 'attaquant' }, { x: 50.0, y: 9.3, type: 'attaquant' }, { x: 50.2, y: 45.9, type: 'attaquant' }, { x: 50.2, y: 33.9, type: 'attaquant' }, { x: 49.9, y: 64.4, type: 'defenseur' }, { x: 49.9, y: 52.3, type: 'defenseur' }, { x: 50.1, y: 89.0, type: 'defenseur' }, { x: 50.1, y: 76.9, type: 'defenseur' }],
+        marqueurs: [{ x: 65, y: 5, type: 'plot' }, { x: 65, y: 95, type: 'plot' }, { x: 78, y: 5, type: 'plot' }, { x: 78, y: 95, type: 'plot' }, { x: 52, y: 5, type: 'plot' }, { x: 52, y: 95, type: 'plot' }, { x: 50, y: 35, type: 'defenseur' }, { x: 50, y: 65, type: 'defenseur' }, { x: 15, y: 18, type: 'attaquant' }, { x: 15, y: 38, type: 'attaquant' }, { x: 15, y: 58, type: 'attaquant' }, { x: 15, y: 78, type: 'attaquant' }, { x: 18, y: 18, type: 'ballon' }, { x: 18, y: 38, type: 'ballon' }, { x: 18, y: 58, type: 'ballon' }, { x: 18, y: 78, type: 'ballon' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -1191,30 +1075,23 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 49.2, y: 48.8, type: 'ballon' }, { x: 61.7, y: 30.8, type: 'attaquant' }, { x: 47.5, y: 69.5, type: 'attaquant' }, { x: 40.3, y: 36.3, type: 'attaquant' }, { x: 34.7, y: 65.3, type: 'defenseur' }, { x: 49.7, y: 23.9, type: 'defenseur' }, { x: 35.7, y: 28.7, type: 'defenseur' }, { x: 55.1, y: 56.9, type: 'defenseur' }, { x: 63.0, y: 60.1, type: 'attaquant' }, { x: 82.8, y: 48.5, type: 'but' }, { x: 15.7, y: 49.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 9,
-    titre: `JE JOUE AVEC MON PARTENAIRE QUI EST À CÔTÉ DE MOI ET JE ME DÉPLACE POUR RECEVOIR LE BALLON.`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE COLLECTIVEMENT`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 9, titre: `JE JOUE AVEC MON PARTENAIRE QUI EST À CÔTÉ DE MOI ET JE ME DÉPLACE POUR RECEVOIR LE BALLON.`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE COLLECTIVEMENT`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Le respect est une des 5 valeurs de la FFF. 
 Au club, je dois respecter mon éducateur. 
 Je peux l’interpeller à la fin de sa communi
 cation en levant la main si j’ai une question 
 et j’accepte ses décisions.`,
-    vocabulaire: `J’aide mon partenaire
-Je me démarque`,
     exercices: [
       {
-        id: 1,
-        titre: `3 contre 3 avec 2 soutiens`,
+        id: 1, titre: `3 contre 3 avec 2 soutiens`,
         surface: `36 x 28`,
         objectif: `Passer dans l’une des 2 portes (matérialisées par les cônes) en 
 conduite de balle pour marquer.`,
@@ -1235,11 +1112,10 @@ Inciter à progresser avec le ballon si aucun adversaire ne s’oppose
 un GB)
 Lorsqu’on trouve le soutien, celui-ci peut rentrer et ainsi jouer à 4 
 contre 3 (à la fin de l’action, on recommence à 3 contre 3).`,
-        marqueurs: [{ x: 49.9, y: 49.0, type: 'ballon' }, { x: 21.8, y: 41.9, type: 'attaquant' }, { x: 51.1, y: 37.7, type: 'attaquant' }, { x: 22.4, y: 60.8, type: 'attaquant' }, { x: 45.3, y: 20.5, type: 'attaquant' }, { x: 76.8, y: 35.6, type: 'defenseur' }, { x: 76.8, y: 60.8, type: 'defenseur' }, { x: 57.4, y: 22.6, type: 'defenseur' }, { x: 58.7, y: 49.0, type: 'defenseur' }, { x: 48.1, y: 62.4, type: 'attaquant' }, { x: 52.0, y: 85.9, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 88, y: 50, type: 'attaquant' }, { x: 12, y: 50, type: 'defenseur' }, { x: 38, y: 25, type: 'attaquant' }, { x: 38, y: 55, type: 'attaquant' }, { x: 38, y: 75, type: 'attaquant' }, { x: 62, y: 25, type: 'defenseur' }, { x: 62, y: 55, type: 'defenseur' }, { x: 62, y: 75, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `2 contre 1 sur les côtés`,
+        id: 2, titre: `2 contre 1 sur les côtés`,
         surface: `36 x 28`,
         objectif: `Aider son partenaire.`,
         consignes: `2 contre 2 en zone axiale. 1 contre 1 dans les zones latérales (pas 
@@ -1261,11 +1137,10 @@ Agrandir ou diminuer les zones latérales.
 G
 G
 notes`,
-        marqueurs: [{ x: 50.0, y: 48.4, type: 'ballon' }, { x: 40.2, y: 21.6, type: 'attaquant' }, { x: 35.3, y: 57.4, type: 'attaquant' }, { x: 58.8, y: 39.1, type: 'attaquant' }, { x: 42.8, y: 55.4, type: 'defenseur' }, { x: 57.5, y: 84.7, type: 'defenseur' }, { x: 63.0, y: 37.0, type: 'defenseur' }, { x: 41.5, y: 84.7, type: 'attaquant' }, { x: 16.5, y: 48.4, type: 'but' }, { x: 84.1, y: 48.4, type: 'but' }, { x: 32.6, y: 56.5, type: 'plot' }, { x: 40.2, y: 81.2, type: 'plot' }, { x: 60.1, y: 17.4, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 33, y: 5, type: 'plot' }, { x: 33, y: 95, type: 'plot' }, { x: 67, y: 5, type: 'plot' }, { x: 67, y: 95, type: 'plot' }, { x: 45, y: 40, type: 'attaquant' }, { x: 45, y: 60, type: 'attaquant' }, { x: 55, y: 40, type: 'defenseur' }, { x: 55, y: 60, type: 'defenseur' }, { x: 35, y: 22, type: 'attaquant' }, { x: 38, y: 18, type: 'defenseur' }, { x: 65, y: 22, type: 'attaquant' }, { x: 62, y: 18, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }],
       },
       {
-        id: 3,
-        titre: `jeu du 1 contre 1`,
+        id: 3, titre: `jeu du 1 contre 1`,
         surface: `27 x 28`,
         objectif: `Marquer le but en 1 contre 1 ou 2 contre 1.`,
         consignes: `Le GB transmet à A1, qui conduit et transmet à B1 qui doit aller 
@@ -1293,11 +1168,10 @@ ses choix (dribble ou jeu à 2).`,
 B1 fait une passe à A1. À la récupération du ballon par le joueur 
 rouge, le joueur C (rouge) peut entrer en jeu pour attaquer. Le 
 joueur rouge ne peut défendre que quand B1 sort de sa zone.`,
-        marqueurs: [{ x: 52.4, y: 47.9, type: 'ballon' }, { x: 37.0, y: 12.8, type: 'attaquant' }, { x: 46.3, y: 14.9, type: 'attaquant' }, { x: 76.1, y: 63.4, type: 'attaquant' }, { x: 30.3, y: 54.8, type: 'defenseur' }, { x: 43.1, y: 85.1, type: 'defenseur' }, { x: 59.8, y: 65.4, type: 'attaquant' }, { x: 18.8, y: 47.9, type: 'ballon' }, { x: 69.9, y: 47.9, type: 'ballon' }, { x: 27.8, y: 53.3, type: 'plot' }, { x: 41.2, y: 81.0, type: 'plot' }, { x: 17.9, y: 8.9, type: 'defenseur' }, { x: 45.1, y: 92.7, type: 'defenseur' }, { x: 51.0, y: 83.9, type: 'plot' }, { x: 46.8, y: 41.4, type: 'plot' }, { x: 49.6, y: 74.1, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 15, y: 40, type: 'attaquant' }, { x: 15, y: 55, type: 'attaquant' }, { x: 15, y: 70, type: 'attaquant' }, { x: 35, y: 50, type: 'ballon' }, { x: 33, y: 50, type: 'attaquant' }, { x: 85, y: 40, type: 'defenseur' }, { x: 85, y: 55, type: 'defenseur' }, { x: 85, y: 70, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -1318,30 +1192,23 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 10,
-    titre: `JE ME RECONNAIS DÉFENSEUR ET JE REVIENS DANS MON CAMP EN CHASSANT L’ADVERSAIRE.`,
-    phase: 'defense',
-    phaseLabel: `JE DÉFENDS`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 10, titre: `JE ME RECONNAIS DÉFENSEUR ET JE REVIENS DANS MON CAMP EN CHASSANT L’ADVERSAIRE.`,
+    phase: 'defense', phaseLabel: `JE DÉFENDS`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Le respect est une des 5 valeurs de la FFF. 
 Au club, je dois respecter mes partenaires. 
 Je les salue en arrivant à l’entraînement 
 ou au match et je ne prononce pas de mots 
 grossiers à leur égard.`,
-    vocabulaire: `Je chasse le porteur de balle.
-Je suis acteur à la perte du ballon.`,
     exercices: [
       {
-        id: 1,
-        titre: `match 3 contre 3`,
+        id: 1, titre: `match 3 contre 3`,
         surface: `27 x 28`,
         objectif: `Se reconnaitre défenseur et revenir dans son propre camp.`,
         consignes: `Jeu libre en 3 contre 3. Chaque équipe a 3 petits buts à attaquer 
@@ -1361,11 +1228,10 @@ si la différence de buts entre les 2 équipes est supérieure à 3.
         variables: `Mettre 2 buts à attaquer et 2 buts à défendre.
 Faire un match 4 contre 4.
 Interdire de marquer 2 fois de suite dans le même but.`,
-        marqueurs: [{ x: 51.4, y: 48.5, type: 'ballon' }, { x: 30.4, y: 43.8, type: 'attaquant' }, { x: 47.9, y: 25.1, type: 'attaquant' }, { x: 50.9, y: 71.8, type: 'attaquant' }, { x: 59.0, y: 4.4, type: 'attaquant' }, { x: 44.1, y: 14.6, type: 'defenseur' }, { x: 22.1, y: 45.2, type: 'defenseur' }, { x: 33.0, y: 92.9, type: 'defenseur' }, { x: 24.6, y: 78.3, type: 'defenseur' }, { x: 37.7, y: 92.6, type: 'defenseur' }, { x: 56.5, y: 4.4, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 20, type: 'but' }, { x: 5, y: 50, type: 'but' }, { x: 5, y: 80, type: 'but' }, { x: 95, y: 20, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 95, y: 80, type: 'but' }, { x: 20, y: 5, type: 'plot' }, { x: 20, y: 95, type: 'plot' }, { x: 80, y: 5, type: 'plot' }, { x: 80, y: 95, type: 'plot' }, { x: 50, y: 50, type: 'ballon' }, { x: 28, y: 28, type: 'attaquant' }, { x: 28, y: 55, type: 'attaquant' }, { x: 28, y: 78, type: 'attaquant' }, { x: 72, y: 28, type: 'defenseur' }, { x: 72, y: 55, type: 'defenseur' }, { x: 72, y: 78, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `1 contre 1`,
+        id: 2, titre: `1 contre 1`,
         surface: `27 x 28`,
         objectif: `Enchaîner une action offensive puis défensive.`,
         consignes: `Le 1er joueur s’élance en conduite et tente de marquer le but. Dès 
@@ -1393,11 +1259,10 @@ E
 G
 G
 notes`,
-        marqueurs: [{ x: 51.4, y: 47.8, type: 'ballon' }, { x: 75.2, y: 14.7, type: 'attaquant' }, { x: 71.7, y: 12.4, type: 'attaquant' }, { x: 72.4, y: 8.5, type: 'attaquant' }, { x: 34.6, y: 87.0, type: 'defenseur' }, { x: 23.3, y: 90.5, type: 'defenseur' }, { x: 24.6, y: 77.8, type: 'ballon' }, { x: 17.9, y: 41.0, type: 'plot' }, { x: 55.8, y: 56.9, type: 'plot' }, { x: 69.5, y: 17.7, type: 'attaquant' }, { x: 69.5, y: 5.7, type: 'attaquant' }, { x: 33.3, y: 83.1, type: 'defenseur' }, { x: 39.2, y: 88.8, type: 'defenseur' }, { x: 55.1, y: 65.4, type: 'plot' }, { x: 17.1, y: 47.8, type: 'but' }, { x: 67.6, y: 47.8, type: 'ballon' }, { x: 75.2, y: 7.8, type: 'attaquant' }, { x: 27.3, y: 89.4, type: 'defenseur' }, { x: 31.0, y: 88.4, type: 'defenseur' }, { x: 37.5, y: 29.9, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 15, y: 40, type: 'attaquant' }, { x: 15, y: 55, type: 'attaquant' }, { x: 15, y: 70, type: 'attaquant' }, { x: 35, y: 50, type: 'ballon' }, { x: 33, y: 50, type: 'attaquant' }, { x: 85, y: 40, type: 'defenseur' }, { x: 85, y: 55, type: 'defenseur' }, { x: 85, y: 70, type: 'defenseur' }],
       },
       {
-        id: 3,
-        titre: `2 contre 2`,
+        id: 3, titre: `2 contre 2`,
         surface: `27 x 28`,
         objectif: `Se reconnaitre défenseur et revenir dans mon camp en chassant 
 l’adversaire.`,
@@ -1420,11 +1285,10 @@ Réaction sur le changement de poste (joueur / GB).`,
         variables: `Faire partir les joueurs bleus de positions différentes (1 à côté du 
 but, le 2ème sur la ligne de touche, à la ligne de la surface).
 Faire partir les défenseurs après la 1ère passe.`,
-        marqueurs: [{ x: 52.3, y: 49.7, type: 'ballon' }, { x: 14.2, y: 19.1, type: 'attaquant' }, { x: 39.3, y: 74.7, type: 'attaquant' }, { x: 14.2, y: 32.2, type: 'attaquant' }, { x: 38.0, y: 21.2, type: 'attaquant' }, { x: 75.2, y: 28.8, type: 'defenseur' }, { x: 71.4, y: 78.9, type: 'defenseur' }, { x: 41.4, y: 36.6, type: 'defenseur' }, { x: 40.9, y: 52.8, type: 'defenseur' }, { x: 13.2, y: 70.5, type: 'attaquant' }, { x: 75.2, y: 17.0, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 28, type: 'but' }, { x: 5, y: 72, type: 'but' }, { x: 95, y: 28, type: 'but' }, { x: 95, y: 72, type: 'but' }, { x: 30, y: 35, type: 'attaquant' }, { x: 30, y: 65, type: 'attaquant' }, { x: 70, y: 35, type: 'defenseur' }, { x: 70, y: 65, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -1445,31 +1309,24 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 11,
-    titre: `JE ME RECONNAIS DÉFENSEUR ET JE REVIENS DANS MON CAMP EN CHASSANT L’ADVERSAIRE.`,
-    phase: 'defense',
-    phaseLabel: `JE DÉFENDS`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 11, titre: `JE ME RECONNAIS DÉFENSEUR ET JE REVIENS DANS MON CAMP EN CHASSANT L’ADVERSAIRE.`,
+    phase: 'defense', phaseLabel: `JE DÉFENDS`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Le respect est une des 5 valeurs de la FFF. 
 Au club, je dois respecter mes partenaires. 
 Je les encourage quelles que soient les 
 situations (but contre son camp, passe 
 ratée…) et je ne les divertis pas quand 
 l’éducateur prend la parole.`,
-    vocabulaire: `Je cours vers mon but pour défendre le but 
-Je chasse l’adversaire`,
     exercices: [
       {
-        id: 1,
-        titre: `4 contre 4`,
+        id: 1, titre: `4 contre 4`,
         surface: `27 x 28`,
         objectif: `Jouer librement en 4 contre 4.`,
         consignes: `Chaque équipe a 1 but à attaquer et à défendre protégé par un 
@@ -1490,11 +1347,10 @@ des courses de retour pour venir participer à l’action défensive de
 son équipe.
 Modifier les équipes ou les adversaires directs si la différence de 
 buts entre les 2 équipes est supérieure à 3.`,
-        marqueurs: [{ x: 50.7, y: 47.1, type: 'ballon' }, { x: 55.8, y: 31.0, type: 'attaquant' }, { x: 40.1, y: 70.3, type: 'attaquant' }, { x: 39.1, y: 24.5, type: 'attaquant' }, { x: 54.5, y: 90.8, type: 'defenseur' }, { x: 56.0, y: 44.7, type: 'defenseur' }, { x: 46.4, y: 27.9, type: 'defenseur' }, { x: 47.7, y: 69.0, type: 'defenseur' }, { x: 47.2, y: 91.1, type: 'attaquant' }, { x: 66.7, y: 48.8, type: 'ballon' }, { x: 17.2, y: 48.0, type: 'but' }, { x: 50.7, y: 5.1, type: 'attaquant' }, { x: 50.7, y: 88.4, type: 'attaquant' }, { x: 50.7, y: 69.0, type: 'but' }, { x: 51.3, y: 25.4, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 20, y: 5, type: 'plot' }, { x: 20, y: 95, type: 'plot' }, { x: 80, y: 5, type: 'plot' }, { x: 80, y: 95, type: 'plot' }, { x: 10, y: 50, type: 'attaquant' }, { x: 28, y: 25, type: 'attaquant' }, { x: 28, y: 55, type: 'attaquant' }, { x: 28, y: 80, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 72, y: 25, type: 'defenseur' }, { x: 72, y: 55, type: 'defenseur' }, { x: 72, y: 80, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `1 contre 1`,
+        id: 2, titre: `1 contre 1`,
         surface: `27 x 28`,
         objectif: `Récupérer le ballon en 1 contre 1 pour enchaîner avec une autre 
 action.`,
@@ -1526,11 +1382,10 @@ G
 E
 G
 notes`,
-        marqueurs: [{ x: 52.3, y: 47.4, type: 'ballon' }, { x: 67.6, y: 82.9, type: 'attaquant' }, { x: 68.0, y: 10.1, type: 'attaquant' }, { x: 73.3, y: 8.2, type: 'attaquant' }, { x: 39.5, y: 44.7, type: 'defenseur' }, { x: 24.2, y: 90.2, type: 'defenseur' }, { x: 65.4, y: 46.9, type: 'ballon' }, { x: 61.1, y: 66.0, type: 'plot' }, { x: 44.8, y: 22.9, type: 'plot' }, { x: 64.0, y: 87.8, type: 'attaquant' }, { x: 64.0, y: 80.7, type: 'attaquant' }, { x: 37.9, y: 47.1, type: 'defenseur' }, { x: 34.4, y: 88.3, type: 'defenseur' }, { x: 54.5, y: 53.5, type: 'plot' }, { x: 18.1, y: 47.4, type: 'ballon' }, { x: 76.2, y: 7.5, type: 'attaquant' }, { x: 28.2, y: 89.1, type: 'defenseur' }, { x: 31.9, y: 88.1, type: 'defenseur' }, { x: 44.7, y: 19.9, type: 'plot' }, { x: 64.4, y: 13.1, type: 'plot' }, { x: 64.4, y: 6.0, type: 'plot' }, { x: 71.9, y: 84.5, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 15, y: 40, type: 'attaquant' }, { x: 15, y: 55, type: 'attaquant' }, { x: 15, y: 70, type: 'attaquant' }, { x: 35, y: 50, type: 'ballon' }, { x: 33, y: 50, type: 'attaquant' }, { x: 85, y: 40, type: 'defenseur' }, { x: 85, y: 55, type: 'defenseur' }, { x: 85, y: 70, type: 'defenseur' }],
       },
       {
-        id: 3,
-        titre: `queue du renard`,
+        id: 3, titre: `queue du renard`,
         surface: `18 x 28`,
         objectif: `Attraper la queue du renard sans se faire prendre la sienne.`,
         consignes: `Faire 2 équipes de couleurs différentes, chaque équipe ayant une 
@@ -1554,11 +1409,10 @@ Exemple : soit tout le monde « attaque », soit on met des défen
 seurs de la prison.
 Protéger son ballon.`,
         variables: `Possibilité de délivrer tous les prisonniers en 1 fois.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.7, y: 48.6, type: 'defenseur' }, { x: 58.5, y: 27.8, type: 'defenseur' }, { x: 53.4, y: 68.3, type: 'defenseur' }, { x: 64.1, y: 74.4, type: 'defenseur' }, { x: 44.7, y: 71.7, type: 'attaquant' }, { x: 39.3, y: 49.6, type: 'attaquant' }, { x: 43.8, y: 19.2, type: 'attaquant' }, { x: 52.4, y: 36.1, type: 'attaquant' }, { x: 41.4, y: 36.4, type: 'attaquant' }, { x: 51.0, y: 46.6, type: 'defenseur' }],
+        marqueurs: [{ x: 25, y: 25, type: 'attaquant' }, { x: 35, y: 65, type: 'attaquant' }, { x: 20, y: 75, type: 'attaquant' }, { x: 75, y: 25, type: 'defenseur' }, { x: 65, y: 65, type: 'defenseur' }, { x: 80, y: 45, type: 'defenseur' }, { x: 50, y: 40, type: 'attaquant' }, { x: 55, y: 70, type: 'defenseur' }, { x: 50, y: 5, type: 'plot' }, { x: 50, y: 95, type: 'plot' }, { x: 5, y: 50, type: 'plot' }, { x: 95, y: 50, type: 'plot' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -1579,30 +1433,23 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 12,
-    titre: `JE JOUE AVEC MON PARTENAIRE QUI EST À CÔTÉ DE MOI ET JE ME DÉPLACE POUR RECEVOIR LE BALLON.`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 12, titre: `JE JOUE AVEC MON PARTENAIRE QUI EST À CÔTÉ DE MOI ET JE ME DÉPLACE POUR RECEVOIR LE BALLON.`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Le respect est une des 5 valeurs de la FFF. 
 Au club, je dois respecter mes adversaires. 
 Je les salue à leur arrivée au stade, je suis 
 courtois et respectueux quel que soit le ré
 sultat et le conteste du match.`,
-    vocabulaire: `Mon équipe occupe la largeur du terrain
-La relance protégée`,
     exercices: [
       {
-        id: 1,
-        titre: `5 contre 5`,
+        id: 1, titre: `5 contre 5`,
         surface: `36 x 28`,
         objectif: `Jouer avec mon partenaire qui est à côté de moi et se déplacer 
 pour recevoir le ballon.`,
@@ -1625,11 +1472,10 @@ Occuper la largeur du terrain.`,
         variables: `Sur la relance du GB, l’équipe adverse peut placer 2 joueurs en 
 zone offensive (on joue à 3 contre 2). Un des 2 attaquants pourra 
 revenir dans sa moitié défensive.`,
-        marqueurs: [{ x: 50.0, y: 49.0, type: 'ballon' }, { x: 80.2, y: 16.3, type: 'attaquant' }, { x: 58.3, y: 50.2, type: 'attaquant' }, { x: 38.5, y: 35.6, type: 'attaquant' }, { x: 41.1, y: 80.7, type: 'defenseur' }, { x: 41.1, y: 20.5, type: 'defenseur' }, { x: 34.2, y: 49.9, type: 'defenseur' }, { x: 65.6, y: 50.2, type: 'defenseur' }, { x: 82.3, y: 79.7, type: 'attaquant' }, { x: 83.6, y: 48.7, type: 'but' }, { x: 16.4, y: 49.9, type: 'but' }, { x: 64.4, y: 17.8, type: 'plot' }, { x: 79.7, y: 20.8, type: 'plot' }, { x: 59.5, y: 75.2, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 22, y: 5, type: 'plot' }, { x: 22, y: 95, type: 'plot' }, { x: 78, y: 5, type: 'plot' }, { x: 78, y: 95, type: 'plot' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 20, y: 28, type: 'attaquant' }, { x: 20, y: 50, type: 'attaquant' }, { x: 20, y: 72, type: 'attaquant' }, { x: 55, y: 45, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 80, y: 28, type: 'defenseur' }, { x: 80, y: 50, type: 'defenseur' }, { x: 80, y: 72, type: 'defenseur' }, { x: 45, y: 55, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `double rivière`,
+        id: 2, titre: `double rivière`,
         surface: `36 x 28`,
         objectif: `Jouer avec mon partenaire qui est à côté de moi et se déplacer 
 pour recevoir le ballon.`,
@@ -1666,11 +1512,10 @@ G
 Rivière 1
 Berge
 notes`,
-        marqueurs: [{ x: 49.4, y: 48.8, type: 'ballon' }, { x: 76.0, y: 19.6, type: 'attaquant' }, { x: 88.3, y: 86.1, type: 'attaquant' }, { x: 87.3, y: 17.5, type: 'attaquant' }, { x: 48.8, y: 5.3, type: 'defenseur' }, { x: 49.2, y: 92.7, type: 'defenseur' }, { x: 79.2, y: 77.7, type: 'attaquant' }, { x: 15.9, y: 48.8, type: 'but' }, { x: 83.4, y: 48.8, type: 'but' }, { x: 77.0, y: 23.8, type: 'plot' }, { x: 68.0, y: 59.5, type: 'plot' }, { x: 33.6, y: 47.6, type: 'defenseur' }, { x: 30.0, y: 6.4, type: 'defenseur' }, { x: 36.5, y: 6.1, type: 'defenseur' }, { x: 62.7, y: 6.9, type: 'defenseur' }, { x: 69.6, y: 6.4, type: 'defenseur' }, { x: 29.9, y: 89.9, type: 'defenseur' }, { x: 36.4, y: 89.6, type: 'defenseur' }, { x: 62.6, y: 90.4, type: 'defenseur' }, { x: 69.6, y: 89.9, type: 'defenseur' }, { x: 66.8, y: 46.4, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 33, y: 5, type: 'plot' }, { x: 33, y: 95, type: 'plot' }, { x: 43, y: 5, type: 'plot' }, { x: 43, y: 95, type: 'plot' }, { x: 57, y: 5, type: 'plot' }, { x: 57, y: 95, type: 'plot' }, { x: 67, y: 5, type: 'plot' }, { x: 67, y: 95, type: 'plot' }, { x: 12, y: 50, type: 'attaquant' }, { x: 22, y: 35, type: 'attaquant' }, { x: 22, y: 65, type: 'attaquant' }, { x: 24, y: 50, type: 'ballon' }, { x: 38, y: 35, type: 'defenseur' }, { x: 38, y: 65, type: 'defenseur' }, { x: 62, y: 50, type: 'defenseur' }],
       },
       {
-        id: 3,
-        titre: `défi technique`,
+        id: 3, titre: `défi technique`,
         surface: `36 x 28`,
         objectif: `Transmettre le ballon à son partenaire pour aller marquer le plus 
 rapidement possible.`,
@@ -1697,11 +1542,10 @@ bon moment et à un équipier qui nous regarde, prêt à recevoir).`,
 Le joueur 3 remise au joueur 2 qui tire. On fait le parcours que 
 l’on veut le plus vite possible, mais tout le monde doit toucher le 
 ballon.`,
-        marqueurs: [{ x: 50.2, y: 47.5, type: 'ballon' }, { x: 73.9, y: 20.1, type: 'attaquant' }, { x: 54.0, y: 79.8, type: 'attaquant' }, { x: 36.9, y: 41.6, type: 'attaquant' }, { x: 12.1, y: 64.0, type: 'defenseur' }, { x: 49.0, y: 19.3, type: 'defenseur' }, { x: 23.3, y: 77.1, type: 'defenseur' }, { x: 65.8, y: 47.5, type: 'defenseur' }, { x: 88.4, y: 28.4, type: 'attaquant' }, { x: 83.8, y: 47.2, type: 'but' }, { x: 16.7, y: 48.4, type: 'but' }, { x: 75.7, y: 23.5, type: 'plot' }, { x: 55.9, y: 75.8, type: 'plot' }, { x: 38.8, y: 45.0, type: 'plot' }, { x: 16.2, y: 39.3, type: 'plot' }, { x: 22.3, y: 73.1, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 28, y: 5, type: 'plot' }, { x: 28, y: 95, type: 'plot' }, { x: 12, y: 50, type: 'attaquant' }, { x: 22, y: 42, type: 'attaquant' }, { x: 38, y: 38, type: 'attaquant' }, { x: 55, y: 42, type: 'attaquant' }, { x: 68, y: 40, type: 'attaquant' }, { x: 22, y: 42, type: 'ballon' }, { x: 88, y: 50, type: 'defenseur' }, { x: 78, y: 60, type: 'defenseur' }, { x: 62, y: 58, type: 'defenseur' }, { x: 45, y: 60, type: 'defenseur' }, { x: 32, y: 62, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -1722,31 +1566,24 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 13,
-    titre: `JE FEINTE ET J’ÉLIMINE UN ADVERSAIRE DE FACE`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 13, titre: `JE FEINTE ET J’ÉLIMINE UN ADVERSAIRE DE FACE`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Le respect est une des 5 valeurs de la FFF. 
 Au club, je dois respecter mes adversaires. 
 J’échange une poignée de main à la fin du 
 match et à la suite d’une faute, j’incite mes 
 coéquipiers à sortir le ballon quand un 
 joueur est blessé.`,
-    vocabulaire: `Je fais semblant
-Je feinte`,
     exercices: [
       {
-        id: 1,
-        titre: `2 buts 1 gardien`,
+        id: 1, titre: `2 buts 1 gardien`,
         surface: `27 x 28`,
         objectif: `Marquer des buts en éliminant mon ou mes adversaires directs.`,
         consignes: `Terrain divisée en 2 zones dans la longueur. 2 contre 2 dans 
@@ -1767,11 +1604,10 @@ sis dans le jeu et pour tirer au but. 
 Modifier les équipes ou les adversaires directs si la différence de 
 buts entre les 2 équipes est supérieure à 3.`,
         variables: `Les buts inscrits après un dribble comptent double.`,
-        marqueurs: [{ x: 51.4, y: 49.3, type: 'ballon' }, { x: 38.9, y: 10.8, type: 'attaquant' }, { x: 46.6, y: 57.4, type: 'attaquant' }, { x: 26.1, y: 80.2, type: 'attaquant' }, { x: 48.3, y: 33.8, type: 'attaquant' }, { x: 28.6, y: 55.9, type: 'defenseur' }, { x: 37.6, y: 86.4, type: 'defenseur' }, { x: 32.0, y: 42.6, type: 'defenseur' }, { x: 35.1, y: 14.3, type: 'defenseur' }, { x: 18.0, y: 49.3, type: 'ballon' }, { x: 68.2, y: 49.0, type: 'ballon' }, { x: 34.8, y: 46.3, type: 'plot' }, { x: 28.6, y: 77.1, type: 'plot' }, { x: 17.8, y: 62.6, type: 'plot' }, { x: 17.9, y: 35.9, type: 'plot' }, { x: 68.2, y: 62.4, type: 'plot' }, { x: 68.2, y: 35.7, type: 'plot' }],
+        marqueurs: [{ x: 95, y: 25, type: 'but' }, { x: 95, y: 75, type: 'but' }, { x: 5, y: 50, type: 'but' }, { x: 50, y: 5, type: 'plot' }, { x: 50, y: 95, type: 'plot' }, { x: 90, y: 50, type: 'defenseur' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 42, y: 60, type: 'attaquant' }, { x: 68, y: 25, type: 'defenseur' }, { x: 68, y: 75, type: 'defenseur' }, { x: 30, y: 35, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `jeu d’opposition`,
+        id: 2, titre: `jeu d’opposition`,
         surface: `36 x 28`,
         objectif: `Feinter et éliminer un adversaire de face.`,
         consignes: `Les joueurs sont disposés comme dans le schéma. L’éducateur 
@@ -1800,11 +1636,10 @@ G
 G
 E
 notes`,
-        marqueurs: [{ x: 50.0, y: 45.4, type: 'ballon' }, { x: 46.4, y: 3.7, type: 'attaquant' }, { x: 66.1, y: 70.9, type: 'attaquant' }, { x: 52.0, y: 88.9, type: 'attaquant' }, { x: 32.6, y: 19.9, type: 'attaquant' }, { x: 32.2, y: 69.3, type: 'defenseur' }, { x: 43.8, y: 89.2, type: 'defenseur' }, { x: 67.4, y: 20.6, type: 'defenseur' }, { x: 51.8, y: 3.7, type: 'defenseur' }, { x: 16.5, y: 45.4, type: 'but' }, { x: 84.0, y: 44.5, type: 'but' }, { x: 54.1, y: 67.7, type: 'plot' }, { x: 64.1, y: 67.7, type: 'plot' }, { x: 47.7, y: 45.1, type: 'ballon' }, { x: 43.7, y: 63.7, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 30, y: 20, type: 'attaquant' }, { x: 30, y: 40, type: 'attaquant' }, { x: 30, y: 60, type: 'attaquant' }, { x: 30, y: 80, type: 'attaquant' }, { x: 70, y: 20, type: 'defenseur' }, { x: 70, y: 40, type: 'defenseur' }, { x: 70, y: 60, type: 'defenseur' }, { x: 70, y: 80, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `1 contre 1`,
+        id: 3, titre: `1 contre 1`,
         surface: `18 x 28`,
         objectif: `Marquer un point en entrant dans le château adverse (matérialisé 
 par le plot).`,
@@ -1828,11 +1663,10 @@ Pour le défenseur : ne pas se faire éliminer, récupérer et contrer.`,
 Pour la rotation des groupes, possibilité de faire en « mon
 tante-descendante ».
 Addition des points de l’équipe.`,
-        marqueurs: [{ x: 48.3, y: 49.0, type: 'ballon' }, { x: 46.6, y: 16.7, type: 'attaquant' }, { x: 48.2, y: 71.3, type: 'attaquant' }, { x: 45.4, y: 46.6, type: 'attaquant' }, { x: 38.5, y: 5.2, type: 'attaquant' }, { x: 22.4, y: 49.5, type: 'defenseur' }, { x: 22.4, y: 78.7, type: 'defenseur' }, { x: 19.0, y: 5.2, type: 'defenseur' }, { x: 23.0, y: 21.4, type: 'defenseur' }, { x: 35.6, y: 71.1, type: 'plot' }, { x: 48.6, y: 91.0, type: 'ballon' }, { x: 32.8, y: 72.7, type: 'plot' }, { x: 40.0, y: 92.5, type: 'attaquant' }, { x: 20.5, y: 92.5, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 15, y: 40, type: 'attaquant' }, { x: 15, y: 55, type: 'attaquant' }, { x: 15, y: 70, type: 'attaquant' }, { x: 35, y: 50, type: 'ballon' }, { x: 33, y: 50, type: 'attaquant' }, { x: 85, y: 40, type: 'defenseur' }, { x: 85, y: 55, type: 'defenseur' }, { x: 85, y: 70, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -1853,19 +1687,15 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 14,
-    titre: `SÉANCE RÉCRÉATIVE`,
-    phase: 'recreatif',
-    phaseLabel: `SÉANCE RÉCRÉATIVE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 14, titre: `SÉANCE RÉCRÉATIVE`,
+    phase: 'recreatif', phaseLabel: `SÉANCE RÉCRÉATIVE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Terrain 1
 Terrain 2
 4m
@@ -1936,8 +1766,7 @@ passe aérienne
 kit arbitre`,
     exercices: [
       {
-        id: 1,
-        titre: `festifoot`,
+        id: 1, titre: `festifoot`,
         surface: `28 x 17`,
         objectif: `Gagner le match en s’opposant à 2 adversaires, sans gardien de 
 but.`,
@@ -1960,11 +1789,10 @@ monter et descendre sur le nombre x de terrains. Obliger les en-
 fants à être dans les zones des 4m pour pouvoir marquer. Valoriser 
 par 2 points si le but est marqué de la zone des 4m. Empêcher 
 l’accès à la zone des 4m pour les défenseurs.`,
-        marqueurs: [{ x: 53.5, y: 49.1, type: 'ballon' }, { x: 26.1, y: 68.2, type: 'attaquant' }, { x: 41.9, y: 63.9, type: 'attaquant' }, { x: 80.8, y: 67.3, type: 'attaquant' }, { x: 65.1, y: 68.2, type: 'attaquant' }, { x: 26.1, y: 25.5, type: 'defenseur' }, { x: 43.1, y: 23.4, type: 'defenseur' }, { x: 67.2, y: 27.6, type: 'defenseur' }, { x: 80.8, y: 28.8, type: 'defenseur' }, { x: 53.3, y: 30.8, type: 'defenseur' }, { x: 16.6, y: 19.1, type: 'plot' }, { x: 16.6, y: 8.9, type: 'plot' }, { x: 16.4, y: 88.3, type: 'plot' }, { x: 16.4, y: 78.1, type: 'plot' }, { x: 52.7, y: 57.2, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 28, y: 32, type: 'attaquant' }, { x: 28, y: 68, type: 'attaquant' }, { x: 72, y: 32, type: 'defenseur' }, { x: 72, y: 68, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `atelier pef`,
+        id: 2, titre: `atelier pef`,
         surface: `36 x 28`,
         consignes: `PROPOSITION N°1
 Objectif de l’atelier : sensibiliser sur les formes de discriminations 
@@ -1983,8 +1811,7 @@ Terrain 2
 notes`,
       },
       {
-        id: 3,
-        titre: `match`,
+        id: 3, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -2005,11 +1832,10 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 49.3, y: 49.8, type: 'ballon' }, { x: 61.7, y: 31.2, type: 'attaquant' }, { x: 47.5, y: 71.1, type: 'attaquant' }, { x: 40.3, y: 37.0, type: 'attaquant' }, { x: 34.7, y: 66.8, type: 'defenseur' }, { x: 49.7, y: 24.1, type: 'defenseur' }, { x: 35.7, y: 29.1, type: 'defenseur' }, { x: 55.1, y: 58.1, type: 'defenseur' }, { x: 63.0, y: 61.4, type: 'attaquant' }, { x: 82.8, y: 49.5, type: 'but' }, { x: 15.7, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -2050,31 +1876,24 @@ effectif
 durée
 75 min
 date`,
-        marqueurs: [{ x: 49.4, y: 48.4, type: 'ballon' }, { x: 61.9, y: 30.4, type: 'attaquant' }, { x: 47.6, y: 69.1, type: 'attaquant' }, { x: 40.5, y: 35.9, type: 'attaquant' }, { x: 34.8, y: 65.0, type: 'defenseur' }, { x: 49.8, y: 23.5, type: 'defenseur' }, { x: 35.8, y: 28.3, type: 'defenseur' }, { x: 55.2, y: 56.5, type: 'defenseur' }, { x: 63.1, y: 59.7, type: 'attaquant' }, { x: 83.0, y: 48.1, type: 'but' }, { x: 15.8, y: 49.3, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 15,
-    titre: `JE FEINTE ET J’ÉLIMINE UN ADVERSAIRE QUI ARRIVE SUR LE CÔTÉ.`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 15, titre: `JE FEINTE ET J’ÉLIMINE UN ADVERSAIRE QUI ARRIVE SUR LE CÔTÉ.`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Lorsque je pratique un sport, je dois 
 connaître ses règles du jeu afin de pouvoir le 
 pratiquer dans les meilleures conditions. 
 Je dois apprendre à reconnaître l’espace de 
 jeu et ses limites, le sens du jeu et dans quel 
 but je marque.`,
-    vocabulaire: `Je fais semblant
-Je feinte`,
     exercices: [
       {
-        id: 1,
-        titre: `2 buts 1 gardien`,
+        id: 1, titre: `2 buts 1 gardien`,
         surface: `27 x 28`,
         objectif: `Marquer dans l’un des 2 buts, en 5 contre 5.`,
         consignes: `Chaque équipe doit marquer dans l’un des 2 buts, défendus pas un 
@@ -2098,11 +1917,10 @@ Les buts inscrits alors sur conduite/dribble puis tir
 comptent doublent. 
 Uniquement, le joueur qui a franchi la ligne de la surface peut tirer, 
 un défenseur en plus du gardien peut venir défendre.`,
-        marqueurs: [{ x: 50.7, y: 49.0, type: 'ballon' }, { x: 48.1, y: 62.6, type: 'attaquant' }, { x: 44.6, y: 82.0, type: 'attaquant' }, { x: 34.4, y: 38.4, type: 'attaquant' }, { x: 48.9, y: 33.1, type: 'attaquant' }, { x: 27.9, y: 54.3, type: 'defenseur' }, { x: 37.4, y: 84.1, type: 'defenseur' }, { x: 46.2, y: 12.6, type: 'defenseur' }, { x: 34.4, y: 14.0, type: 'defenseur' }, { x: 18.2, y: 68.5, type: 'ballon' }, { x: 67.5, y: 48.7, type: 'ballon' }],
+        marqueurs: [{ x: 95, y: 25, type: 'but' }, { x: 95, y: 75, type: 'but' }, { x: 5, y: 50, type: 'but' }, { x: 50, y: 5, type: 'plot' }, { x: 50, y: 95, type: 'plot' }, { x: 90, y: 50, type: 'defenseur' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 42, y: 60, type: 'attaquant' }, { x: 68, y: 25, type: 'defenseur' }, { x: 68, y: 75, type: 'defenseur' }, { x: 30, y: 35, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `jeu d’opposition`,
+        id: 2, titre: `jeu d’opposition`,
         surface: `36 x 28`,
         objectif: `Feinter et éliminer un adversaire qui arrive sur le côté.`,
         consignes: `Les joueurs sont disposés comme sur le schéma. L’éducateur donne 
@@ -2136,11 +1954,10 @@ E
 2
 1
 notes`,
-        marqueurs: [{ x: 49.1, y: 49.0, type: 'ballon' }, { x: 45.5, y: 7.3, type: 'attaquant' }, { x: 66.0, y: 61.0, type: 'attaquant' }, { x: 51.0, y: 92.5, type: 'attaquant' }, { x: 31.7, y: 23.5, type: 'attaquant' }, { x: 42.3, y: 85.7, type: 'defenseur' }, { x: 42.9, y: 92.8, type: 'defenseur' }, { x: 57.0, y: 5.2, type: 'defenseur' }, { x: 52.4, y: 7.3, type: 'defenseur' }, { x: 15.6, y: 49.0, type: 'but' }, { x: 83.0, y: 48.1, type: 'but' }, { x: 52.1, y: 63.6, type: 'plot' }, { x: 64.0, y: 58.8, type: 'plot' }, { x: 46.7, y: 48.7, type: 'ballon' }, { x: 45.8, y: 64.9, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 30, y: 20, type: 'attaquant' }, { x: 30, y: 40, type: 'attaquant' }, { x: 30, y: 60, type: 'attaquant' }, { x: 30, y: 80, type: 'attaquant' }, { x: 70, y: 20, type: 'defenseur' }, { x: 70, y: 40, type: 'defenseur' }, { x: 70, y: 60, type: 'defenseur' }, { x: 70, y: 80, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `1 contre 1`,
+        id: 3, titre: `1 contre 1`,
         surface: `18 x 28`,
         objectif: `Marquer un point en entrant dans le château adverse (matérialiser 
 par le plot).`,
@@ -2162,11 +1979,10 @@ Pour le défenseur : ne pas se faire éliminer, récupérer et contrer.`,
         variables: `Possibilité de le faire sans ballon. Pour la rotation des groupes, 
 possibilité de faire en « montante - descendante ». Addition des 
 points de l’équipe.`,
-        marqueurs: [{ x: 48.3, y: 48.5, type: 'ballon' }, { x: 46.6, y: 16.3, type: 'attaquant' }, { x: 48.2, y: 70.9, type: 'attaquant' }, { x: 45.4, y: 46.1, type: 'attaquant' }, { x: 38.5, y: 4.7, type: 'attaquant' }, { x: 28.9, y: 89.9, type: 'defenseur' }, { x: 19.0, y: 4.7, type: 'defenseur' }, { x: 28.8, y: 33.6, type: 'defenseur' }, { x: 35.6, y: 70.7, type: 'plot' }, { x: 48.6, y: 90.5, type: 'ballon' }, { x: 32.3, y: 73.1, type: 'plot' }, { x: 40.0, y: 92.0, type: 'attaquant' }, { x: 20.5, y: 92.0, type: 'defenseur' }, { x: 28.9, y: 62.8, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 15, y: 40, type: 'attaquant' }, { x: 15, y: 55, type: 'attaquant' }, { x: 15, y: 70, type: 'attaquant' }, { x: 35, y: 50, type: 'ballon' }, { x: 33, y: 50, type: 'attaquant' }, { x: 85, y: 40, type: 'defenseur' }, { x: 85, y: 55, type: 'defenseur' }, { x: 85, y: 70, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -2187,30 +2003,24 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 16,
-    titre: `JE JOUE AVEC MON PARTENAIRE QUI EST À CÔTÉ DE MOI ET JE ME DÉPLACE POUR RECEVOIR LE BALLON.`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 16, titre: `JE JOUE AVEC MON PARTENAIRE QUI EST À CÔTÉ DE MOI ET JE ME DÉPLACE POUR RECEVOIR LE BALLON.`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Lorsque je pratique un sport, je dois 
 connaître ses règles du jeu afin de pouvoir 
 le pratiquer dans les meilleures conditions. 
 J’identifie les différentes surfaces du corps 
 autorisées pour jouer (joueur et gardien de 
 but).`,
-    vocabulaire: `Je donne et je me déplace`,
     exercices: [
       {
-        id: 1,
-        titre: `jeu avec soutien`,
+        id: 1, titre: `jeu avec soutien`,
         surface: `36 x 28`,
         objectif: `Je joue avec mon partenaire qui est à côté de moi et je me déplace 
 pour recevoir le ballon.`,
@@ -2233,11 +2043,10 @@ l’avant (efficacité offensive).`,
         variables: `Possibilité de presser le joueur soutien. 
 Ajouter 1 attaquant dans les deux zones soutien.
 Mettre un seul but avec GB.`,
-        marqueurs: [{ x: 50.0, y: 50.7, type: 'ballon' }, { x: 63.1, y: 46.2, type: 'attaquant' }, { x: 37.2, y: 45.3, type: 'attaquant' }, { x: 25.5, y: 48.3, type: 'attaquant' }, { x: 45.9, y: 6.7, type: 'attaquant' }, { x: 50.0, y: 6.7, type: 'defenseur' }, { x: 50.6, y: 24.2, type: 'defenseur' }, { x: 77.2, y: 52.5, type: 'defenseur' }, { x: 63.1, y: 61.7, type: 'defenseur' }, { x: 17.4, y: 70.2, type: 'but' }, { x: 41.4, y: 52.5, type: 'defenseur' }, { x: 65.6, y: 79.2, type: 'attaquant' }, { x: 73.5, y: 51.8, type: 'plot' }, { x: 76.8, y: 70.2, type: 'plot' }, { x: 76.4, y: 73.4, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 30, y: 5, type: 'plot' }, { x: 30, y: 95, type: 'plot' }, { x: 70, y: 5, type: 'plot' }, { x: 70, y: 95, type: 'plot' }, { x: 88, y: 50, type: 'attaquant' }, { x: 12, y: 50, type: 'defenseur' }, { x: 42, y: 28, type: 'attaquant' }, { x: 42, y: 60, type: 'attaquant' }, { x: 48, y: 45, type: 'attaquant' }, { x: 58, y: 28, type: 'defenseur' }, { x: 58, y: 60, type: 'defenseur' }, { x: 52, y: 55, type: 'defenseur' }, { x: 50, y: 40, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `jeu des zones`,
+        id: 2, titre: `jeu des zones`,
         surface: `36 x 14`,
         objectif: `Rechercher son partenaire pour marquer un but.`,
         consignes: `2 contre 1 dans la zone 2, 1  joueur en soutien zone 1 + 1 atta
@@ -2269,11 +2078,10 @@ Zone 3
 Zone 2
 Zone 1
 notes`,
-        marqueurs: [{ x: 50.0, y: 51.6, type: 'ballon' }, { x: 51.8, y: 29.4, type: 'attaquant' }, { x: 58.1, y: 7.6, type: 'attaquant' }, { x: 33.4, y: 5.8, type: 'attaquant' }, { x: 30.3, y: 9.9, type: 'attaquant' }, { x: 52.0, y: 14.1, type: 'defenseur' }, { x: 61.8, y: 8.5, type: 'defenseur' }, { x: 78.4, y: 25.0, type: 'defenseur' }, { x: 50.7, y: 39.9, type: 'defenseur' }, { x: 17.5, y: 31.3, type: 'but' }, { x: 24.5, y: 29.2, type: 'defenseur' }, { x: 27.8, y: 30.7, type: 'plot' }, { x: 25.3, y: 17.0, type: 'plot' }, { x: 26.0, y: 14.8, type: 'plot' }, { x: 30.6, y: 51.3, type: 'attaquant' }, { x: 14.3, y: 51.3, type: 'attaquant' }, { x: 70.0, y: 51.3, type: 'attaquant' }, { x: 85.7, y: 50.5, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 33, y: 5, type: 'plot' }, { x: 33, y: 95, type: 'plot' }, { x: 67, y: 5, type: 'plot' }, { x: 67, y: 95, type: 'plot' }, { x: 18, y: 50, type: 'attaquant' }, { x: 48, y: 35, type: 'attaquant' }, { x: 48, y: 65, type: 'attaquant' }, { x: 52, y: 50, type: 'defenseur' }, { x: 50, y: 42, type: 'ballon' }, { x: 80, y: 50, type: 'attaquant' }, { x: 85, y: 50, type: 'defenseur' }],
       },
       {
-        id: 3,
-        titre: `jeu 2 contre 1`,
+        id: 3, titre: `jeu 2 contre 1`,
         surface: `27 x 28`,
         objectif: `Éliminer ou jouer en 2 contre 1 pour marquer.`,
         consignes: `Le rouge 1 conduit le ballon rapidement vers son but jusqu’à la 
@@ -2297,11 +2105,10 @@ quence). Après 4 à 6 passages des bleus, les rouges attaquent.`,
 renvoyer un 2ème ballon (type ballon magique) pour permettre au 
 rouge 2 de jouer.
 Limiter le temps pour les rouges pour marquer (4’’).`,
-        marqueurs: [{ x: 50.0, y: 49.0, type: 'ballon' }, { x: 53.5, y: 5.5, type: 'attaquant' }, { x: 54.6, y: 48.7, type: 'attaquant' }, { x: 43.8, y: 92.8, type: 'defenseur' }, { x: 62.4, y: 4.9, type: 'defenseur' }, { x: 16.5, y: 49.0, type: 'but' }, { x: 31.9, y: 18.8, type: 'plot' }, { x: 48.6, y: 19.3, type: 'plot' }, { x: 48.2, y: 9.7, type: 'attaquant' }, { x: 42.6, y: 73.2, type: 'defenseur' }, { x: 52.0, y: 11.9, type: 'defenseur' }, { x: 64.9, y: 5.5, type: 'defenseur' }, { x: 56.3, y: 5.5, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 12, y: 50, type: 'attaquant' }, { x: 35, y: 35, type: 'attaquant' }, { x: 38, y: 35, type: 'ballon' }, { x: 55, y: 45, type: 'defenseur' }, { x: 65, y: 50, type: 'defenseur' }, { x: 72, y: 50, type: 'attaquant' }, { x: 88, y: 50, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -2322,30 +2129,24 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 17,
-    titre: `JE M’OPPOSE POUR PROTÉGER MON BUT, JE FAIS RALENTIR LE JOUEUR ADVERSE.`,
-    phase: 'defense',
-    phaseLabel: `JE DÉFENDS`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`],
+    id: 17, titre: `JE M’OPPOSE POUR PROTÉGER MON BUT, JE FAIS RALENTIR LE JOUEUR ADVERSE.`,
+    phase: 'defense', phaseLabel: `JE DÉFENDS`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`],
     messageEducatif: `Lorsque je pratique un sport, je dois 
 connaître ses règles du jeu afin de pouvoir le 
 pratiquer dans les meilleures conditions.
 Je connais les différentes reprises du jeu 
 (engagement, rentrée de touche, coup de 
 pied de coin et coup de pied de but).`,
-    vocabulaire: `Je défends l’axe ballon-but`,
     exercices: [
       {
-        id: 1,
-        titre: `match 4 contre 4`,
+        id: 1, titre: `match 4 contre 4`,
         surface: `36 x 28`,
         objectif: `Inciter les défenseurs à récupérer le ballon rapidement à la perte 
 de balle en empêchant les adversaires de progresser.`,
@@ -2368,11 +2169,10 @@ la perte du ballon. Modifier les équipes ou les adversaires di
 rects si la différence de buts entre les 2 équipes est supérieure à 3.`,
         variables: `Si la récupération est effectuée en zone protégée suivie d’un but, 
 alors le but compte double.`,
-        marqueurs: [{ x: 51.1, y: 47.8, type: 'ballon' }, { x: 31.7, y: 44.8, type: 'attaquant' }, { x: 67.2, y: 25.4, type: 'attaquant' }, { x: 50.4, y: 53.6, type: 'attaquant' }, { x: 66.0, y: 67.8, type: 'attaquant' }, { x: 23.7, y: 24.2, type: 'defenseur' }, { x: 34.2, y: 69.1, type: 'defenseur' }, { x: 63.4, y: 31.7, type: 'defenseur' }, { x: 64.7, y: 82.5, type: 'defenseur' }, { x: 59.0, y: 92.9, type: 'defenseur' }, { x: 46.7, y: 92.9, type: 'attaquant' }, { x: 50.8, y: 89.5, type: 'attaquant' }, { x: 51.0, y: 6.1, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 28, type: 'but' }, { x: 5, y: 72, type: 'but' }, { x: 95, y: 28, type: 'but' }, { x: 95, y: 72, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 20, y: 28, type: 'attaquant' }, { x: 20, y: 50, type: 'attaquant' }, { x: 20, y: 72, type: 'attaquant' }, { x: 35, y: 45, type: 'attaquant' }, { x: 80, y: 28, type: 'defenseur' }, { x: 80, y: 50, type: 'defenseur' }, { x: 80, y: 72, type: 'defenseur' }, { x: 65, y: 55, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `1 contre 1`,
+        id: 2, titre: `1 contre 1`,
         surface: `21 x 20`,
         objectif: `Défendre son but et récupérer le ballon pour attaquer.`,
         consignes: `Les enfants se trouvent au niveau des portes de couleur à droite ou 
@@ -2404,11 +2204,10 @@ E
 G
 G
 notes`,
-        marqueurs: [{ x: 53.6, y: 48.1, type: 'ballon' }, { x: 56.1, y: 23.0, type: 'attaquant' }, { x: 56.2, y: 18.8, type: 'attaquant' }, { x: 16.1, y: 77.4, type: 'defenseur' }, { x: 12.9, y: 80.2, type: 'defenseur' }, { x: 54.3, y: 81.7, type: 'ballon' }, { x: 30.0, y: 77.5, type: 'plot' }, { x: 32.2, y: 77.0, type: 'plot' }, { x: 39.0, y: 48.9, type: 'plot' }, { x: 53.3, y: 28.1, type: 'attaquant' }, { x: 53.3, y: 16.0, type: 'attaquant' }, { x: 17.7, y: 83.4, type: 'defenseur' }, { x: 17.7, y: 71.3, type: 'defenseur' }, { x: 44.0, y: 60.5, type: 'plot' }, { x: 19.3, y: 48.1, type: 'ballon' }, { x: 51.2, y: 48.3, type: 'ballon' }, { x: 59.1, y: 18.1, type: 'attaquant' }, { x: 14.4, y: 73.4, type: 'defenseur' }, { x: 11.7, y: 75.7, type: 'defenseur' }, { x: 59.2, y: 23.7, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 15, y: 40, type: 'attaquant' }, { x: 15, y: 55, type: 'attaquant' }, { x: 15, y: 70, type: 'attaquant' }, { x: 35, y: 50, type: 'ballon' }, { x: 33, y: 50, type: 'attaquant' }, { x: 85, y: 40, type: 'defenseur' }, { x: 85, y: 55, type: 'defenseur' }, { x: 85, y: 70, type: 'defenseur' }],
       },
       {
-        id: 3,
-        titre: `ballon magique 2 contre 2`,
+        id: 3, titre: `ballon magique 2 contre 2`,
         surface: `27 x 28`,
         objectif: `Attaquer et défendre en 2 contre 2.`,
         consignes: `Les enfants se trouvent au point de corner à droite et à gauche de 
@@ -2436,11 +2235,10 @@ adversaires).`,
         variables: `L’éducateur donne le ballon en faisant une passe au pied. Varier 
 les appuis dans l’échelle en fonction de leur niveau. Sous forme de 
 course dans les échelles et pour le recul frein.`,
-        marqueurs: [{ x: 53.5, y: 48.2, type: 'ballon' }, { x: 75.1, y: 82.9, type: 'attaquant' }, { x: 74.3, y: 13.2, type: 'attaquant' }, { x: 72.2, y: 84.6, type: 'attaquant' }, { x: 74.5, y: 9.0, type: 'attaquant' }, { x: 16.0, y: 83.9, type: 'defenseur' }, { x: 12.8, y: 86.8, type: 'defenseur' }, { x: 54.2, y: 81.8, type: 'ballon' }, { x: 29.9, y: 77.6, type: 'plot' }, { x: 32.1, y: 77.2, type: 'plot' }, { x: 48.4, y: 54.3, type: 'plot' }, { x: 71.5, y: 18.2, type: 'attaquant' }, { x: 71.5, y: 6.1, type: 'attaquant' }, { x: 17.6, y: 90.0, type: 'defenseur' }, { x: 17.6, y: 77.9, type: 'defenseur' }, { x: 43.9, y: 60.6, type: 'plot' }, { x: 19.2, y: 48.2, type: 'ballon' }, { x: 69.7, y: 48.2, type: 'ballon' }, { x: 17.6, y: 18.5, type: 'defenseur' }, { x: 17.6, y: 6.4, type: 'defenseur' }, { x: 71.3, y: 90.0, type: 'attaquant' }, { x: 71.3, y: 77.9, type: 'attaquant' }, { x: 26.9, y: 20.7, type: 'plot' }, { x: 61.8, y: 77.6, type: 'plot' }, { x: 16.2, y: 12.1, type: 'defenseur' }, { x: 13.7, y: 15.5, type: 'defenseur' }, { x: 14.5, y: 92.0, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 12, y: 10, type: 'attaquant' }, { x: 12, y: 90, type: 'attaquant' }, { x: 88, y: 10, type: 'defenseur' }, { x: 88, y: 90, type: 'defenseur' }, { x: 45, y: 50, type: 'ballon' }, { x: 55, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -2461,19 +2259,15 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 18,
-    titre: `JE FEINTE ET J’ÉLIMINE UN ADVERSAIRE QUI ARRIVE SUR LE CÔTÉ.`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 18, titre: `JE FEINTE ET J’ÉLIMINE UN ADVERSAIRE QUI ARRIVE SUR LE CÔTÉ.`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Lorsque je pratique un sport, je dois 
 connaître ses règles du jeu afin de pouvoir 
 le pratiquer dans les meilleures conditions. 
@@ -2481,13 +2275,9 @@ Je veille à ne pas blesser mon adversaire,
 les tacles sont tolérés et mon éducateur 
 m’explique systématiquement la faute 
 quand elle est grossière.`,
-    vocabulaire: `Je fais semblant
-Je feinte
-Je dribble`,
     exercices: [
       {
-        id: 1,
-        titre: `funino`,
+        id: 1, titre: `funino`,
         surface: `27 x 28`,
         objectif: `Éliminer un joueur.`,
         consignes: `Jeu libre en 4 contre 4. Les règles sont identiques à celles des 
@@ -2507,11 +2297,10 @@ de buts entre les 2 équipes est supérieure à 3.`,
         variables: `Cloisonner les joueurs lorsque leur équipe n’a pas le ballon mais 
 ils peuvent se déplacer et jouer dans une autre zone lorsque leur 
 équipe est en possession du ballon.`,
-        marqueurs: [{ x: 50.7, y: 46.5, type: 'ballon' }, { x: 36.0, y: 46.5, type: 'attaquant' }, { x: 43.3, y: 22.9, type: 'attaquant' }, { x: 52.0, y: 40.7, type: 'attaquant' }, { x: 42.1, y: 72.7, type: 'attaquant' }, { x: 28.1, y: 46.5, type: 'defenseur' }, { x: 35.2, y: 66.6, type: 'defenseur' }, { x: 45.8, y: 48.3, type: 'defenseur' }, { x: 39.6, y: 17.7, type: 'defenseur' }, { x: 37.2, y: 92.1, type: 'defenseur' }, { x: 42.1, y: 92.1, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 25, type: 'but' }, { x: 5, y: 75, type: 'but' }, { x: 95, y: 25, type: 'but' }, { x: 95, y: 75, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 38, y: 42, type: 'attaquant' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 62, y: 58, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `le béret`,
+        id: 2, titre: `le béret`,
         surface: `36 x 28`,
         objectif: `Attaquer et défendre en 1 contre 1.`,
         consignes: `Les joueurs partent en simultané à l’appel du numéro. Le joueur 
@@ -2552,11 +2341,10 @@ G
 5m
 E
 notes`,
-        marqueurs: [{ x: 50.0, y: 49.2, type: 'ballon' }, { x: 84.0, y: 49.3, type: 'but' }, { x: 16.1, y: 48.9, type: 'but' }, { x: 49.8, y: 5.1, type: 'attaquant' }, { x: 55.8, y: 5.4, type: 'attaquant' }, { x: 58.0, y: 92.5, type: 'attaquant' }, { x: 52.8, y: 5.3, type: 'attaquant' }, { x: 41.9, y: 93.4, type: 'defenseur' }, { x: 40.7, y: 4.4, type: 'defenseur' }, { x: 45.2, y: 93.0, type: 'defenseur' }, { x: 48.2, y: 92.7, type: 'defenseur' }, { x: 51.0, y: 27.5, type: 'plot' }, { x: 50.1, y: 68.6, type: 'plot' }, { x: 32.6, y: 37.0, type: 'plot' }, { x: 62.3, y: 9.9, type: 'plot' }, { x: 62.3, y: 30.9, type: 'plot' }, { x: 62.3, y: 67.8, type: 'plot' }, { x: 62.3, y: 88.8, type: 'plot' }, { x: 46.6, y: 52.6, type: 'ballon' }, { x: 55.0, y: 90.6, type: 'attaquant' }, { x: 62.7, y: 90.9, type: 'attaquant' }, { x: 37.5, y: 7.1, type: 'defenseur' }, { x: 45.2, y: 7.4, type: 'defenseur' }, { x: 38.4, y: 28.1, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }, { x: 92, y: 20, type: 'attaquant' }, { x: 92, y: 35, type: 'attaquant' }, { x: 92, y: 50, type: 'attaquant' }, { x: 92, y: 65, type: 'attaquant' }, { x: 92, y: 80, type: 'attaquant' }, { x: 8, y: 20, type: 'defenseur' }, { x: 8, y: 35, type: 'defenseur' }, { x: 8, y: 50, type: 'defenseur' }, { x: 8, y: 65, type: 'defenseur' }, { x: 8, y: 80, type: 'defenseur' }],
       },
       {
-        id: 3,
-        titre: `l’épervier`,
+        id: 3, titre: `l’épervier`,
         surface: `36 x 28`,
         objectif: `Feinter et éliminer un adversaire venant de côté.`,
         consignes: `Les éperviers (en jaune) lancent le jeu en annonçant « épervier en 
@@ -2578,11 +2366,10 @@ fois le ballon pour le maîtriser. Essayer d’éviter les éperviers
 lorsque ceux-ci viennent lui prendre le ballon (dribble).`,
         variables: `Mettre le ballon dans les mains des oiseaux pour la motricité
 Les éperviers courent avec le ballon dans les mains.`,
-        marqueurs: [{ x: 49.9, y: 50.0, type: 'ballon' }, { x: 51.2, y: 7.7, type: 'plot' }, { x: 21.0, y: 14.4, type: 'defenseur' }, { x: 21.0, y: 23.7, type: 'defenseur' }, { x: 21.0, y: 34.2, type: 'defenseur' }, { x: 21.0, y: 44.3, type: 'defenseur' }, { x: 21.0, y: 54.5, type: 'defenseur' }, { x: 21.0, y: 62.4, type: 'defenseur' }, { x: 21.0, y: 72.8, type: 'defenseur' }, { x: 21.0, y: 83.7, type: 'defenseur' }, { x: 50.6, y: 91.8, type: 'plot' }, { x: 30.9, y: 31.8, type: 'attaquant' }, { x: 30.9, y: 19.7, type: 'attaquant' }, { x: 30.9, y: 80.6, type: 'attaquant' }, { x: 30.9, y: 68.5, type: 'attaquant' }, { x: 69.4, y: 31.9, type: 'attaquant' }, { x: 69.4, y: 19.8, type: 'attaquant' }, { x: 69.4, y: 80.7, type: 'attaquant' }, { x: 69.4, y: 68.6, type: 'attaquant' }, { x: 46.3, y: 30.5, type: 'plot' }, { x: 42.3, y: 72.2, type: 'plot' }],
+        marqueurs: [{ x: 50, y: 5, type: 'plot' }, { x: 50, y: 95, type: 'plot' }, { x: 50, y: 35, type: 'defenseur' }, { x: 50, y: 65, type: 'defenseur' }, { x: 15, y: 25, type: 'attaquant' }, { x: 15, y: 50, type: 'attaquant' }, { x: 15, y: 75, type: 'attaquant' }, { x: 20, y: 25, type: 'ballon' }, { x: 20, y: 50, type: 'ballon' }, { x: 20, y: 75, type: 'ballon' }, { x: 85, y: 25, type: 'attaquant' }, { x: 85, y: 50, type: 'attaquant' }, { x: 85, y: 75, type: 'attaquant' }, { x: 80, y: 25, type: 'ballon' }, { x: 80, y: 50, type: 'ballon' }, { x: 80, y: 75, type: 'ballon' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -2603,19 +2390,15 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 19,
-    titre: `JE JOUE AVEC MON PARTENAIRE QUI EST À CÔTÉ DE MOI ET JE ME DÉPLACE POUR RECEVOIR LE BALLON.`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE COLLECTIVEMENT`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 19, titre: `JE JOUE AVEC MON PARTENAIRE QUI EST À CÔTÉ DE MOI ET JE ME DÉPLACE POUR RECEVOIR LE BALLON.`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE COLLECTIVEMENT`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Lorsque je pratique un sport, je dois 
 connaître ses règles du jeu afin de pouvoir 
 le pratiquer dans les meilleures conditions. 
@@ -2624,12 +2407,9 @@ zone dans laquelle le gardien peut prendre
 le ballon à la main et le fait que le gardien 
 peut évoluer sur l’ensemble du terrain avec 
 les pieds comme tout autre joueur.`,
-    vocabulaire: `J’accompagne mon partenaire
-Je suis disponible`,
     exercices: [
       {
-        id: 1,
-        titre: `la grande traversée`,
+        id: 1, titre: `la grande traversée`,
         surface: `36 x 28`,
         objectif: `Traverser plusieurs rivières pour aller marquer.`,
         consignes: `Le GB passe à l’un de ses partenaires. Dès le contrôle effectué, 
@@ -2649,11 +2429,10 @@ Accompagner le porteur du ballon = importance de la continuité de
 l’action.`,
         variables: `Varier les départs des défenseurs rouges (rapprocher ou éloigner 
 des 2 attaquants selon le niveau).`,
-        marqueurs: [{ x: 50.5, y: 48.4, type: 'ballon' }, { x: 50.4, y: 24.9, type: 'attaquant' }, { x: 50.4, y: 72.6, type: 'attaquant' }, { x: 70.5, y: 48.6, type: 'attaquant' }, { x: 25.0, y: 18.7, type: 'defenseur' }, { x: 24.8, y: 78.8, type: 'defenseur' }, { x: 65.6, y: 17.6, type: 'defenseur' }, { x: 67.4, y: 80.9, type: 'defenseur' }, { x: 17.1, y: 48.4, type: 'but' }, { x: 84.5, y: 47.4, type: 'but' }, { x: 23.5, y: 22.0, type: 'plot' }, { x: 31.1, y: 47.4, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 33, y: 5, type: 'plot' }, { x: 33, y: 95, type: 'plot' }, { x: 55, y: 5, type: 'plot' }, { x: 55, y: 95, type: 'plot' }, { x: 77, y: 5, type: 'plot' }, { x: 77, y: 95, type: 'plot' }, { x: 12, y: 50, type: 'attaquant' }, { x: 22, y: 50, type: 'attaquant' }, { x: 24, y: 50, type: 'ballon' }, { x: 33, y: 40, type: 'defenseur' }, { x: 55, y: 45, type: 'defenseur' }, { x: 77, y: 40, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `jeu d’opposition`,
+        id: 2, titre: `jeu d’opposition`,
         surface: `36 x 28`,
         objectif: `Aider son partenaire.`,
         consignes: `2 contre 2 en zone axiale – 1 contre 1 dans les zones latérales (pas 
@@ -2684,11 +2463,10 @@ G
 1
 2
 notes`,
-        marqueurs: [{ x: 50.0, y: 48.4, type: 'ballon' }, { x: 57.3, y: 19.5, type: 'attaquant' }, { x: 60.0, y: 54.1, type: 'defenseur' }, { x: 60.0, y: 39.7, type: 'defenseur' }, { x: 41.0, y: 39.7, type: 'attaquant' }, { x: 16.5, y: 48.4, type: 'but' }, { x: 84.1, y: 48.4, type: 'but' }, { x: 38.9, y: 53.2, type: 'plot' }, { x: 56.6, y: 75.8, type: 'plot' }, { x: 43.5, y: 15.7, type: 'defenseur' }, { x: 41.5, y: 53.8, type: 'attaquant' }, { x: 41.5, y: 82.6, type: 'defenseur' }, { x: 58.6, y: 79.1, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 30, y: 20, type: 'attaquant' }, { x: 30, y: 40, type: 'attaquant' }, { x: 30, y: 60, type: 'attaquant' }, { x: 30, y: 80, type: 'attaquant' }, { x: 70, y: 20, type: 'defenseur' }, { x: 70, y: 40, type: 'defenseur' }, { x: 70, y: 60, type: 'defenseur' }, { x: 70, y: 80, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `2 contre 1`,
+        id: 3, titre: `2 contre 1`,
         surface: `36 x 28`,
         objectif: `Franchir la zone en 2 contre 1 pour marquer.`,
         consignes: `Le GB transmet au joueur 1 qui doit aller marquer dans le but 
@@ -2711,11 +2489,10 @@ L’équipe qui marque en 1er = 2 points / but marqué = + 1 pt.
 Débuter l’action par une passe dans la zone.
 Doubler le nombre de points quand les 2 joueurs sont dans la zone 
 protégée ou moitié de terrain offensive.`,
-        marqueurs: [{ x: 50.0, y: 48.9, type: 'ballon' }, { x: 49.3, y: 30.4, type: 'attaquant' }, { x: 51.5, y: 65.4, type: 'defenseur' }, { x: 70.0, y: 4.0, type: 'defenseur' }, { x: 50.0, y: 85.9, type: 'attaquant' }, { x: 16.5, y: 21.0, type: 'but' }, { x: 83.0, y: 75.4, type: 'but' }, { x: 27.1, y: 62.0, type: 'plot' }, { x: 76.8, y: 30.7, type: 'plot' }, { x: 50.0, y: 14.2, type: 'defenseur' }, { x: 28.5, y: 66.8, type: 'attaquant' }, { x: 75.9, y: 26.2, type: 'defenseur' }, { x: 26.7, y: 92.7, type: 'attaquant' }, { x: 57.2, y: 28.4, type: 'plot' }, { x: 51.9, y: 17.6, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 20, y: 5, type: 'plot' }, { x: 20, y: 95, type: 'plot' }, { x: 12, y: 50, type: 'attaquant' }, { x: 30, y: 50, type: 'attaquant' }, { x: 32, y: 50, type: 'ballon' }, { x: 45, y: 32, type: 'attaquant' }, { x: 65, y: 50, type: 'defenseur' }, { x: 88, y: 50, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -2736,19 +2513,15 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 20,
-    titre: `SÉANCE RÉCRÉATIVE`,
-    phase: 'recreatif',
-    phaseLabel: `SÉANCE RÉCRÉATIVE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 20, titre: `SÉANCE RÉCRÉATIVE`,
+    phase: 'recreatif', phaseLabel: `SÉANCE RÉCRÉATIVE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Terrain 1
 Terrain 2
 4m
@@ -2819,8 +2592,7 @@ passe aérienne
 kit arbitre`,
     exercices: [
       {
-        id: 1,
-        titre: `festifoot`,
+        id: 1, titre: `festifoot`,
         surface: `28 x 17`,
         objectif: `Gagner le match en s’opposant à 2 adversaires, sans gardien de 
 but.`,
@@ -2843,11 +2615,10 @@ monter et descendre sur le nombre x de terrains. Obliger les en-
 fants à être dans les zones des 4m pour pouvoir marquer. Valoriser 
 par 2 points si le but est marqué de la zone des 4m. Empêcher 
 l’accès à la zone des 4m pour les défenseurs.`,
-        marqueurs: [{ x: 53.9, y: 48.7, type: 'ballon' }, { x: 26.5, y: 67.8, type: 'attaquant' }, { x: 42.3, y: 63.4, type: 'attaquant' }, { x: 81.2, y: 66.8, type: 'attaquant' }, { x: 65.5, y: 67.8, type: 'attaquant' }, { x: 26.5, y: 25.1, type: 'defenseur' }, { x: 43.4, y: 23.0, type: 'defenseur' }, { x: 67.5, y: 27.1, type: 'defenseur' }, { x: 81.2, y: 28.4, type: 'defenseur' }, { x: 53.7, y: 30.4, type: 'defenseur' }, { x: 17.0, y: 18.7, type: 'plot' }, { x: 17.0, y: 8.5, type: 'plot' }, { x: 16.7, y: 87.9, type: 'plot' }, { x: 16.7, y: 77.7, type: 'plot' }, { x: 53.0, y: 56.8, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 28, y: 32, type: 'attaquant' }, { x: 28, y: 68, type: 'attaquant' }, { x: 72, y: 32, type: 'defenseur' }, { x: 72, y: 68, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `atelier pef`,
+        id: 2, titre: `atelier pef`,
         surface: `36 x 28`,
         consignes: `PROPOSITION N°1
 Objectif de l’atelier : sensibiliser sur les règles du jeu par l’intermé-
@@ -2866,8 +2637,7 @@ Terrain 2
 notes`,
       },
       {
-        id: 3,
-        titre: `match`,
+        id: 3, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -2888,11 +2658,10 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 49.3, y: 49.8, type: 'ballon' }, { x: 61.7, y: 31.2, type: 'attaquant' }, { x: 47.5, y: 71.1, type: 'attaquant' }, { x: 40.3, y: 37.0, type: 'attaquant' }, { x: 34.7, y: 66.8, type: 'defenseur' }, { x: 49.7, y: 24.1, type: 'defenseur' }, { x: 35.7, y: 29.1, type: 'defenseur' }, { x: 55.1, y: 58.1, type: 'defenseur' }, { x: 63.0, y: 61.4, type: 'attaquant' }, { x: 82.8, y: 49.5, type: 'but' }, { x: 15.7, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -2933,31 +2702,24 @@ effectif
 durée
 75 min
 date`,
-        marqueurs: [{ x: 49.4, y: 48.4, type: 'ballon' }, { x: 61.9, y: 30.4, type: 'attaquant' }, { x: 47.6, y: 69.1, type: 'attaquant' }, { x: 40.5, y: 35.9, type: 'attaquant' }, { x: 34.8, y: 65.0, type: 'defenseur' }, { x: 49.8, y: 23.5, type: 'defenseur' }, { x: 35.8, y: 28.3, type: 'defenseur' }, { x: 55.2, y: 56.5, type: 'defenseur' }, { x: 63.1, y: 59.7, type: 'attaquant' }, { x: 83.0, y: 48.1, type: 'but' }, { x: 15.8, y: 49.3, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 21,
-    titre: `JE FEINTE ET J’ÉLIMINE UN ADVERSAIRE QUI A DU RETARD.`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 21, titre: `JE FEINTE ET J’ÉLIMINE UN ADVERSAIRE QUI A DU RETARD.`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `La quantité de déchets est une menace 
 pour l’environnement, il est donc indispen
 sable de les réduire et de les trier pour les 
 recycler. Je viens à l’entraînement avec ma 
 gourde individuelle et non une bouteille 
 d’eau en plastique.`,
-    vocabulaire: `Je feinte
-Je dribble`,
     exercices: [
       {
-        id: 1,
-        titre: `2 contre 2 stop-ball`,
+        id: 1, titre: `2 contre 2 stop-ball`,
         surface: `18 x 28`,
         objectif: `S’opposer en 2 contre 2 pour marquer un point.`,
         consignes: `Chaque équipe marque en stop-ball derrière la ligne adverse, en 
@@ -2980,11 +2742,10 @@ supérieure à 3.`,
 longueur.
 Les points marqués en stop-ball sans passer par la zone délimitée 
 comptent 1 point, en passant par la zone 2 points.`,
-        marqueurs: [{ x: 49.5, y: 48.4, type: 'ballon' }, { x: 60.1, y: 27.4, type: 'attaquant' }, { x: 79.0, y: 66.5, type: 'defenseur' }, { x: 76.4, y: 34.9, type: 'defenseur' }, { x: 39.7, y: 33.6, type: 'attaquant' }, { x: 24.0, y: 32.3, type: 'defenseur' }, { x: 31.6, y: 61.7, type: 'attaquant' }, { x: 62.6, y: 54.5, type: 'attaquant' }, { x: 47.0, y: 92.1, type: 'attaquant' }, { x: 35.9, y: 66.5, type: 'defenseur' }, { x: 52.8, y: 91.9, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 28, type: 'but' }, { x: 5, y: 72, type: 'but' }, { x: 95, y: 28, type: 'but' }, { x: 95, y: 72, type: 'but' }, { x: 30, y: 35, type: 'attaquant' }, { x: 30, y: 65, type: 'attaquant' }, { x: 70, y: 35, type: 'defenseur' }, { x: 70, y: 65, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `1 contre 1 avec retard`,
+        id: 2, titre: `1 contre 1 avec retard`,
         surface: `27 x 28`,
         objectif: `Feinter et éliminer un joueur qui a du retard.`,
         consignes: `Les enfants sont répartis aux 4 points de corner (couleur à l’op
@@ -3014,11 +2775,10 @@ E
 G
 G
 notes`,
-        marqueurs: [{ x: 53.5, y: 49.2, type: 'ballon' }, { x: 77.6, y: 86.3, type: 'attaquant' }, { x: 73.2, y: 85.6, type: 'attaquant' }, { x: 11.8, y: 13.6, type: 'attaquant' }, { x: 16.0, y: 84.9, type: 'defenseur' }, { x: 12.8, y: 87.7, type: 'defenseur' }, { x: 54.2, y: 82.8, type: 'ballon' }, { x: 29.9, y: 78.6, type: 'plot' }, { x: 32.1, y: 78.1, type: 'plot' }, { x: 71.5, y: 19.2, type: 'defenseur' }, { x: 71.5, y: 7.1, type: 'defenseur' }, { x: 17.6, y: 90.9, type: 'defenseur' }, { x: 17.6, y: 78.8, type: 'defenseur' }, { x: 43.9, y: 61.6, type: 'plot' }, { x: 19.2, y: 49.2, type: 'ballon' }, { x: 69.7, y: 49.2, type: 'ballon' }, { x: 17.6, y: 19.5, type: 'attaquant' }, { x: 17.6, y: 7.4, type: 'attaquant' }, { x: 71.3, y: 90.9, type: 'attaquant' }, { x: 71.3, y: 78.8, type: 'attaquant' }, { x: 45.5, y: 41.8, type: 'plot' }, { x: 75.1, y: 11.0, type: 'defenseur' }, { x: 73.2, y: 15.2, type: 'defenseur' }, { x: 15.3, y: 13.1, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 35, type: 'but' }, { x: 5, y: 65, type: 'but' }, { x: 95, y: 35, type: 'but' }, { x: 95, y: 65, type: 'but' }, { x: 8, y: 8, type: 'attaquant' }, { x: 8, y: 92, type: 'attaquant' }, { x: 92, y: 8, type: 'defenseur' }, { x: 92, y: 92, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `jeu spécial retard`,
+        id: 3, titre: `jeu spécial retard`,
         surface: `27 x 28`,
         objectif: `Feinter et éliminer un adversaire qui a du retard.
 Conduire sous pression.`,
@@ -3042,11 +2802,10 @@ Prendre l’information.`,
 Rapprocher ou éloigner le départ des adversaires selon le niveau 
 des enfants.
 Rester sur du 1 contre 1 ou permettre le 2 contre 1 puis le 2 contre 2.`,
-        marqueurs: [{ x: 51.4, y: 48.5, type: 'ballon' }, { x: 72.1, y: 51.3, type: 'attaquant' }, { x: 71.3, y: 45.1, type: 'attaquant' }, { x: 17.6, y: 93.2, type: 'attaquant' }, { x: 59.8, y: 6.8, type: 'defenseur' }, { x: 39.2, y: 85.4, type: 'ballon' }, { x: 47.0, y: 63.2, type: 'plot' }, { x: 67.1, y: 47.2, type: 'attaquant' }, { x: 20.1, y: 90.2, type: 'attaquant' }, { x: 67.3, y: 6.8, type: 'defenseur' }, { x: 67.4, y: 89.9, type: 'defenseur' }, { x: 67.3, y: 78.6, type: 'defenseur' }, { x: 15.7, y: 89.9, type: 'attaquant' }, { x: 24.5, y: 90.2, type: 'attaquant' }, { x: 67.3, y: 40.5, type: 'attaquant' }, { x: 67.3, y: 55.2, type: 'attaquant' }, { x: 63.5, y: 6.5, type: 'defenseur' }, { x: 56.9, y: 75.6, type: 'defenseur' }, { x: 70.8, y: 84.0, type: 'defenseur' }, { x: 67.7, y: 83.3, type: 'defenseur' }, { x: 66.0, y: 4.4, type: 'defenseur' }, { x: 54.8, y: 76.8, type: 'plot' }, { x: 41.2, y: 72.4, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 30, type: 'but' }, { x: 5, y: 70, type: 'but' }, { x: 95, y: 30, type: 'but' }, { x: 95, y: 70, type: 'but' }, { x: 50, y: 50, type: 'plot' }, { x: 50, y: 50, type: 'ballon' }, { x: 30, y: 15, type: 'defenseur' }, { x: 30, y: 25, type: 'defenseur' }, { x: 30, y: 35, type: 'defenseur' }, { x: 30, y: 65, type: 'attaquant' }, { x: 30, y: 75, type: 'attaquant' }, { x: 30, y: 85, type: 'attaquant' }, { x: 55, y: 45, type: 'defenseur' }, { x: 42, y: 52, type: 'attaquant' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -3067,19 +2826,15 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 22,
-    titre: `JE M’ORGANISE AVEC MON PARTENAIRE POUR PRO TÉGER LE BUT ET RÉCUPÉRER LE BALLON.`,
-    phase: 'defense',
-    phaseLabel: `JE DÉFENDS`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 22, titre: `JE M’ORGANISE AVEC MON PARTENAIRE POUR PRO TÉGER LE BUT ET RÉCUPÉRER LE BALLON.`,
+    phase: 'defense', phaseLabel: `JE DÉFENDS`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `La quantité de déchets est une menace pour 
 l’environnement, il est donc indispensable de 
 les réduire et de les trier pour les recycler. 
@@ -3088,11 +2843,9 @@ existants (les déchets organiques, les déchets
 recyclables et les déchets toxiques) et les 
 couleurs associées des poubelles présentes 
 autour du terrain et dans les vestiaires.`,
-    vocabulaire: `Je cadre le porteur du ballon`,
     exercices: [
       {
-        id: 1,
-        titre: `2 contre 2 avec gardien`,
+        id: 1, titre: `2 contre 2 avec gardien`,
         surface: `18 x 28`,
         objectif: `S’organiser avec son partenaire pour protéger le but et récupérer 
 le ballon.`,
@@ -3112,11 +2865,10 @@ Aller vite vers le joueur adverse qui a le ballon («CADRER»).`,
 gardien).
 Permettre à un défenseur d’intervenir dans la zone adverse lors de 
 la relance protégée.`,
-        marqueurs: [{ x: 50.0, y: 46.0, type: 'ballon' }, { x: 62.3, y: 25.5, type: 'attaquant' }, { x: 62.3, y: 72.4, type: 'attaquant' }, { x: 57.8, y: 89.5, type: 'attaquant' }, { x: 38.0, y: 90.1, type: 'defenseur' }, { x: 33.1, y: 90.1, type: 'defenseur' }, { x: 42.2, y: 20.4, type: 'defenseur' }, { x: 43.5, y: 70.3, type: 'defenseur' }, { x: 33.1, y: 46.9, type: 'ballon' }, { x: 68.1, y: 46.5, type: 'ballon' }, { x: 49.9, y: 85.9, type: 'ballon' }, { x: 62.3, y: 89.5, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 20, y: 5, type: 'plot' }, { x: 20, y: 95, type: 'plot' }, { x: 80, y: 5, type: 'plot' }, { x: 80, y: 95, type: 'plot' }, { x: 12, y: 50, type: 'attaquant' }, { x: 30, y: 35, type: 'attaquant' }, { x: 30, y: 65, type: 'attaquant' }, { x: 88, y: 50, type: 'defenseur' }, { x: 70, y: 35, type: 'defenseur' }, { x: 70, y: 65, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `béret 2-2 ou 3-3`,
+        id: 2, titre: `béret 2-2 ou 3-3`,
         surface: `18 x 28`,
         objectif: `S’organiser avec son partenaire pour protéger le but et récupérer 
 le ballon.`,
@@ -3152,11 +2904,10 @@ E
 3
 4
 notes`,
-        marqueurs: [{ x: 49.3, y: 47.7, type: 'ballon' }, { x: 32.4, y: 48.6, type: 'ballon' }, { x: 67.5, y: 48.2, type: 'ballon' }, { x: 49.2, y: 87.5, type: 'ballon' }, { x: 55.4, y: 33.8, type: 'plot' }, { x: 28.2, y: 29.3, type: 'attaquant' }, { x: 71.5, y: 69.9, type: 'attaquant' }, { x: 27.1, y: 72.9, type: 'defenseur' }, { x: 70.9, y: 20.4, type: 'defenseur' }, { x: 38.8, y: 64.7, type: 'plot' }, { x: 69.3, y: 25.1, type: 'defenseur' }, { x: 29.8, y: 71.9, type: 'defenseur' }, { x: 69.3, y: 71.9, type: 'attaquant' }, { x: 29.8, y: 25.1, type: 'attaquant' }, { x: 24.6, y: 24.2, type: 'attaquant' }, { x: 74.0, y: 74.1, type: 'attaquant' }, { x: 72.7, y: 16.2, type: 'defenseur' }, { x: 24.9, y: 77.1, type: 'defenseur' }, { x: 41.6, y: 38.8, type: 'plot' }, { x: 58.9, y: 56.3, type: 'plot' }, { x: 36.8, y: 64.3, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }, { x: 92, y: 30, type: 'attaquant' }, { x: 92, y: 50, type: 'attaquant' }, { x: 92, y: 70, type: 'attaquant' }, { x: 8, y: 30, type: 'defenseur' }, { x: 8, y: 50, type: 'defenseur' }, { x: 8, y: 70, type: 'defenseur' }],
       },
       {
-        id: 3,
-        titre: `jeu de la brochette`,
+        id: 3, titre: `jeu de la brochette`,
         surface: `18 x 28`,
         objectif: `S’organiser avec son partenaire pour protéger le but et récupérer 
 le ballon.`,
@@ -3180,11 +2931,10 @@ dans le terrain).
 Faire du 3 contre 3.
 Doubler l’atelier pour plus de répétitions (départ en décalage puis 
 simultané).`,
-        marqueurs: [{ x: 47.7, y: 47.9, type: 'ballon' }, { x: 51.7, y: 5.4, type: 'attaquant' }, { x: 50.9, y: 47.6, type: 'ballon' }, { x: 81.7, y: 47.9, type: 'ballon' }, { x: 44.7, y: 32.9, type: 'ballon' }, { x: 56.4, y: 6.0, type: 'attaquant' }, { x: 67.9, y: 21.3, type: 'plot' }, { x: 64.5, y: 5.0, type: 'attaquant' }, { x: 72.3, y: 92.5, type: 'defenseur' }, { x: 69.4, y: 91.5, type: 'defenseur' }, { x: 59.5, y: 21.1, type: 'plot' }, { x: 67.8, y: 89.4, type: 'defenseur' }, { x: 47.6, y: 89.0, type: 'defenseur' }, { x: 67.8, y: 5.9, type: 'attaquant' }, { x: 47.7, y: 6.5, type: 'attaquant' }, { x: 60.3, y: 5.4, type: 'attaquant' }, { x: 78.3, y: 93.6, type: 'defenseur' }, { x: 64.3, y: 62.6, type: 'plot' }, { x: 83.3, y: 5.9, type: 'attaquant' }, { x: 82.0, y: 93.6, type: 'defenseur' }, { x: 68.7, y: 16.1, type: 'plot' }, { x: 70.2, y: 6.0, type: 'plot' }, { x: 65.5, y: 59.7, type: 'plot' }, { x: 65.0, y: 89.9, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'plot' }, { x: 50, y: 10, type: 'plot' }, { x: 50, y: 90, type: 'plot' }, { x: 85, y: 35, type: 'attaquant' }, { x: 85, y: 55, type: 'attaquant' }, { x: 15, y: 35, type: 'defenseur' }, { x: 15, y: 55, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -3205,28 +2955,21 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 23,
-    titre: `JE CHOISIS D’ÉLIMINER OU PASSER POUR MARQUER UN BUT`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 23, titre: `JE CHOISIS D’ÉLIMINER OU PASSER POUR MARQUER UN BUT`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `L’eau est précieuse, je ferme le robinet et 
 vérifie qu’il ne goutte pas, je prends une 
 douche rapide, c’est plus écologique.`,
-    vocabulaire: `Je conduis dans un espace libre
-Je conduis pour dribbler un adversaire`,
     exercices: [
       {
-        id: 1,
-        titre: `4 contre 4`,
+        id: 1, titre: `4 contre 4`,
         surface: `27 x 28`,
         objectif: `Jouer librement pour marquer des buts.`,
         consignes: `Jeu en 3 contre 3 avec un gardien de but.
@@ -3238,11 +2981,10 @@ compris) à la fin de chaque séquence.
 Donner un numéro à chaque joueur pour faciliter les rotations.`,
         vigilance: `Valoriser les prises de risque pour marquer le but.
 Laisser faire les joueurs (prise de décisions et déplacement).`,
-        marqueurs: [{ x: 50.7, y: 46.5, type: 'ballon' }, { x: 31.3, y: 46.2, type: 'attaquant' }, { x: 35.1, y: 19.8, type: 'attaquant' }, { x: 37.1, y: 67.3, type: 'attaquant' }, { x: 48.6, y: 41.2, type: 'defenseur' }, { x: 46.1, y: 90.6, type: 'defenseur' }, { x: 60.5, y: 21.1, type: 'defenseur' }, { x: 59.7, y: 64.0, type: 'defenseur' }, { x: 16.8, y: 45.4, type: 'but' }, { x: 68.9, y: 47.0, type: 'ballon' }, { x: 42.1, y: 90.6, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 20, y: 5, type: 'plot' }, { x: 20, y: 95, type: 'plot' }, { x: 80, y: 5, type: 'plot' }, { x: 80, y: 95, type: 'plot' }, { x: 10, y: 50, type: 'attaquant' }, { x: 28, y: 25, type: 'attaquant' }, { x: 28, y: 55, type: 'attaquant' }, { x: 28, y: 80, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 72, y: 25, type: 'defenseur' }, { x: 72, y: 55, type: 'defenseur' }, { x: 72, y: 80, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `jeu d’opposition`,
+        id: 2, titre: `jeu d’opposition`,
         surface: `36 x 28`,
         objectif: `Attaquer un des buts au choix en 2 contre 1.`,
         consignes: `Les joueurs bleus s’échangent le ballon sans se le faire prendre par 
@@ -3272,11 +3014,10 @@ G
 G
 G
 notes`,
-        marqueurs: [{ x: 50.0, y: 47.1, type: 'ballon' }, { x: 55.2, y: 58.4, type: 'attaquant' }, { x: 44.3, y: 74.0, type: 'defenseur' }, { x: 56.4, y: 33.7, type: 'defenseur' }, { x: 46.8, y: 43.0, type: 'attaquant' }, { x: 16.5, y: 47.1, type: 'but' }, { x: 84.1, y: 47.1, type: 'but' }, { x: 42.7, y: 26.2, type: 'defenseur' }, { x: 46.0, y: 90.6, type: 'attaquant' }, { x: 49.3, y: 90.6, type: 'attaquant' }, { x: 58.9, y: 71.9, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 30, y: 20, type: 'attaquant' }, { x: 30, y: 40, type: 'attaquant' }, { x: 30, y: 60, type: 'attaquant' }, { x: 30, y: 80, type: 'attaquant' }, { x: 70, y: 20, type: 'defenseur' }, { x: 70, y: 40, type: 'defenseur' }, { x: 70, y: 60, type: 'defenseur' }, { x: 70, y: 80, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `2 contre 1`,
+        id: 3, titre: `2 contre 1`,
         surface: `36 x 28`,
         objectif: `Marquer le but en 2 contre 1.`,
         consignes: `Le joueur bleu reçoit un ballon de son gardien de but. Il a le choix 
@@ -3299,11 +3040,10 @@ selon la situation).`,
 ballon le dépasse. 
 Positionner le partenaire bleu dans la même zone au départ. 
 Modifier les positionnements de départ.`,
-        marqueurs: [{ x: 50.0, y: 51.8, type: 'ballon' }, { x: 16.6, y: 52.3, type: 'but' }, { x: 84.0, y: 51.5, type: 'but' }, { x: 53.6, y: 28.7, type: 'plot' }, { x: 30.1, y: 51.5, type: 'attaquant' }, { x: 54.1, y: 51.5, type: 'attaquant' }, { x: 63.9, y: 9.9, type: 'defenseur' }, { x: 56.6, y: 69.7, type: 'defenseur' }, { x: 54.1, y: 32.8, type: 'plot' }, { x: 41.3, y: 7.8, type: 'attaquant' }, { x: 59.1, y: 91.7, type: 'defenseur' }, { x: 58.8, y: 20.4, type: 'defenseur' }, { x: 46.5, y: 58.8, type: 'plot' }, { x: 44.5, y: 8.1, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 20, y: 5, type: 'plot' }, { x: 20, y: 95, type: 'plot' }, { x: 12, y: 50, type: 'attaquant' }, { x: 30, y: 50, type: 'attaquant' }, { x: 32, y: 50, type: 'ballon' }, { x: 45, y: 32, type: 'attaquant' }, { x: 65, y: 50, type: 'defenseur' }, { x: 88, y: 50, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -3324,32 +3064,24 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 24,
-    titre: `JE M’ORGANISE AVEC MON PARTENAIRE POUR PRO TÉGER LE BUT ET RÉCUPÉRER LE BALLON.`,
-    phase: 'defense',
-    phaseLabel: `JE DÉFENDS`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 24, titre: `JE M’ORGANISE AVEC MON PARTENAIRE POUR PRO TÉGER LE BUT ET RÉCUPÉRER LE BALLON.`,
+    phase: 'defense', phaseLabel: `JE DÉFENDS`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `On vous demande d’avoir de bons réflexes 
 sur le terrain, il faut faire la même chose en 
 matière d’économie d’énergie. 
 La dernière personne à quitter le vestiaire 
 éteindra la lumière et fermera la porte du 
 vestiaire chauffé.`,
-    vocabulaire: `J’identifie le but
-Je contrôle
-Je tire au but`,
     exercices: [
       {
-        id: 1,
-        titre: `4 contre 4 - 3 zones`,
+        id: 1, titre: `4 contre 4 - 3 zones`,
         surface: `36 x 28`,
         objectif: `S’organiser avec son partenaire pour protéger le but et récupé
 rer le ballon.`,
@@ -3369,11 +3101,10 @@ Couvrir son partenaire proche.`,
         variables: `Lorsque le ballon franchit la ligne médiane, les défenseurs n’étant 
 plus dans leur moitié de terrain ne peuvent plus défendre. 
 Garder que le but central.`,
-        marqueurs: [{ x: 50.2, y: 49.4, type: 'ballon' }, { x: 49.9, y: 70.0, type: 'attaquant' }, { x: 50.5, y: 31.6, type: 'attaquant' }, { x: 60.5, y: 41.2, type: 'defenseur' }, { x: 39.5, y: 68.6, type: 'defenseur' }, { x: 66.0, y: 48.5, type: 'attaquant' }, { x: 16.6, y: 49.4, type: 'but' }, { x: 84.2, y: 49.4, type: 'but' }, { x: 38.2, y: 29.5, type: 'defenseur' }, { x: 50.2, y: 7.9, type: 'plot' }, { x: 60.5, y: 58.3, type: 'defenseur' }, { x: 49.9, y: 62.9, type: 'plot' }, { x: 50.2, y: 35.3, type: 'plot' }, { x: 49.9, y: 91.0, type: 'plot' }, { x: 70.1, y: 35.3, type: 'plot' }, { x: 86.1, y: 35.6, type: 'plot' }, { x: 30.4, y: 35.3, type: 'plot' }, { x: 14.2, y: 35.3, type: 'plot' }, { x: 70.5, y: 62.7, type: 'plot' }, { x: 86.5, y: 62.9, type: 'plot' }, { x: 30.9, y: 62.7, type: 'plot' }, { x: 14.6, y: 62.7, type: 'plot' }, { x: 30.7, y: 47.0, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'but' }, { x: 33, y: 5, type: 'plot' }, { x: 33, y: 95, type: 'plot' }, { x: 67, y: 5, type: 'plot' }, { x: 67, y: 95, type: 'plot' }, { x: 15, y: 28, type: 'attaquant' }, { x: 15, y: 55, type: 'attaquant' }, { x: 15, y: 75, type: 'attaquant' }, { x: 45, y: 42, type: 'attaquant' }, { x: 85, y: 28, type: 'defenseur' }, { x: 85, y: 55, type: 'defenseur' }, { x: 85, y: 75, type: 'defenseur' }, { x: 55, y: 58, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `jeu d’opposition`,
+        id: 2, titre: `jeu d’opposition`,
         surface: `36 x 28`,
         objectif: `Marquer le but en 2 contre 2.`,
         consignes: `2 attaquants dans chaque bande de terrain contre 2 défenseurs. 
@@ -3404,11 +3135,10 @@ G
 G
 Bande 2 : 2 contre 2 + 1 GB
 notes`,
-        marqueurs: [{ x: 50.1, y: 48.6, type: 'ballon' }, { x: 51.9, y: 57.3, type: 'attaquant' }, { x: 47.3, y: 37.5, type: 'attaquant' }, { x: 42.1, y: 39.6, type: 'defenseur' }, { x: 44.6, y: 82.7, type: 'defenseur' }, { x: 59.2, y: 25.5, type: 'defenseur' }, { x: 70.0, y: 68.6, type: 'defenseur' }, { x: 70.0, y: 47.7, type: 'attaquant' }, { x: 86.0, y: 48.0, type: 'attaquant' }, { x: 30.4, y: 47.7, type: 'attaquant' }, { x: 14.1, y: 47.7, type: 'attaquant' }, { x: 38.5, y: 71.7, type: 'attaquant' }, { x: 15.7, y: 68.6, type: 'but' }, { x: 83.6, y: 28.6, type: 'but' }, { x: 28.8, y: 24.1, type: 'attaquant' }, { x: 43.8, y: 24.2, type: 'plot' }, { x: 45.0, y: 35.0, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 30, y: 20, type: 'attaquant' }, { x: 30, y: 40, type: 'attaquant' }, { x: 30, y: 60, type: 'attaquant' }, { x: 30, y: 80, type: 'attaquant' }, { x: 70, y: 20, type: 'defenseur' }, { x: 70, y: 40, type: 'defenseur' }, { x: 70, y: 60, type: 'defenseur' }, { x: 70, y: 80, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `chasse au trésor`,
+        id: 3, titre: `chasse au trésor`,
         surface: `27 x 28`,
         objectif: `Conduire le ballon en le maîtrisant.`,
         consignes: `Pour les pirates (attaquants rouges), l’objectif est d’entrer dans le 
@@ -3433,11 +3163,10 @@ Démultiplier les ateliers.`,
 Possibilité de faire la chasse au trésor avec le ballon dans les 
 mains, puis au pied. 
 Agrandir ou diminuer le château.`,
-        marqueurs: [{ x: 52.3, y: 47.5, type: 'ballon' }, { x: 43.6, y: 25.7, type: 'attaquant' }, { x: 64.6, y: 12.0, type: 'attaquant' }, { x: 65.9, y: 67.8, type: 'attaquant' }, { x: 67.1, y: 29.9, type: 'attaquant' }, { x: 39.2, y: 47.2, type: 'defenseur' }, { x: 52.9, y: 17.4, type: 'defenseur' }, { x: 63.3, y: 47.2, type: 'defenseur' }, { x: 55.3, y: 50.8, type: 'attaquant' }, { x: 52.9, y: 70.9, type: 'defenseur' }, { x: 58.4, y: 80.3, type: 'attaquant' }, { x: 30.5, y: 54.7, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 28, type: 'but' }, { x: 5, y: 72, type: 'but' }, { x: 40, y: 35, type: 'plot' }, { x: 40, y: 65, type: 'plot' }, { x: 60, y: 35, type: 'plot' }, { x: 60, y: 65, type: 'plot' }, { x: 50, y: 42, type: 'ballon' }, { x: 50, y: 58, type: 'ballon' }, { x: 22, y: 25, type: 'attaquant' }, { x: 22, y: 50, type: 'attaquant' }, { x: 22, y: 75, type: 'attaquant' }, { x: 35, y: 22, type: 'defenseur' }, { x: 65, y: 50, type: 'defenseur' }, { x: 35, y: 78, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -3458,30 +3187,23 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 25,
-    titre: `JE FEINTE ET J’ÉLIMINE UN ADVERSAIRE QUI A DU RETARD.`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 25, titre: `JE FEINTE ET J’ÉLIMINE UN ADVERSAIRE QUI A DU RETARD.`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `J’ai plaisir à utiliser des installations et du 
 matériel propres et en bon état. 
 Au club et dans la vie en général, je quitte les 
 locaux que j’ai utilisé dans l’état où j’aime les 
 trouver.`,
-    vocabulaire: `J’identifie mon partenaire
-Je fais une passe à mon partenaire`,
     exercices: [
       {
-        id: 1,
-        titre: `2 contre 2 mini buts`,
+        id: 1, titre: `2 contre 2 mini buts`,
         surface: `18 x 28`,
         objectif: `Éliminer mon adversaire direct.`,
         consignes: `Jeu libre en 2 contre 2. Les règles sont identiques à celles des 
@@ -3504,11 +3226,10 @@ supérieure à 3.`,
         variables: `Agrandir les zones limitées pour les défenseurs dans le sens de la 
 longueur.
 Faire s’opposer les joueurs de même niveau.`,
-        marqueurs: [{ x: 50.0, y: 46.5, type: 'ballon' }, { x: 35.7, y: 31.4, type: 'attaquant' }, { x: 34.5, y: 67.0, type: 'attaquant' }, { x: 79.3, y: 49.9, type: 'attaquant' }, { x: 74.8, y: 29.9, type: 'attaquant' }, { x: 25.6, y: 68.4, type: 'defenseur' }, { x: 26.4, y: 31.4, type: 'defenseur' }, { x: 68.0, y: 27.8, type: 'defenseur' }, { x: 74.8, y: 74.0, type: 'defenseur' }, { x: 39.5, y: 91.6, type: 'defenseur' }, { x: 60.5, y: 92.1, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 28, type: 'but' }, { x: 5, y: 72, type: 'but' }, { x: 95, y: 28, type: 'but' }, { x: 95, y: 72, type: 'but' }, { x: 30, y: 35, type: 'attaquant' }, { x: 30, y: 65, type: 'attaquant' }, { x: 70, y: 35, type: 'defenseur' }, { x: 70, y: 65, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `2 contre 1 / 2 contre 2`,
+        id: 2, titre: `2 contre 1 / 2 contre 2`,
         surface: `36 x 28`,
         objectif: `Tirer avantage du 2 contre 1 puis gérer le retour du 2ème défenseur 
 avec du retard.`,
@@ -3540,11 +3261,10 @@ D
 B
 A
 notes`,
-        marqueurs: [{ x: 49.3, y: 49.0, type: 'ballon' }, { x: 14.5, y: 49.0, type: 'but' }, { x: 82.1, y: 49.0, type: 'but' }, { x: 45.8, y: 13.4, type: 'ballon' }, { x: 68.0, y: 16.0, type: 'plot' }, { x: 27.4, y: 17.6, type: 'attaquant' }, { x: 71.4, y: 90.0, type: 'attaquant' }, { x: 26.9, y: 83.3, type: 'defenseur' }, { x: 70.6, y: 16.1, type: 'defenseur' }, { x: 28.6, y: 5.2, type: 'attaquant' }, { x: 75.2, y: 91.4, type: 'attaquant' }, { x: 74.0, y: 5.2, type: 'defenseur' }, { x: 22.7, y: 92.1, type: 'defenseur' }, { x: 50.6, y: 64.7, type: 'plot' }, { x: 33.0, y: 68.4, type: 'plot' }, { x: 37.5, y: 27.9, type: 'plot' }, { x: 46.2, y: 29.4, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 20, y: 5, type: 'plot' }, { x: 20, y: 95, type: 'plot' }, { x: 12, y: 50, type: 'attaquant' }, { x: 30, y: 50, type: 'attaquant' }, { x: 32, y: 50, type: 'ballon' }, { x: 45, y: 32, type: 'attaquant' }, { x: 65, y: 50, type: 'defenseur' }, { x: 88, y: 50, type: 'defenseur' }],
       },
       {
-        id: 3,
-        titre: `du 1 contre 1 au 2 contre 2`,
+        id: 3, titre: `du 1 contre 1 au 2 contre 2`,
         surface: `27 x 28`,
         objectif: `Feinter et éliminer un adversaire qui a du retard.
 Conduire sous pression.`,
@@ -3566,11 +3286,10 @@ Prendre l’information.`,
         variables: `Finir sur un grand but avec GB. Rapprocher ou éloigner le départ 
 des adversaires selon le niveau des enfants. Rester sur du 1 contre 
 1 ou permettre le 2 contre 1 puis le 2 contre 2.`,
-        marqueurs: [{ x: 51.4, y: 48.0, type: 'ballon' }, { x: 72.1, y: 50.9, type: 'attaquant' }, { x: 71.3, y: 44.7, type: 'attaquant' }, { x: 17.6, y: 92.8, type: 'attaquant' }, { x: 59.8, y: 6.3, type: 'defenseur' }, { x: 39.2, y: 85.0, type: 'ballon' }, { x: 47.0, y: 62.7, type: 'plot' }, { x: 67.1, y: 46.8, type: 'attaquant' }, { x: 20.1, y: 89.7, type: 'attaquant' }, { x: 67.3, y: 6.3, type: 'defenseur' }, { x: 67.4, y: 89.5, type: 'defenseur' }, { x: 67.3, y: 78.2, type: 'defenseur' }, { x: 15.7, y: 89.4, type: 'attaquant' }, { x: 24.5, y: 89.7, type: 'attaquant' }, { x: 67.3, y: 40.0, type: 'attaquant' }, { x: 67.3, y: 54.8, type: 'attaquant' }, { x: 63.5, y: 6.1, type: 'defenseur' }, { x: 56.9, y: 75.1, type: 'defenseur' }, { x: 70.8, y: 83.5, type: 'defenseur' }, { x: 67.7, y: 82.9, type: 'defenseur' }, { x: 66.0, y: 4.0, type: 'defenseur' }, { x: 54.8, y: 76.3, type: 'plot' }, { x: 41.2, y: 72.0, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 30, type: 'but' }, { x: 5, y: 70, type: 'but' }, { x: 95, y: 30, type: 'but' }, { x: 95, y: 70, type: 'but' }, { x: 50, y: 50, type: 'plot' }, { x: 50, y: 50, type: 'ballon' }, { x: 30, y: 15, type: 'defenseur' }, { x: 30, y: 25, type: 'defenseur' }, { x: 30, y: 35, type: 'defenseur' }, { x: 30, y: 65, type: 'attaquant' }, { x: 30, y: 75, type: 'attaquant' }, { x: 30, y: 85, type: 'attaquant' }, { x: 55, y: 45, type: 'defenseur' }, { x: 42, y: 52, type: 'attaquant' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -3591,19 +3310,15 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 26,
-    titre: `SÉANCE RÉCRÉATIVE`,
-    phase: 'recreatif',
-    phaseLabel: `SÉANCE RÉCRÉATIVE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 26, titre: `SÉANCE RÉCRÉATIVE`,
+    phase: 'recreatif', phaseLabel: `SÉANCE RÉCRÉATIVE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Terrain 1
 Terrain 2
 4m
@@ -3674,8 +3389,7 @@ passe aérienne
 kit arbitre`,
     exercices: [
       {
-        id: 1,
-        titre: `festifoot`,
+        id: 1, titre: `festifoot`,
         surface: `28 x 17`,
         objectif: `Gagner le match en s’opposant à 2 adversaires, sans gardien de 
 but.`,
@@ -3698,11 +3412,10 @@ monter et descendre sur le nombre x de terrains. Obliger les en-
 fants à être dans les zones des 4m pour pouvoir marquer. Valoriser 
 par 2 points si le but est marqué de la zone des 4m. Empêcher 
 l’accès à la zone des 4m pour les défenseurs.`,
-        marqueurs: [{ x: 53.9, y: 48.6, type: 'ballon' }, { x: 26.5, y: 67.7, type: 'attaquant' }, { x: 42.3, y: 63.4, type: 'attaquant' }, { x: 81.2, y: 66.8, type: 'attaquant' }, { x: 65.5, y: 67.7, type: 'attaquant' }, { x: 26.5, y: 25.0, type: 'defenseur' }, { x: 43.4, y: 22.9, type: 'defenseur' }, { x: 67.5, y: 27.1, type: 'defenseur' }, { x: 81.2, y: 28.3, type: 'defenseur' }, { x: 53.7, y: 30.3, type: 'defenseur' }, { x: 17.0, y: 18.6, type: 'plot' }, { x: 17.0, y: 8.4, type: 'plot' }, { x: 16.7, y: 87.8, type: 'plot' }, { x: 16.7, y: 77.6, type: 'plot' }, { x: 53.0, y: 56.7, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 28, y: 32, type: 'attaquant' }, { x: 28, y: 68, type: 'attaquant' }, { x: 72, y: 32, type: 'defenseur' }, { x: 72, y: 68, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `atelier pef`,
+        id: 2, titre: `atelier pef`,
         surface: `36 x 28`,
         consignes: `PROPOSITION N°1
 Objectif de l’atelier : responsabiliser sur l’économie de l’eau par 
@@ -3721,8 +3434,7 @@ Terrain 2
 notes`,
       },
       {
-        id: 3,
-        titre: `match`,
+        id: 3, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -3743,11 +3455,10 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 49.3, y: 49.8, type: 'ballon' }, { x: 61.7, y: 31.2, type: 'attaquant' }, { x: 47.5, y: 71.1, type: 'attaquant' }, { x: 40.3, y: 37.0, type: 'attaquant' }, { x: 34.7, y: 66.8, type: 'defenseur' }, { x: 49.7, y: 24.1, type: 'defenseur' }, { x: 35.7, y: 29.1, type: 'defenseur' }, { x: 55.1, y: 58.1, type: 'defenseur' }, { x: 63.0, y: 61.4, type: 'attaquant' }, { x: 82.8, y: 49.5, type: 'but' }, { x: 15.7, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -3788,30 +3499,23 @@ effectif
 durée
 75 min
 date`,
-        marqueurs: [{ x: 49.4, y: 48.4, type: 'ballon' }, { x: 61.9, y: 30.4, type: 'attaquant' }, { x: 47.6, y: 69.1, type: 'attaquant' }, { x: 40.5, y: 35.9, type: 'attaquant' }, { x: 34.8, y: 65.0, type: 'defenseur' }, { x: 49.8, y: 23.5, type: 'defenseur' }, { x: 35.8, y: 28.3, type: 'defenseur' }, { x: 55.2, y: 56.5, type: 'defenseur' }, { x: 63.1, y: 59.7, type: 'attaquant' }, { x: 83.0, y: 48.1, type: 'but' }, { x: 15.8, y: 49.3, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 27,
-    titre: `JE CHOISIS D’ÉLIMINER OU PASSER POUR MARQUER UN BUT.`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 27, titre: `JE CHOISIS D’ÉLIMINER OU PASSER POUR MARQUER UN BUT.`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Le respect est une des 5 valeurs de la FF . 
 Au club, je dois respecter mon éducateur.
 Je lui dis « Bonjour » et « Au revoir ». 
 J’écoute et je garde le silence quand il prend 
 la parole.`,
-    vocabulaire: `J’identifie mon partenaire, mon adversaire 
-et je choisis de passer ou dribbler`,
     exercices: [
       {
-        id: 1,
-        titre: `5 contre 5`,
+        id: 1, titre: `5 contre 5`,
         surface: `36 x 28`,
         objectif: `Entrer dans la zone de finition en 1 contre 1 ou 2 contre 1.`,
         consignes: `3 contre 3 en zone axiale. On peut entrer dans la zone de fini
@@ -3831,11 +3535,10 @@ bler ou passer).
 Accompagner le joueur qui rentre en conduite = proposer une 
 solution de 2 contre 1.`,
         variables: `Autoriser le retour d’un 2ème défenseur.`,
-        marqueurs: [{ x: 50.4, y: 48.4, type: 'ballon' }, { x: 40.6, y: 23.2, type: 'attaquant' }, { x: 72.8, y: 48.1, type: 'defenseur' }, { x: 59.3, y: 23.2, type: 'defenseur' }, { x: 26.3, y: 48.1, type: 'attaquant' }, { x: 16.9, y: 48.4, type: 'but' }, { x: 84.5, y: 48.4, type: 'but' }, { x: 47.2, y: 44.2, type: 'defenseur' }, { x: 41.8, y: 51.4, type: 'attaquant' }, { x: 47.2, y: 77.4, type: 'attaquant' }, { x: 59.3, y: 64.6, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 35, y: 5, type: 'plot' }, { x: 35, y: 95, type: 'plot' }, { x: 65, y: 5, type: 'plot' }, { x: 65, y: 95, type: 'plot' }, { x: 50, y: 50, type: 'ballon' }, { x: 18, y: 50, type: 'attaquant' }, { x: 42, y: 28, type: 'attaquant' }, { x: 42, y: 72, type: 'attaquant' }, { x: 50, y: 50, type: 'attaquant' }, { x: 82, y: 50, type: 'defenseur' }, { x: 58, y: 28, type: 'defenseur' }, { x: 58, y: 72, type: 'defenseur' }, { x: 52, y: 50, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `jeu d’opposition`,
+        id: 2, titre: `jeu d’opposition`,
         surface: `36 x 28`,
         objectif: `Attaquer un des buts au choix, en 2 contre 1.`,
         consignes: `2 contre 1 dans chaque zone. Les joueurs ne changent pas de zone 
@@ -3866,11 +3569,10 @@ G
 G
 E
 notes`,
-        marqueurs: [{ x: 50.0, y: 48.4, type: 'ballon' }, { x: 55.2, y: 59.6, type: 'attaquant' }, { x: 42.2, y: 69.0, type: 'defenseur' }, { x: 56.4, y: 32.6, type: 'defenseur' }, { x: 47.3, y: 41.9, type: 'attaquant' }, { x: 16.5, y: 48.4, type: 'but' }, { x: 84.1, y: 48.4, type: 'but' }, { x: 44.7, y: 25.1, type: 'defenseur' }, { x: 30.6, y: 47.5, type: 'attaquant' }, { x: 69.5, y: 46.0, type: 'attaquant' }, { x: 58.9, y: 73.2, type: 'defenseur' }, { x: 49.5, y: 83.3, type: 'ballon' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 30, y: 20, type: 'attaquant' }, { x: 30, y: 40, type: 'attaquant' }, { x: 30, y: 60, type: 'attaquant' }, { x: 30, y: 80, type: 'attaquant' }, { x: 70, y: 20, type: 'defenseur' }, { x: 70, y: 40, type: 'defenseur' }, { x: 70, y: 60, type: 'defenseur' }, { x: 70, y: 80, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `jeu d’éveil technique`,
+        id: 3, titre: `jeu d’éveil technique`,
         surface: `36 x 28`,
         objectif: `Feinter pour créer de l’incertitude et utiliser le temps d’avance.`,
         consignes: `Le porteur transmet le ballon à son partenaire en face de lui, 
@@ -3894,11 +3596,10 @@ Comptabiliser les buts.`,
 Agrandir la zone de feinte pour créer encore plus d’incertitudes. 
 Possibilité de redonner à son partenaire qui fait le choix de la 
 droite ou de la gauche.`,
-        marqueurs: [{ x: 50.3, y: 82.4, type: 'plot' }, { x: 50.0, y: 52.0, type: 'ballon' }, { x: 49.8, y: 91.3, type: 'attaquant' }, { x: 30.3, y: 51.7, type: 'defenseur' }, { x: 84.1, y: 15.9, type: 'defenseur' }, { x: 16.5, y: 52.0, type: 'but' }, { x: 84.1, y: 52.0, type: 'but' }, { x: 14.0, y: 20.1, type: 'defenseur' }, { x: 48.9, y: 7.6, type: 'attaquant' }, { x: 48.1, y: 16.9, type: 'attaquant' }, { x: 69.5, y: 49.0, type: 'defenseur' }, { x: 62.8, y: 30.7, type: 'plot' }, { x: 64.0, y: 79.4, type: 'plot' }, { x: 49.9, y: 77.2, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 40, y: 35, type: 'plot' }, { x: 40, y: 65, type: 'plot' }, { x: 60, y: 35, type: 'plot' }, { x: 60, y: 65, type: 'plot' }, { x: 20, y: 35, type: 'attaquant' }, { x: 20, y: 65, type: 'attaquant' }, { x: 22, y: 35, type: 'ballon' }, { x: 80, y: 35, type: 'defenseur' }, { x: 80, y: 65, type: 'defenseur' }, { x: 25, y: 50, type: 'attaquant' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -3919,30 +3620,23 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 28,
-    titre: `J’INTERVIENS POUR RÉCUPÉRER LE BALLON ET RELANCER.`,
-    phase: 'defense',
-    phaseLabel: `JE DÉFENDS`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 28, titre: `J’INTERVIENS POUR RÉCUPÉRER LE BALLON ET RELANCER.`,
+    phase: 'defense', phaseLabel: `JE DÉFENDS`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Le respect est une des 5 valeurs de la FFF. 
 Au club, je dois respecter mon éducateur. 
 Je peux l’interpeller à la fin de sa 
 communication en levant la main, si j’ai une 
 question et j’accepte ses décisions.`,
-    vocabulaire: `Je cadre le porteur de balle
-J’interviens pour relancer`,
     exercices: [
       {
-        id: 1,
-        titre: `2 contre 2 avec gardien`,
+        id: 1, titre: `2 contre 2 avec gardien`,
         surface: `18 x 28`,
         objectif: `S’organiser avec son partenaire pour protéger le but et récupérer 
 le ballon.`,
@@ -3969,11 +3663,10 @@ E
 G
 G
 notes`,
-        marqueurs: [{ x: 50.0, y: 46.0, type: 'ballon' }, { x: 62.3, y: 25.5, type: 'attaquant' }, { x: 62.3, y: 72.4, type: 'attaquant' }, { x: 57.8, y: 89.5, type: 'attaquant' }, { x: 38.0, y: 90.1, type: 'defenseur' }, { x: 33.1, y: 90.1, type: 'defenseur' }, { x: 42.2, y: 20.4, type: 'defenseur' }, { x: 43.5, y: 70.3, type: 'defenseur' }, { x: 33.1, y: 46.9, type: 'ballon' }, { x: 68.1, y: 46.5, type: 'ballon' }, { x: 49.9, y: 85.9, type: 'ballon' }, { x: 62.3, y: 89.5, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 20, y: 5, type: 'plot' }, { x: 20, y: 95, type: 'plot' }, { x: 80, y: 5, type: 'plot' }, { x: 80, y: 95, type: 'plot' }, { x: 12, y: 50, type: 'attaquant' }, { x: 30, y: 35, type: 'attaquant' }, { x: 30, y: 65, type: 'attaquant' }, { x: 88, y: 50, type: 'defenseur' }, { x: 70, y: 35, type: 'defenseur' }, { x: 70, y: 65, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `1 contre 1`,
+        id: 2, titre: `1 contre 1`,
         surface: `18 x 25`,
         objectif: `Intervenir pour récupérer le ballon et relancer.`,
         consignes: `Les enfants se trouvent au niveau des portes de couleur, à droite 
@@ -4001,11 +3694,10 @@ Modifier l’ordre des passages d’une équipe .
 (= ne pas toujours jouer contre les mêmes adversaires).`,
         variables: `À l’issue des 2 séries, les joueurs sont positionnés à gauche de leur 
 but.`,
-        marqueurs: [{ x: 54.2, y: 48.1, type: 'ballon' }, { x: 59.8, y: 20.6, type: 'attaquant' }, { x: 57.9, y: 14.0, type: 'attaquant' }, { x: 16.8, y: 77.5, type: 'defenseur' }, { x: 14.2, y: 81.1, type: 'defenseur' }, { x: 54.9, y: 81.7, type: 'ballon' }, { x: 30.6, y: 77.5, type: 'plot' }, { x: 32.8, y: 77.1, type: 'plot' }, { x: 18.4, y: 83.0, type: 'defenseur' }, { x: 18.4, y: 70.9, type: 'defenseur' }, { x: 44.6, y: 60.5, type: 'plot' }, { x: 20.0, y: 48.1, type: 'ballon' }, { x: 51.9, y: 48.1, type: 'ballon' }, { x: 54.2, y: 25.1, type: 'attaquant' }, { x: 54.2, y: 13.0, type: 'attaquant' }, { x: 40.2, y: 46.6, type: 'plot' }, { x: 56.4, y: 19.1, type: 'attaquant' }, { x: 13.6, y: 74.4, type: 'defenseur' }, { x: 11.0, y: 79.3, type: 'defenseur' }, { x: 61.1, y: 15.3, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 15, y: 40, type: 'attaquant' }, { x: 15, y: 55, type: 'attaquant' }, { x: 15, y: 70, type: 'attaquant' }, { x: 35, y: 50, type: 'ballon' }, { x: 33, y: 50, type: 'attaquant' }, { x: 85, y: 40, type: 'defenseur' }, { x: 85, y: 55, type: 'defenseur' }, { x: 85, y: 70, type: 'defenseur' }],
       },
       {
-        id: 3,
-        titre: `les éperviers`,
+        id: 3, titre: `les éperviers`,
         surface: `36 x 28`,
         objectif: `Intervenir pour récupérer le ballon et relancer.`,
         consignes: `Le GB relance sur l’un de ses 2 partenaires (bleu 1 en exemple)
@@ -4027,11 +3719,10 @@ Positionnement, cadrage du porteur de balle.`,
         variables: `Imposer aux joueurs de rester dans leurs zones (excepté pour le 
 rouge 1 lors de la récupération du ballon).
 Ajouter un défenseur rouge supplémentaire dans la dernière zone.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 15.8, y: 49.7, type: 'but' }, { x: 82.7, y: 49.7, type: 'but' }, { x: 76.7, y: 28.2, type: 'plot' }, { x: 64.0, y: 72.0, type: 'attaquant' }, { x: 55.2, y: 22.5, type: 'attaquant' }, { x: 75.9, y: 23.4, type: 'defenseur' }, { x: 37.5, y: 16.6, type: 'defenseur' }, { x: 11.8, y: 19.0, type: 'attaquant' }, { x: 38.7, y: 74.9, type: 'defenseur' }, { x: 75.9, y: 67.8, type: 'defenseur' }, { x: 11.8, y: 74.7, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 12, y: 50, type: 'attaquant' }, { x: 30, y: 35, type: 'attaquant' }, { x: 32, y: 35, type: 'ballon' }, { x: 55, y: 50, type: 'attaquant' }, { x: 42, y: 50, type: 'defenseur' }, { x: 60, y: 35, type: 'defenseur' }, { x: 88, y: 50, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -4052,31 +3743,23 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 29,
-    titre: `JE M’ORGANISE AVEC MON PARTENAIRE POUR EMPÊCHER L’ADVERSAIRE DE S’APPROCHER DE MON BUT.`,
-    phase: 'defense',
-    phaseLabel: `JE DÉFENDS COLLECTIVEMENT`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 29, titre: `JE M’ORGANISE AVEC MON PARTENAIRE POUR EMPÊCHER L’ADVERSAIRE DE S’APPROCHER DE MON BUT.`,
+    phase: 'defense', phaseLabel: `JE DÉFENDS COLLECTIVEMENT`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Le respect est une des 5 valeurs de la FFF.
  Au club, je dois respecter mes partenaires. 
 Je les salue en arrivant à l’entraînement 
 ou au match et je ne prononce pas de mots 
 grossiers à leur égard.`,
-    vocabulaire: `J’identifie mon adversaire/porteur de balle, 
-je cadre l’adversaire et j’interviens sur l’ad
-versaire pour lui prendre le ballon.`,
     exercices: [
       {
-        id: 1,
-        titre: `jeu multi-buts`,
+        id: 1, titre: `jeu multi-buts`,
         surface: `36 x 28`,
         objectif: `S’organiser défensivement pour récupérer le ballon et marquer.`,
         consignes: `3 contre 3 dans la zone axiale. Sur la récupération, un joueur sup
@@ -4096,11 +3779,10 @@ Le fait de pouvoir marquer dans les 2 buts incitera les défenseurs
         variables: `Faire rentrer un défenseur supplémentaire.
 Faire rentrer un défenseur supplémentaire après 3 secondes pour 
 rétablir l’égalité numérique.`,
-        marqueurs: [{ x: 50.0, y: 48.5, type: 'ballon' }, { x: 41.2, y: 23.8, type: 'attaquant' }, { x: 39.9, y: 52.6, type: 'attaquant' }, { x: 42.4, y: 79.0, type: 'attaquant' }, { x: 54.1, y: 56.7, type: 'defenseur' }, { x: 56.6, y: 24.0, type: 'defenseur' }, { x: 56.6, y: 79.0, type: 'defenseur' }, { x: 39.9, y: 92.5, type: 'defenseur' }, { x: 59.1, y: 4.4, type: 'attaquant' }, { x: 16.2, y: 29.0, type: 'but' }, { x: 84.5, y: 31.1, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 33, y: 5, type: 'plot' }, { x: 33, y: 95, type: 'plot' }, { x: 67, y: 5, type: 'plot' }, { x: 67, y: 95, type: 'plot' }, { x: 12, y: 50, type: 'attaquant' }, { x: 42, y: 25, type: 'attaquant' }, { x: 42, y: 55, type: 'attaquant' }, { x: 42, y: 75, type: 'attaquant' }, { x: 88, y: 50, type: 'defenseur' }, { x: 58, y: 25, type: 'defenseur' }, { x: 58, y: 55, type: 'defenseur' }, { x: 58, y: 75, type: 'defenseur' }, { x: 50, y: 45, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `jeu d’opposition`,
+        id: 2, titre: `jeu d’opposition`,
         surface: `36 x 28`,
         objectif: `Défendre collectivement.`,
         consignes: `Les bleus attaquent à partir du milieu du terrain et sont libres 
@@ -4128,11 +3810,10 @@ G
 G
 G
 notes`,
-        marqueurs: [{ x: 50.0, y: 48.6, type: 'ballon' }, { x: 15.8, y: 48.6, type: 'but' }, { x: 82.7, y: 48.6, type: 'but' }, { x: 38.2, y: 16.1, type: 'plot' }, { x: 56.7, y: 90.3, type: 'attaquant' }, { x: 55.5, y: 6.6, type: 'attaquant' }, { x: 36.4, y: 12.7, type: 'defenseur' }, { x: 48.9, y: 45.8, type: 'defenseur' }, { x: 31.7, y: 17.7, type: 'attaquant' }, { x: 36.4, y: 87.9, type: 'defenseur' }, { x: 70.2, y: 58.9, type: 'defenseur' }, { x: 31.8, y: 46.3, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 30, y: 20, type: 'attaquant' }, { x: 30, y: 40, type: 'attaquant' }, { x: 30, y: 60, type: 'attaquant' }, { x: 30, y: 80, type: 'attaquant' }, { x: 70, y: 20, type: 'defenseur' }, { x: 70, y: 40, type: 'defenseur' }, { x: 70, y: 60, type: 'defenseur' }, { x: 70, y: 80, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `1 contre 1 au 3 contre 2`,
+        id: 3, titre: `1 contre 1 au 3 contre 2`,
         surface: `27 x 28`,
         objectif: `Gérer différentes situations défensives (1 contre 1 au 3 contre 2).`,
         consignes: `Le rouge 1 s’élance contre le bleu 1 et tente de marquer. Si le bleu 
@@ -4155,11 +3836,10 @@ Chercher à prendre le ballon à l’adversaire.`,
 Sur la dernière séquence, proposer un 3 contre 3, avec retour d’un 
 défenseur «en retard» (exemple, si le ballon est donné aux rouges, 
 placer le bleu 3 derrière le but des rouges).`,
-        marqueurs: [{ x: 47.6, y: 48.4, type: 'ballon' }, { x: 24.9, y: 91.0, type: 'attaquant' }, { x: 49.4, y: 89.2, type: 'ballon' }, { x: 36.6, y: 61.8, type: 'attaquant' }, { x: 28.0, y: 5.7, type: 'attaquant' }, { x: 63.5, y: 6.8, type: 'defenseur' }, { x: 60.6, y: 58.9, type: 'defenseur' }, { x: 68.3, y: 91.9, type: 'defenseur' }, { x: 51.1, y: 63.6, type: 'plot' }, { x: 28.2, y: 89.2, type: 'attaquant' }, { x: 63.9, y: 90.1, type: 'defenseur' }, { x: 30.6, y: 48.8, type: 'ballon' }, { x: 80.3, y: 49.6, type: 'ballon' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'plot' }, { x: 48, y: 50, type: 'ballon' }, { x: 30, y: 40, type: 'attaquant' }, { x: 25, y: 65, type: 'attaquant' }, { x: 20, y: 28, type: 'attaquant' }, { x: 70, y: 40, type: 'defenseur' }, { x: 75, y: 65, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -4180,31 +3860,24 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 30,
-    titre: `JE CONTRÔLE ET JE PASSE POUR AVANCER VERS LE BUT.`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 30, titre: `JE CONTRÔLE ET JE PASSE POUR AVANCER VERS LE BUT.`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Le respect est une des 5 valeurs de la FFF. 
 Au club, je dois respecter mes partenaires. 
 Je les encourage quelles que soient les 
 situations (but contre son camp, passe 
 ratée…) et je ne les divertis pas quand 
 l’éducateur prend la parole.`,
-    vocabulaire: `J’identifie mon partenaire, mon adversaire 
-et je choisis de passer ou dribbler.`,
     exercices: [
       {
-        id: 1,
-        titre: `5 contre 5`,
+        id: 1, titre: `5 contre 5`,
         surface: `36 x 28`,
         objectif: `Progresser par la passe.`,
         consignes: `Jeu libre en 5 contre 5. Chaque équipe a 1 but à attaquer et à dé
@@ -4230,11 +3903,10 @@ buts entre les 2 équipes est supérieure à 3.`,
 la conduite. 
 Si une ou plusieurs passes sont réussies en changeant de zone 
 avant de marquer, alors le but compte double.`,
-        marqueurs: [{ x: 50.4, y: 47.9, type: 'ballon' }, { x: 63.3, y: 23.1, type: 'attaquant' }, { x: 56.7, y: 79.7, type: 'attaquant' }, { x: 39.2, y: 60.8, type: 'attaquant' }, { x: 43.0, y: 25.2, type: 'attaquant' }, { x: 43.2, y: 75.5, type: 'defenseur' }, { x: 64.5, y: 56.8, type: 'defenseur' }, { x: 55.4, y: 17.2, type: 'defenseur' }, { x: 36.7, y: 35.7, type: 'defenseur' }, { x: 16.9, y: 47.9, type: 'but' }, { x: 84.4, y: 47.0, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 22, y: 5, type: 'plot' }, { x: 22, y: 95, type: 'plot' }, { x: 78, y: 5, type: 'plot' }, { x: 78, y: 95, type: 'plot' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 20, y: 28, type: 'attaquant' }, { x: 20, y: 50, type: 'attaquant' }, { x: 20, y: 72, type: 'attaquant' }, { x: 55, y: 45, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 80, y: 28, type: 'defenseur' }, { x: 80, y: 50, type: 'defenseur' }, { x: 80, y: 72, type: 'defenseur' }, { x: 45, y: 55, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `jeu d’opposition`,
+        id: 2, titre: `jeu d’opposition`,
         surface: `27 x 28`,
         objectif: `Faire le bon choix entre la passe ou le dribble en fonction de l’ad
 versaire.`,
@@ -4268,11 +3940,10 @@ E
 1
 2
 notes`,
-        marqueurs: [{ x: 53.3, y: 48.0, type: 'ballon' }, { x: 19.9, y: 48.5, type: 'ballon' }, { x: 70.6, y: 47.3, type: 'ballon' }, { x: 54.6, y: 18.9, type: 'attaquant' }, { x: 58.5, y: 64.8, type: 'plot' }, { x: 70.5, y: 7.2, type: 'attaquant' }, { x: 35.9, y: 6.3, type: 'defenseur' }, { x: 23.4, y: 90.0, type: 'defenseur' }, { x: 66.2, y: 9.1, type: 'attaquant' }, { x: 47.9, y: 89.7, type: 'defenseur' }, { x: 52.7, y: 87.9, type: 'ballon' }, { x: 56.9, y: 89.7, type: 'defenseur' }, { x: 27.3, y: 72.0, type: 'defenseur' }, { x: 38.7, y: 17.5, type: 'defenseur' }, { x: 73.2, y: 64.7, type: 'attaquant' }, { x: 73.4, y: 76.8, type: 'attaquant' }, { x: 63.3, y: 6.0, type: 'attaquant' }, { x: 68.8, y: 14.5, type: 'attaquant' }, { x: 74.9, y: 70.9, type: 'attaquant' }, { x: 78.3, y: 73.0, type: 'attaquant' }, { x: 48.5, y: 34.0, type: 'attaquant' }, { x: 29.8, y: 73.6, type: 'defenseur' }, { x: 38.0, y: 21.2, type: 'defenseur' }, { x: 57.7, y: 30.0, type: 'plot' }, { x: 72.0, y: 42.2, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 30, y: 20, type: 'attaquant' }, { x: 30, y: 40, type: 'attaquant' }, { x: 30, y: 60, type: 'attaquant' }, { x: 30, y: 80, type: 'attaquant' }, { x: 70, y: 20, type: 'defenseur' }, { x: 70, y: 40, type: 'defenseur' }, { x: 70, y: 60, type: 'defenseur' }, { x: 70, y: 80, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `jeu d’éveil technique`,
+        id: 3, titre: `jeu d’éveil technique`,
         surface: `36 x 28`,
         objectif: `Contrôler et passer pour avancer vers le but.`,
         consignes: `Les 2 équipes démarrent en même temps leur parcours. Tous les 
@@ -4292,11 +3963,10 @@ au partenaire.
 Le joueur qui a fait la passe accompagne son partenaire.`,
         variables: `Demander à redoubler les passes.
 Rajouter un 3ème joueur sur le terrain.`,
-        marqueurs: [{ x: 50.0, y: 47.9, type: 'ballon' }, { x: 16.6, y: 48.4, type: 'but' }, { x: 83.4, y: 46.3, type: 'but' }, { x: 25.8, y: 67.9, type: 'plot' }, { x: 27.7, y: 71.2, type: 'attaquant' }, { x: 43.3, y: 5.9, type: 'defenseur' }, { x: 33.6, y: 45.5, type: 'defenseur' }, { x: 23.8, y: 92.7, type: 'attaquant' }, { x: 50.0, y: 6.9, type: 'ballon' }, { x: 65.5, y: 90.6, type: 'attaquant' }, { x: 67.4, y: 46.7, type: 'attaquant' }, { x: 73.8, y: 25.3, type: 'defenseur' }, { x: 88.2, y: 25.3, type: 'defenseur' }, { x: 64.4, y: 48.8, type: 'plot' }, { x: 83.9, y: 53.7, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 40, y: 35, type: 'plot' }, { x: 40, y: 65, type: 'plot' }, { x: 60, y: 35, type: 'plot' }, { x: 60, y: 65, type: 'plot' }, { x: 20, y: 35, type: 'attaquant' }, { x: 20, y: 65, type: 'attaquant' }, { x: 22, y: 35, type: 'ballon' }, { x: 80, y: 35, type: 'defenseur' }, { x: 80, y: 65, type: 'defenseur' }, { x: 25, y: 50, type: 'attaquant' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -4317,30 +3987,23 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 31,
-    titre: `JE CHOISIS D’ÉLIMINER OU PASSER POUR MARQUER UN BUT.`,
-    phase: 'attaque',
-    phaseLabel: `J’ATTAQUE`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 31, titre: `JE CHOISIS D’ÉLIMINER OU PASSER POUR MARQUER UN BUT.`,
+    phase: 'attaque', phaseLabel: `J’ATTAQUE`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Le respect est une des 5 valeurs de la FFF. 
 Au club, je dois respecter mes adversaires.
 Je les salue à leur arrivée au stade, je suis 
 courtois et respectueux quel que soit le 
 résultat et le contexte du match.`,
-    vocabulaire: `Je fixe et donne.
-Je fixe et dribble.`,
     exercices: [
       {
-        id: 1,
-        titre: `5 contre 5`,
+        id: 1, titre: `5 contre 5`,
         surface: `36 x 28`,
         objectif: `Entrer dans la zone de finition en 1 contre 1 ou 2 contre 1.`,
         consignes: `3 contre 3 en zone axiale. On peut entrer dans la zone de fini
@@ -4358,11 +4021,10 @@ bler ou passer).
 Accompagner le joueur qui rentre en conduite = proposer une 
 solution de 2 contre 1.`,
         variables: `Autoriser le retour d’un 2ème défenseur.`,
-        marqueurs: [{ x: 49.6, y: 48.4, type: 'ballon' }, { x: 45.0, y: 76.1, type: 'attaquant' }, { x: 46.2, y: 40.1, type: 'defenseur' }, { x: 71.7, y: 45.2, type: 'defenseur' }, { x: 42.0, y: 51.5, type: 'attaquant' }, { x: 16.1, y: 48.4, type: 'but' }, { x: 83.7, y: 48.4, type: 'but' }, { x: 57.0, y: 19.4, type: 'defenseur' }, { x: 27.5, y: 47.3, type: 'attaquant' }, { x: 42.0, y: 14.4, type: 'attaquant' }, { x: 56.4, y: 65.7, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 35, y: 5, type: 'plot' }, { x: 35, y: 95, type: 'plot' }, { x: 65, y: 5, type: 'plot' }, { x: 65, y: 95, type: 'plot' }, { x: 50, y: 50, type: 'ballon' }, { x: 18, y: 50, type: 'attaquant' }, { x: 42, y: 28, type: 'attaquant' }, { x: 42, y: 72, type: 'attaquant' }, { x: 50, y: 50, type: 'attaquant' }, { x: 82, y: 50, type: 'defenseur' }, { x: 58, y: 28, type: 'defenseur' }, { x: 58, y: 72, type: 'defenseur' }, { x: 52, y: 50, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `jeu d’opposition`,
+        id: 2, titre: `jeu d’opposition`,
         surface: `36 x 28`,
         objectif: `Attaquer un des buts au choix, en 2 contre 1.`,
         consignes: `2 contre 1 dans chaque zone. Les joueurs ne changent pas de zone 
@@ -4393,11 +4055,10 @@ G
 G
 OU
 notes`,
-        marqueurs: [{ x: 50.0, y: 48.4, type: 'ballon' }, { x: 55.2, y: 59.7, type: 'attaquant' }, { x: 42.2, y: 69.0, type: 'defenseur' }, { x: 56.4, y: 32.6, type: 'defenseur' }, { x: 47.3, y: 41.9, type: 'attaquant' }, { x: 16.5, y: 48.4, type: 'but' }, { x: 84.1, y: 48.4, type: 'but' }, { x: 44.7, y: 25.2, type: 'defenseur' }, { x: 30.6, y: 47.5, type: 'attaquant' }, { x: 69.5, y: 46.0, type: 'attaquant' }, { x: 58.9, y: 73.2, type: 'defenseur' }, { x: 34.0, y: 28.6, type: 'plot' }, { x: 34.4, y: 33.9, type: 'plot' }, { x: 63.2, y: 62.3, type: 'plot' }, { x: 65.8, y: 64.1, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 30, y: 20, type: 'attaquant' }, { x: 30, y: 40, type: 'attaquant' }, { x: 30, y: 60, type: 'attaquant' }, { x: 30, y: 80, type: 'attaquant' }, { x: 70, y: 20, type: 'defenseur' }, { x: 70, y: 40, type: 'defenseur' }, { x: 70, y: 60, type: 'defenseur' }, { x: 70, y: 80, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `jeu de la feinte`,
+        id: 3, titre: `jeu de la feinte`,
         surface: `36 x 28`,
         objectif: `Jouer en 2 contre 1 avec feintes.`,
         consignes: `Le porteur transmet à son partenaire. Au moment de la passe, 1 
@@ -4423,11 +4084,10 @@ le bon déplacement pour marquer au plus vite (être disponible et
 accessible vers le but). Valoriser les buts en dehors de la surface.`,
         variables: `Autoriser le 2ème défenseur à défendre.
 Donner plus de points pour le but marqué si feinte ou contre-pied.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 16.6, y: 50.2, type: 'but' }, { x: 83.4, y: 48.1, type: 'but' }, { x: 64.9, y: 75.2, type: 'plot' }, { x: 50.7, y: 91.7, type: 'attaquant' }, { x: 13.3, y: 21.2, type: 'defenseur' }, { x: 33.6, y: 47.3, type: 'defenseur' }, { x: 50.2, y: 74.5, type: 'attaquant' }, { x: 50.0, y: 24.1, type: 'attaquant' }, { x: 50.2, y: 6.9, type: 'attaquant' }, { x: 68.0, y: 46.5, type: 'defenseur' }, { x: 88.2, y: 17.0, type: 'defenseur' }, { x: 50.2, y: 71.2, type: 'plot' }, { x: 64.9, y: 39.6, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 25, y: 40, type: 'attaquant' }, { x: 25, y: 60, type: 'attaquant' }, { x: 28, y: 50, type: 'ballon' }, { x: 42, y: 50, type: 'attaquant' }, { x: 55, y: 35, type: 'defenseur' }, { x: 55, y: 65, type: 'defenseur' }, { x: 88, y: 50, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -4448,31 +4108,24 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.3, type: 'ballon' }, { x: 62.4, y: 31.3, type: 'attaquant' }, { x: 48.2, y: 70.0, type: 'attaquant' }, { x: 41.1, y: 36.8, type: 'attaquant' }, { x: 35.4, y: 65.9, type: 'defenseur' }, { x: 50.4, y: 24.4, type: 'defenseur' }, { x: 36.4, y: 29.2, type: 'defenseur' }, { x: 55.8, y: 57.4, type: 'defenseur' }, { x: 63.7, y: 60.6, type: 'attaquant' }, { x: 83.6, y: 49.0, type: 'but' }, { x: 16.4, y: 50.2, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 32,
-    titre: `J’INTERVIENS POUR RÉCUPÉRER LE BALLON ET RELANCER.`,
-    phase: 'defense',
-    phaseLabel: `JE DÉFENDS`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 32, titre: `J’INTERVIENS POUR RÉCUPÉRER LE BALLON ET RELANCER.`,
+    phase: 'defense', phaseLabel: `JE DÉFENDS`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Le respect est une des 5 valeurs de la FFF. 
 Au club, je dois respecter mes adversaires. 
 J’échange une poignée de main à la fin du 
 match et à la suite d’une faute, j’incite mes 
 coéquipiers à sortir le ballon quand un 
 joueur est blessé.`,
-    vocabulaire: `Je cadre le porteur du ballon, je récupère 
-et je fais une passe`,
     exercices: [
       {
-        id: 1,
-        titre: `match 3 contre 3`,
+        id: 1, titre: `match 3 contre 3`,
         surface: `18 x 28`,
         objectif: `Récupérer le ballon et faire une passe à mon partenaire.`,
         consignes: `Jeu libre en 3 contre 3. Chaque équipe a 1 petit but à attaquer et à 
@@ -4494,11 +4147,10 @@ buts entre les 2 équipes est supérieure à 3.`,
         variables: `Si la récupération est effectuée dans son propre camp suivie 
 d’une passe à un partenaire avant de marquer, alors le but compte 
 double.`,
-        marqueurs: [{ x: 52.3, y: 46.5, type: 'ballon' }, { x: 47.9, y: 27.4, type: 'attaquant' }, { x: 25.9, y: 42.6, type: 'attaquant' }, { x: 40.9, y: 90.3, type: 'attaquant' }, { x: 28.3, y: 90.6, type: 'defenseur' }, { x: 23.4, y: 90.6, type: 'defenseur' }, { x: 23.4, y: 25.4, type: 'defenseur' }, { x: 26.7, y: 66.3, type: 'defenseur' }, { x: 45.4, y: 90.3, type: 'attaquant' }, { x: 44.5, y: 37.0, type: 'defenseur' }, { x: 42.0, y: 63.8, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 20, type: 'but' }, { x: 5, y: 50, type: 'but' }, { x: 5, y: 80, type: 'but' }, { x: 95, y: 20, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 95, y: 80, type: 'but' }, { x: 20, y: 5, type: 'plot' }, { x: 20, y: 95, type: 'plot' }, { x: 80, y: 5, type: 'plot' }, { x: 80, y: 95, type: 'plot' }, { x: 50, y: 50, type: 'ballon' }, { x: 28, y: 28, type: 'attaquant' }, { x: 28, y: 55, type: 'attaquant' }, { x: 28, y: 78, type: 'attaquant' }, { x: 72, y: 28, type: 'defenseur' }, { x: 72, y: 55, type: 'defenseur' }, { x: 72, y: 78, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `ballon magique`,
+        id: 2, titre: `ballon magique`,
         surface: `27 x 28`,
         objectif: `Récupérer le ballon et relancer.`,
         consignes: `Les enfants se trouvent dans les portes de couleur à droite et à 
@@ -4530,11 +4182,10 @@ E
 G
 G
 notes`,
-        marqueurs: [{ x: 52.3, y: 48.7, type: 'ballon' }, { x: 73.9, y: 83.4, type: 'attaquant' }, { x: 73.2, y: 13.6, type: 'attaquant' }, { x: 71.0, y: 85.0, type: 'attaquant' }, { x: 73.3, y: 9.4, type: 'attaquant' }, { x: 14.8, y: 84.4, type: 'defenseur' }, { x: 11.6, y: 87.2, type: 'defenseur' }, { x: 53.0, y: 82.3, type: 'ballon' }, { x: 28.7, y: 78.1, type: 'plot' }, { x: 30.9, y: 77.6, type: 'plot' }, { x: 47.2, y: 54.8, type: 'plot' }, { x: 70.4, y: 18.7, type: 'attaquant' }, { x: 70.4, y: 6.6, type: 'attaquant' }, { x: 16.4, y: 90.4, type: 'defenseur' }, { x: 16.4, y: 78.3, type: 'defenseur' }, { x: 42.7, y: 61.1, type: 'plot' }, { x: 18.0, y: 48.7, type: 'ballon' }, { x: 68.5, y: 48.7, type: 'ballon' }, { x: 16.4, y: 19.0, type: 'defenseur' }, { x: 16.4, y: 6.9, type: 'defenseur' }, { x: 70.1, y: 90.4, type: 'attaquant' }, { x: 70.1, y: 78.3, type: 'attaquant' }, { x: 25.7, y: 21.2, type: 'plot' }, { x: 60.6, y: 78.0, type: 'plot' }, { x: 15.1, y: 12.6, type: 'defenseur' }, { x: 12.6, y: 15.9, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 12, y: 10, type: 'attaquant' }, { x: 12, y: 90, type: 'attaquant' }, { x: 88, y: 10, type: 'defenseur' }, { x: 88, y: 90, type: 'defenseur' }, { x: 45, y: 50, type: 'ballon' }, { x: 55, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `jeu d’éveil technique`,
+        id: 3, titre: `jeu d’éveil technique`,
         surface: `36 x 28`,
         objectif: `Intervenir pour récupérer le ballon et relancer.`,
         consignes: `Le GB rouge relance sur le rouge 1, qui rentre dans la zone du 
@@ -4553,11 +4204,10 @@ Rotation des gardiens de but à prévoir.`,
 Sur la récupération, chercher à relancer le plus vite possible.`,
         variables: `Le rouge 1 peut jouer avec le rouge 2. Le bleu 1 doit s’adapter.
 Si passe au rouge 2, le bleu 2 peut venir défendre (2 contre 2).`,
-        marqueurs: [{ x: 50.0, y: 49.1, type: 'ballon' }, { x: 15.8, y: 49.1, type: 'but' }, { x: 82.7, y: 49.1, type: 'but' }, { x: 32.9, y: 67.0, type: 'plot' }, { x: 60.1, y: 28.4, type: 'attaquant' }, { x: 35.0, y: 70.1, type: 'attaquant' }, { x: 60.1, y: 69.3, type: 'defenseur' }, { x: 37.5, y: 26.1, type: 'defenseur' }, { x: 61.3, y: 5.4, type: 'attaquant' }, { x: 61.3, y: 93.2, type: 'defenseur' }, { x: 37.5, y: 5.4, type: 'defenseur' }, { x: 38.7, y: 92.9, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 40, y: 35, type: 'plot' }, { x: 40, y: 65, type: 'plot' }, { x: 60, y: 35, type: 'plot' }, { x: 60, y: 65, type: 'plot' }, { x: 20, y: 35, type: 'attaquant' }, { x: 20, y: 65, type: 'attaquant' }, { x: 22, y: 35, type: 'ballon' }, { x: 80, y: 35, type: 'defenseur' }, { x: 80, y: 65, type: 'defenseur' }, { x: 25, y: 50, type: 'attaquant' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -4578,27 +4228,21 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 33,
-    titre: `JE M’ORGANISE AVEC MON PARTENAIRE POUR EMPÊCHER L’ADVERSAIRE DE S’APPROCHER DE MON BUT.`,
-    phase: 'defense',
-    phaseLabel: `JE DÉFENDS`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 33, titre: `JE M’ORGANISE AVEC MON PARTENAIRE POUR EMPÊCHER L’ADVERSAIRE DE S’APPROCHER DE MON BUT.`,
+    phase: 'defense', phaseLabel: `JE DÉFENDS`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     messageEducatif: `Lorsque je pratique un sport, je dois 
 connaître ses règles du jeu afin de pouvoir le 
 pratiquer dans les meilleures conditions.`,
-    vocabulaire: `Je harcèle le porteur de balle sans me jeter`,
     exercices: [
       {
-        id: 1,
-        titre: `jeu collectif`,
+        id: 1, titre: `jeu collectif`,
         surface: `36 x 28`,
         objectif: `S’organiser avec son partenaire pour empêcher l’adversaire de 
 s’approcher de son but.`,
@@ -4626,11 +4270,10 @@ G
 G
 zone 1
 zone 2`,
-        marqueurs: [{ x: 50.0, y: 50.3, type: 'ballon' }, { x: 84.0, y: 50.3, type: 'but' }, { x: 16.1, y: 50.0, type: 'but' }, { x: 55.0, y: 43.4, type: 'attaquant' }, { x: 71.3, y: 19.2, type: 'attaquant' }, { x: 66.4, y: 83.6, type: 'attaquant' }, { x: 58.1, y: 64.9, type: 'defenseur' }, { x: 70.0, y: 34.5, type: 'defenseur' }, { x: 51.9, y: 39.8, type: 'defenseur' }, { x: 58.4, y: 17.1, type: 'defenseur' }, { x: 48.4, y: 7.1, type: 'plot' }, { x: 15.9, y: 7.1, type: 'plot' }, { x: 38.6, y: 49.7, type: 'attaquant' }, { x: 72.4, y: 23.1, type: 'plot' }, { x: 84.6, y: 6.8, type: 'plot' }, { x: 52.2, y: 6.8, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 33, y: 5, type: 'plot' }, { x: 33, y: 95, type: 'plot' }, { x: 67, y: 5, type: 'plot' }, { x: 67, y: 95, type: 'plot' }, { x: 22, y: 45, type: 'attaquant' }, { x: 32, y: 28, type: 'attaquant' }, { x: 32, y: 60, type: 'attaquant' }, { x: 40, y: 50, type: 'attaquant' }, { x: 62, y: 45, type: 'defenseur' }, { x: 70, y: 28, type: 'defenseur' }, { x: 70, y: 60, type: 'defenseur' }, { x: 78, y: 50, type: 'defenseur' }, { x: 55, y: 45, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `jeu d’opposition`,
+        id: 2, titre: `jeu d’opposition`,
         surface: `36 x 28`,
         objectif: `Défendre collectivement.`,
         consignes: `Les bleus attaquent à partir du milieu du terrain et sont libres 
@@ -4656,11 +4299,10 @@ même zone quand le ballon est sur l’ailier.
 G
 G
 notes`,
-        marqueurs: [{ x: 50.0, y: 48.7, type: 'ballon' }, { x: 15.8, y: 48.7, type: 'but' }, { x: 82.7, y: 48.7, type: 'but' }, { x: 38.2, y: 16.2, type: 'plot' }, { x: 56.7, y: 90.4, type: 'attaquant' }, { x: 55.5, y: 6.8, type: 'attaquant' }, { x: 36.4, y: 12.8, type: 'defenseur' }, { x: 48.9, y: 46.0, type: 'defenseur' }, { x: 31.7, y: 17.9, type: 'attaquant' }, { x: 36.4, y: 88.0, type: 'defenseur' }, { x: 70.7, y: 55.6, type: 'defenseur' }, { x: 31.8, y: 46.4, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 30, y: 20, type: 'attaquant' }, { x: 30, y: 40, type: 'attaquant' }, { x: 30, y: 60, type: 'attaquant' }, { x: 30, y: 80, type: 'attaquant' }, { x: 70, y: 20, type: 'defenseur' }, { x: 70, y: 40, type: 'defenseur' }, { x: 70, y: 60, type: 'defenseur' }, { x: 70, y: 80, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `du 1 contre 2 au 3 contre 4`,
+        id: 3, titre: `du 1 contre 2 au 3 contre 4`,
         surface: `36 x 28`,
         objectif: `S’organiser avec son partenaire pour empêcher l’adversaire de 
 s’approcher de son but.`,
@@ -4679,11 +4321,10 @@ Gérer le changement de statut et la réaction à la transition.`,
         variables: `Jouer le départ du ballon par un ballon magique plutôt qu’une 
 remise en jeu par le gardien.
 Valoriser la récupération en zone adverse (+1 point).`,
-        marqueurs: [{ x: 50.0, y: 49.9, type: 'ballon' }, { x: 15.8, y: 49.9, type: 'but' }, { x: 82.7, y: 49.9, type: 'but' }, { x: 75.8, y: 64.1, type: 'plot' }, { x: 69.0, y: 91.9, type: 'attaquant' }, { x: 73.9, y: 67.5, type: 'attaquant' }, { x: 50.4, y: 70.9, type: 'defenseur' }, { x: 50.2, y: 33.3, type: 'defenseur' }, { x: 30.6, y: 93.1, type: 'defenseur' }, { x: 30.6, y: 5.5, type: 'defenseur' }, { x: 70.3, y: 5.5, type: 'attaquant' }, { x: 88.2, y: 66.7, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 20, y: 5, type: 'plot' }, { x: 20, y: 95, type: 'plot' }, { x: 12, y: 50, type: 'attaquant' }, { x: 30, y: 40, type: 'attaquant' }, { x: 28, y: 60, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 50, y: 28, type: 'defenseur' }, { x: 50, y: 50, type: 'defenseur' }, { x: 50, y: 72, type: 'defenseur' }, { x: 65, y: 45, type: 'defenseur' }, { x: 32, y: 45, type: 'ballon' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -4704,23 +4345,18 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 50.0, y: 49.7, type: 'ballon' }, { x: 62.4, y: 31.7, type: 'attaquant' }, { x: 48.2, y: 70.5, type: 'attaquant' }, { x: 41.1, y: 37.3, type: 'attaquant' }, { x: 35.4, y: 66.3, type: 'defenseur' }, { x: 50.4, y: 24.8, type: 'defenseur' }, { x: 36.4, y: 29.6, type: 'defenseur' }, { x: 55.8, y: 57.9, type: 'defenseur' }, { x: 63.7, y: 61.1, type: 'attaquant' }, { x: 83.6, y: 49.4, type: 'but' }, { x: 16.4, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 34,
-    titre: `SÉANCE D’ACCUEIL`,
-    phase: 'accueil',
-    phaseLabel: `SÉANCE D’ACCUEIL`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 34, titre: `SÉANCE D’ACCUEIL`,
+    phase: 'accueil', phaseLabel: `SÉANCE D’ACCUEIL`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     exercices: [
       {
-        id: 1,
-        titre: `festifoot`,
+        id: 1, titre: `festifoot`,
         surface: `28 x 17`,
         objectif: `Gagner le match en s’opposant à 2 adversaires, sans gardien de 
 but.`,
@@ -4743,11 +4379,10 @@ monter et descendre sur le nombre x de terrains. Obliger les en
 fants à être dans les zones des 4m pour pouvoir marquer. Valoriser 
 par 2 points si le but est marqué de la zone des 4m. Empêcher 
 l’accès à la zone des 4m pour les défenseurs.`,
-        marqueurs: [{ x: 53.5, y: 49.0, type: 'ballon' }, { x: 26.1, y: 68.1, type: 'attaquant' }, { x: 41.9, y: 63.7, type: 'attaquant' }, { x: 80.8, y: 67.1, type: 'attaquant' }, { x: 65.1, y: 68.1, type: 'attaquant' }, { x: 26.1, y: 25.3, type: 'defenseur' }, { x: 43.1, y: 23.3, type: 'defenseur' }, { x: 67.2, y: 27.4, type: 'defenseur' }, { x: 80.8, y: 28.7, type: 'defenseur' }, { x: 53.3, y: 30.7, type: 'defenseur' }, { x: 16.6, y: 19.0, type: 'plot' }, { x: 16.6, y: 8.8, type: 'plot' }, { x: 16.4, y: 88.1, type: 'plot' }, { x: 16.4, y: 78.0, type: 'plot' }, { x: 52.7, y: 57.1, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 28, y: 32, type: 'attaquant' }, { x: 28, y: 68, type: 'attaquant' }, { x: 72, y: 32, type: 'defenseur' }, { x: 72, y: 68, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `béret 2-2 ou 3-3`,
+        id: 2, titre: `béret 2-2 ou 3-3`,
         surface: `18 x 28`,
         objectif: `S’organiser avec son partenaire pour protéger le but et récupérer 
 le ballon.`,
@@ -4783,11 +4418,10 @@ Terrain 1
 Terrain 2
 4m
 4m`,
-        marqueurs: [{ x: 49.3, y: 47.7, type: 'ballon' }, { x: 32.4, y: 48.6, type: 'ballon' }, { x: 67.5, y: 48.2, type: 'ballon' }, { x: 49.2, y: 87.5, type: 'ballon' }, { x: 55.4, y: 33.8, type: 'plot' }, { x: 28.2, y: 29.3, type: 'attaquant' }, { x: 71.5, y: 69.9, type: 'attaquant' }, { x: 27.1, y: 72.9, type: 'defenseur' }, { x: 70.9, y: 20.4, type: 'defenseur' }, { x: 38.8, y: 64.7, type: 'plot' }, { x: 69.3, y: 25.1, type: 'defenseur' }, { x: 29.8, y: 71.9, type: 'defenseur' }, { x: 69.3, y: 71.9, type: 'attaquant' }, { x: 29.8, y: 25.1, type: 'attaquant' }, { x: 24.6, y: 24.2, type: 'attaquant' }, { x: 74.0, y: 74.1, type: 'attaquant' }, { x: 72.7, y: 16.2, type: 'defenseur' }, { x: 24.9, y: 77.1, type: 'defenseur' }, { x: 41.6, y: 38.8, type: 'plot' }, { x: 58.9, y: 56.3, type: 'plot' }, { x: 36.8, y: 64.3, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }, { x: 92, y: 30, type: 'attaquant' }, { x: 92, y: 50, type: 'attaquant' }, { x: 92, y: 70, type: 'attaquant' }, { x: 8, y: 30, type: 'defenseur' }, { x: 8, y: 50, type: 'defenseur' }, { x: 8, y: 70, type: 'defenseur' }],
       },
       {
-        id: 3,
-        titre: `match`,
+        id: 3, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -4808,11 +4442,10 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 49.3, y: 49.8, type: 'ballon' }, { x: 61.7, y: 31.2, type: 'attaquant' }, { x: 47.5, y: 71.1, type: 'attaquant' }, { x: 40.3, y: 37.0, type: 'attaquant' }, { x: 34.7, y: 66.8, type: 'defenseur' }, { x: 49.7, y: 24.1, type: 'defenseur' }, { x: 35.7, y: 29.1, type: 'defenseur' }, { x: 55.1, y: 58.1, type: 'defenseur' }, { x: 63.0, y: 61.4, type: 'attaquant' }, { x: 82.8, y: 49.5, type: 'but' }, { x: 15.7, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -4837,23 +4470,18 @@ G
 G
 G
 G`,
-        marqueurs: [{ x: 49.4, y: 48.4, type: 'ballon' }, { x: 61.9, y: 30.4, type: 'attaquant' }, { x: 47.6, y: 69.1, type: 'attaquant' }, { x: 40.5, y: 35.9, type: 'attaquant' }, { x: 34.8, y: 65.0, type: 'defenseur' }, { x: 49.8, y: 23.5, type: 'defenseur' }, { x: 35.8, y: 28.3, type: 'defenseur' }, { x: 55.2, y: 56.5, type: 'defenseur' }, { x: 63.1, y: 59.7, type: 'attaquant' }, { x: 83.0, y: 48.1, type: 'but' }, { x: 15.8, y: 49.3, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 35,
-    titre: `SÉANCE D’ACCUEIL`,
-    phase: 'accueil',
-    phaseLabel: `SÉANCE D’ACCUEIL`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 35, titre: `SÉANCE D’ACCUEIL`,
+    phase: 'accueil', phaseLabel: `SÉANCE D’ACCUEIL`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     exercices: [
       {
-        id: 1,
-        titre: `jeu de la brochette`,
+        id: 1, titre: `jeu de la brochette`,
         surface: `18 x 28`,
         objectif: `S’organiser avec son partenaire pour protéger le but et récupérer 
 le ballon.`,
@@ -4884,11 +4512,10 @@ A
 B
 A
 B`,
-        marqueurs: [{ x: 47.7, y: 47.9, type: 'ballon' }, { x: 51.7, y: 5.4, type: 'attaquant' }, { x: 50.9, y: 47.6, type: 'ballon' }, { x: 81.7, y: 47.9, type: 'ballon' }, { x: 44.7, y: 32.9, type: 'ballon' }, { x: 56.4, y: 6.0, type: 'attaquant' }, { x: 67.9, y: 21.3, type: 'plot' }, { x: 64.5, y: 5.0, type: 'attaquant' }, { x: 72.3, y: 92.5, type: 'defenseur' }, { x: 69.4, y: 91.5, type: 'defenseur' }, { x: 59.5, y: 21.1, type: 'plot' }, { x: 67.8, y: 89.4, type: 'defenseur' }, { x: 47.6, y: 89.0, type: 'defenseur' }, { x: 67.8, y: 5.9, type: 'attaquant' }, { x: 47.7, y: 6.5, type: 'attaquant' }, { x: 60.3, y: 5.4, type: 'attaquant' }, { x: 78.3, y: 93.6, type: 'defenseur' }, { x: 64.3, y: 62.6, type: 'plot' }, { x: 83.3, y: 5.9, type: 'attaquant' }, { x: 82.0, y: 93.6, type: 'defenseur' }, { x: 68.7, y: 16.1, type: 'plot' }, { x: 70.2, y: 6.0, type: 'plot' }, { x: 65.5, y: 59.7, type: 'plot' }, { x: 65.0, y: 89.9, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'plot' }, { x: 50, y: 10, type: 'plot' }, { x: 50, y: 90, type: 'plot' }, { x: 85, y: 35, type: 'attaquant' }, { x: 85, y: 55, type: 'attaquant' }, { x: 15, y: 35, type: 'defenseur' }, { x: 15, y: 55, type: 'defenseur' }, { x: 50, y: 50, type: 'ballon' }],
       },
       {
-        id: 2,
-        titre: `du 1 contre 1 au 2 contre 2`,
+        id: 2, titre: `du 1 contre 1 au 2 contre 2`,
         surface: `27 x 28`,
         objectif: `Feinter et éliminer un adversaire qui a du retard.
 Conduire sous pression.`,
@@ -4915,11 +4542,10 @@ E
 2
 2
 1`,
-        marqueurs: [{ x: 51.4, y: 48.0, type: 'ballon' }, { x: 72.1, y: 50.9, type: 'attaquant' }, { x: 71.3, y: 44.7, type: 'attaquant' }, { x: 17.6, y: 92.8, type: 'attaquant' }, { x: 59.8, y: 6.3, type: 'defenseur' }, { x: 39.2, y: 85.0, type: 'ballon' }, { x: 47.0, y: 62.7, type: 'plot' }, { x: 67.1, y: 46.8, type: 'attaquant' }, { x: 20.1, y: 89.7, type: 'attaquant' }, { x: 67.3, y: 6.3, type: 'defenseur' }, { x: 67.4, y: 89.5, type: 'defenseur' }, { x: 67.3, y: 78.2, type: 'defenseur' }, { x: 15.7, y: 89.4, type: 'attaquant' }, { x: 24.5, y: 89.7, type: 'attaquant' }, { x: 67.3, y: 40.0, type: 'attaquant' }, { x: 67.3, y: 54.8, type: 'attaquant' }, { x: 63.5, y: 6.1, type: 'defenseur' }, { x: 56.9, y: 75.1, type: 'defenseur' }, { x: 70.8, y: 83.5, type: 'defenseur' }, { x: 67.7, y: 82.9, type: 'defenseur' }, { x: 66.0, y: 4.0, type: 'defenseur' }, { x: 54.8, y: 76.3, type: 'plot' }, { x: 41.2, y: 72.0, type: 'plot' }],
+        marqueurs: [{ x: 5, y: 30, type: 'but' }, { x: 5, y: 70, type: 'but' }, { x: 95, y: 30, type: 'but' }, { x: 95, y: 70, type: 'but' }, { x: 50, y: 50, type: 'plot' }, { x: 50, y: 50, type: 'ballon' }, { x: 30, y: 15, type: 'defenseur' }, { x: 30, y: 25, type: 'defenseur' }, { x: 30, y: 35, type: 'defenseur' }, { x: 30, y: 65, type: 'attaquant' }, { x: 30, y: 75, type: 'attaquant' }, { x: 30, y: 85, type: 'attaquant' }, { x: 55, y: 45, type: 'defenseur' }, { x: 42, y: 52, type: 'attaquant' }],
       },
       {
-        id: 3,
-        titre: `match`,
+        id: 3, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -4940,11 +4566,10 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 49.3, y: 49.8, type: 'ballon' }, { x: 61.7, y: 31.2, type: 'attaquant' }, { x: 47.5, y: 71.1, type: 'attaquant' }, { x: 40.3, y: 37.0, type: 'attaquant' }, { x: 34.7, y: 66.8, type: 'defenseur' }, { x: 49.7, y: 24.1, type: 'defenseur' }, { x: 35.7, y: 29.1, type: 'defenseur' }, { x: 55.1, y: 58.1, type: 'defenseur' }, { x: 63.0, y: 61.4, type: 'attaquant' }, { x: 82.8, y: 49.5, type: 'but' }, { x: 15.7, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -4969,23 +4594,18 @@ G
 G
 G
 G`,
-        marqueurs: [{ x: 49.4, y: 48.4, type: 'ballon' }, { x: 61.9, y: 30.4, type: 'attaquant' }, { x: 47.6, y: 69.1, type: 'attaquant' }, { x: 40.5, y: 35.9, type: 'attaquant' }, { x: 34.8, y: 65.0, type: 'defenseur' }, { x: 49.8, y: 23.5, type: 'defenseur' }, { x: 35.8, y: 28.3, type: 'defenseur' }, { x: 55.2, y: 56.5, type: 'defenseur' }, { x: 63.1, y: 59.7, type: 'attaquant' }, { x: 83.0, y: 48.1, type: 'but' }, { x: 15.8, y: 49.3, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
   {
-    id: 36,
-    titre: `SÉANCE D’ACCUEIL`,
-    phase: 'accueil',
-    phaseLabel: `SÉANCE D’ACCUEIL`,
-    categorie: 'U8-U9',
-    effectif: `10`,
-    duree: `75 min`,
-    materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
+    id: 36, titre: `SÉANCE D’ACCUEIL`,
+    phase: 'accueil', phaseLabel: `SÉANCE D’ACCUEIL`,
+    categorie: 'U8-U9', effectif: `10`,
+    duree: `75 min`, materiel: [`déplacement`, `conduite / dribble`, `passe / tir`, `passe aérienne`, `kit arbitre`],
     exercices: [
       {
-        id: 1,
-        titre: `festifoot`,
+        id: 1, titre: `festifoot`,
         surface: `28 x 17`,
         objectif: `Gagner le match en s’opposant à 2 adversaires, sans gardien de 
 but.`,
@@ -5008,11 +4628,10 @@ monter et descendre sur le nombre x de terrains. Obliger les en
 fants à être dans les zones des 4m pour pouvoir marquer. Valoriser 
 par 2 points si le but est marqué de la zone des 4m. Empêcher 
 l’accès à la zone des 4m pour les défenseurs.`,
-        marqueurs: [{ x: 53.5, y: 48.8, type: 'ballon' }, { x: 26.1, y: 67.9, type: 'attaquant' }, { x: 41.9, y: 63.5, type: 'attaquant' }, { x: 80.8, y: 66.9, type: 'attaquant' }, { x: 65.1, y: 67.9, type: 'attaquant' }, { x: 26.1, y: 25.1, type: 'defenseur' }, { x: 43.1, y: 23.0, type: 'defenseur' }, { x: 67.2, y: 27.2, type: 'defenseur' }, { x: 80.8, y: 28.5, type: 'defenseur' }, { x: 53.3, y: 30.5, type: 'defenseur' }, { x: 16.6, y: 18.8, type: 'plot' }, { x: 16.6, y: 8.6, type: 'plot' }, { x: 16.4, y: 87.9, type: 'plot' }, { x: 16.4, y: 77.8, type: 'plot' }, { x: 52.7, y: 56.9, type: 'attaquant' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 28, y: 32, type: 'attaquant' }, { x: 28, y: 68, type: 'attaquant' }, { x: 72, y: 32, type: 'defenseur' }, { x: 72, y: 68, type: 'defenseur' }],
       },
       {
-        id: 2,
-        titre: `ballon magique`,
+        id: 2, titre: `ballon magique`,
         surface: `27 x 28`,
         objectif: `Attaquer et défendre en 2 contre 2.`,
         consignes: `Les enfants se trouvent au point de corner à droite et à gauche 
@@ -5047,11 +4666,10 @@ Terrain 1
 Terrain 2
 4m
 4m`,
-        marqueurs: [{ x: 52.6, y: 48.7, type: 'ballon' }, { x: 74.1, y: 83.5, type: 'attaquant' }, { x: 73.4, y: 13.7, type: 'attaquant' }, { x: 71.3, y: 85.1, type: 'attaquant' }, { x: 73.5, y: 9.5, type: 'attaquant' }, { x: 15.1, y: 84.4, type: 'defenseur' }, { x: 11.9, y: 87.3, type: 'defenseur' }, { x: 53.3, y: 82.3, type: 'ballon' }, { x: 28.9, y: 78.1, type: 'plot' }, { x: 31.2, y: 77.7, type: 'plot' }, { x: 47.4, y: 54.8, type: 'plot' }, { x: 70.6, y: 18.7, type: 'attaquant' }, { x: 70.6, y: 6.6, type: 'attaquant' }, { x: 16.7, y: 90.5, type: 'defenseur' }, { x: 16.7, y: 78.4, type: 'defenseur' }, { x: 43.0, y: 61.1, type: 'plot' }, { x: 18.3, y: 48.7, type: 'ballon' }, { x: 68.8, y: 48.7, type: 'ballon' }, { x: 16.7, y: 19.0, type: 'defenseur' }, { x: 16.7, y: 6.9, type: 'defenseur' }, { x: 70.3, y: 90.5, type: 'attaquant' }, { x: 70.3, y: 78.4, type: 'attaquant' }, { x: 26.0, y: 21.2, type: 'plot' }, { x: 60.9, y: 78.1, type: 'plot' }, { x: 15.3, y: 12.6, type: 'defenseur' }, { x: 12.8, y: 16.0, type: 'defenseur' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 12, y: 10, type: 'attaquant' }, { x: 12, y: 90, type: 'attaquant' }, { x: 88, y: 10, type: 'defenseur' }, { x: 88, y: 90, type: 'defenseur' }, { x: 45, y: 50, type: 'ballon' }, { x: 55, y: 50, type: 'ballon' }, { x: 50, y: 50, type: 'plot' }],
       },
       {
-        id: 3,
-        titre: `match`,
+        id: 3, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -5072,11 +4690,10 @@ intègrent la rotation.`,
         vigilance: `Faire respecter les lois du jeu. 
 Faire jouer tous les enfants le même temps de jeu.
 Modifier les équipes si l’écart de buts est supérieur à 3.`,
-        marqueurs: [{ x: 49.3, y: 49.8, type: 'ballon' }, { x: 61.7, y: 31.2, type: 'attaquant' }, { x: 47.5, y: 71.1, type: 'attaquant' }, { x: 40.3, y: 37.0, type: 'attaquant' }, { x: 34.7, y: 66.8, type: 'defenseur' }, { x: 49.7, y: 24.1, type: 'defenseur' }, { x: 35.7, y: 29.1, type: 'defenseur' }, { x: 55.1, y: 58.1, type: 'defenseur' }, { x: 63.0, y: 61.4, type: 'attaquant' }, { x: 82.8, y: 49.5, type: 'but' }, { x: 15.7, y: 50.7, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
       {
-        id: 4,
-        titre: `match`,
+        id: 4, titre: `match`,
         surface: `36 x 28`,
         objectif: `Match 5 contre 5.`,
         consignes: `Faire jouer de manière libre les enfants en insistant sur le respect 
@@ -5101,7 +4718,7 @@ G
 G
 G
 G`,
-        marqueurs: [{ x: 49.4, y: 48.4, type: 'ballon' }, { x: 61.9, y: 30.4, type: 'attaquant' }, { x: 47.6, y: 69.1, type: 'attaquant' }, { x: 40.5, y: 35.9, type: 'attaquant' }, { x: 34.8, y: 65.0, type: 'defenseur' }, { x: 49.8, y: 23.5, type: 'defenseur' }, { x: 35.8, y: 28.3, type: 'defenseur' }, { x: 55.2, y: 56.5, type: 'defenseur' }, { x: 63.1, y: 59.7, type: 'attaquant' }, { x: 83.0, y: 48.1, type: 'but' }, { x: 15.8, y: 49.3, type: 'but' }],
+        marqueurs: [{ x: 5, y: 50, type: 'but' }, { x: 95, y: 50, type: 'but' }, { x: 50, y: 50, type: 'ballon' }, { x: 10, y: 50, type: 'attaquant' }, { x: 25, y: 25, type: 'attaquant' }, { x: 25, y: 50, type: 'attaquant' }, { x: 25, y: 75, type: 'attaquant' }, { x: 42, y: 42, type: 'attaquant' }, { x: 90, y: 50, type: 'defenseur' }, { x: 75, y: 25, type: 'defenseur' }, { x: 75, y: 50, type: 'defenseur' }, { x: 75, y: 75, type: 'defenseur' }, { x: 58, y: 58, type: 'defenseur' }],
       },
     ],
   },
